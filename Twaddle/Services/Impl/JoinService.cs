@@ -25,7 +25,7 @@ public class JoinService : IJoinService
             User user = mapper.Map<User>(dto);
 
             var result = _joinRepository.AddNewUser(user);
-
+ 
             if (result == null)
             {
                 return new BaseResponse<User>()
