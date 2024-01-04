@@ -189,8 +189,8 @@ const FinalData = async( data ) => {
         Login: data.login,
         Password: data.password
     }
-
-    const result = await fetch("/join/register", {
+    
+    const result = await fetch("/join/registration", {
         method: "POST",
         body: JSON.stringify(newUser),
         headers: {
@@ -198,6 +198,8 @@ const FinalData = async( data ) => {
         }
     })
 
+    
+    
     return await result.json();
 };
 
@@ -237,7 +239,7 @@ const Home = () => {
             {step > 1 && (
                 <button onClick={handlePrevStep}>Previous</button>
             )}
-            {step === 9 && console.log(FinalData(userData))}
+            {step === 9 && console.log(FinalData(userData)) && handleStepSubmit}
         </div>
     );
 };
