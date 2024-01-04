@@ -6,13 +6,14 @@ public class User
 {
     [Key]
     public int Id { get; set; }
-    public string? Sex { get; set; }
-    public string? Name { get; set; }
-    public string? Goal { get; set; }
-    public int? Age { get; set; }
-    public string? Country { get; set; }
-    public string? Education { get; set; }
-    public string? Description { get; set; }
-    public string? Login { get; set; }
-    public string? Password { get; set; }
+    public string Sex { get; set; } = string.Empty;
+    public string Name { get; set; } = string.Empty;
+    public string Goal { get; set; } = string.Empty;
+    public int Age { get; set; } = 0;
+    public string Country { get; set; } = string.Empty;
+    public string Education { get; set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
+    public string Role { get; set; } = "User";
+    public string Login { get; set; }= string.Empty;
+    public string PasswordHash { get; set; }= string.Empty;
 }

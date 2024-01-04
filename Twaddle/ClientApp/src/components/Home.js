@@ -190,7 +190,7 @@ const FinalData = async( data ) => {
         Password: data.password
     }
 
-    const result = await fetch("/join", {
+    const result = await fetch("/join/register", {
         method: "POST",
         body: JSON.stringify(newUser),
         headers: {

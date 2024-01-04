@@ -4,5 +4,6 @@ namespace Twaddle.Repositories.Interfaces;
 
 public interface IJoinRepository
 {
-    User AddNewUser(User user);
+    Task<User> AddNewUser(User user);
+    Task<User> GetUserByLogin(string login);
 }

@@ -14,19 +14,27 @@ public class JoinRepository : IJoinRepository
         _db = db;
     }
     
-    public User AddNewUser(User user)
+    public async Task<User> AddNewUser(User user)
     {
-        bool check = _db.Users.FirstOrDefault(
+        bool check = await _db.Users.FirstOrDefaultAsync(
             x => x.Login.ToLower().Equals(user.Login.ToLower())) == null;
 
         if (check)
         {
             User result = _db.Users.AddAsync(user).Result.Entity;
-            _db.SaveChanges();
+            await _db.SaveChangesAsync();
 
             return result;
         }
 
         return null;
+    }
+
+    public async Task<User> GetUserByLogin(string login)
+    {
+        User user = await _db.Users.FirstOrDefaultAsync(
+            x => x.Login.Equals(login));
+
+        return user;
     }
 }

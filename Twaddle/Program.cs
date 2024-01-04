@@ -1,4 +1,7 @@
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Twaddle.Domain;
 using Twaddle.Repositories.Impl;
 using Twaddle.Repositories.Interfaces;
@@ -13,6 +16,17 @@ builder.Services.AddTransient<IJoinRepository, JoinRepository>();
 
 builder.Services.AddTransient<IJoinService, JoinService>();
 
+builder.Services.AddAuthentication().AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        ValidateAudience = false,
+        ValidateIssuer = false,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
+            builder.Configuration.GetSection("AppSettings:Token").Value!))
+    };
+});
 
 string connection = builder.Configuration.GetConnectionString("DefaultConnection");
 
@@ -30,6 +44,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 
+app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
