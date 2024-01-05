@@ -19,15 +19,7 @@ public class JoinController : ControllerBase
     public async Task<IActionResult> Register(RegDTO dto)
     {
         var result = await _joinService.Registration(dto);
-
-        if (result.StatusCode == 403)
-        {
-            return Forbid(result.Description);
-        }
-        else if (result.StatusCode == 500)
-        {
-            return Forbid(result.Description);
-        }
+        
         
         return Ok(result);
     }
@@ -37,15 +29,7 @@ public class JoinController : ControllerBase
     {
         var result = await _joinService.Login(dto);
 
-        if (result.StatusCode == 403)
-        {
-            return StatusCode(StatusCodes.Status403Forbidden, result.Description);
-        }
-        else if (result.StatusCode == 500)
-        {
-            return StatusCode(StatusCodes.Status500InternalServerError, result.Description);
-        }
-        
+       
         return Ok(result);
     }
     

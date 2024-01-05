@@ -1,4 +1,108 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
+import {Login, Registration} from '../requests/JoinQueries'
+import ModalButton from "../start/ModelBtn";
+import {useNavigate} from "react-router-dom";
+
+const Home = () => {
+    const [step, setStep] = useState(1);
+    const [resultReg, setResult] = useState('');
+    const [userData, setUserData] = useState({
+        sex: '',
+        nick: '',
+        goal: '',
+        age: 16,
+        country: '',
+        desc: '',
+        education: '',
+        login: '',
+        password: '',
+    });
+    
+    const handleStepSubmit = (stepData) => {
+        setUserData({ ...userData, ...stepData });
+        setStep(step + 1);
+    };
+
+    const handlePrevStep = () => {
+        setStep(step - 1);
+    };
+    
+    const registration = async() =>
+    {
+        const result = await Registration(userData);
+        
+        setResult(result.data.description);
+    }
+    
+    const login = async() => {
+        
+        const result = await Login(loginUser);
+        
+        console.log(result.data.data);
+    }
+    
+    const loginUser = {
+        Login: '',
+        Password: ''
+    }
+    
+    return (
+        <div>
+            <header>
+                <nav className="navbar bg-info p-2">
+                    <a className="navbar-brand" href="/">Twaddle</a>
+                    <ul className="navbar-nav flex-grow">
+                        <ModalButton
+                            btnName={'Войти'}
+                            title={'Вход в систему'}
+                            modalContent= {
+                                <div>
+                                    <div>
+                                        <label>Логин:</label>
+                                        <input 
+                                            type="text" 
+                                            placeholder="Введите логин"
+                                            onChange={e => 
+                                                loginUser.Login = e.target.value}
+                                        />
+                                    </div>
+                                    <div>
+                                        <label >Пароль:</label>
+                                        <input 
+                                            type="password"
+                                            placeholder="Введите пароль"
+                                            onChange={e =>
+                                                loginUser.Password = e.target.value}
+                                        />
+                                    </div>
+                                    <button className="succes" onClick={() => login()}>Войти</button>
+                                </div>
+                            }
+                        />
+                    </ul>
+                </nav>
+            </header>
+            <div>
+                {step === 1 && <SelectSex data={userData} onSubmit={handleStepSubmit} />}
+                {step === 2 && <EnterNick data={userData} onSubmit={handleStepSubmit} />}
+                {step === 3 && <SelectGoal data={userData} onSubmit={handleStepSubmit} />}
+                {step === 4 && <EnterAge data={userData} onSubmit={handleStepSubmit} />}
+                {step === 5 && <EnterCountry data={userData} onSubmit={handleStepSubmit} />}
+                {step === 6 && <EnterEducation data={userData} onSubmit={handleStepSubmit} />}
+                {step === 7 && <EnterDesc data={userData} onSubmit={handleStepSubmit} />}
+                {step === 8 && <EnterInfo data={userData} onSubmit={handleStepSubmit} />}
+                {step > 1 && (
+                    <button onClick={handlePrevStep}>Previous</button>
+                )}
+                {step === 9 && registration()}
+            </div>
+
+        </div>
+    );
+    
+};
+
+export default Home;
 
 const SelectSex = ({ data, onSubmit }) => {
     const [sex, setSex] = useState(data.name || '');
@@ -175,73 +279,3 @@ const EnterInfo = ({ data, onSubmit }) => {
         </form>
     );
 };
-
-const FinalData = async( data ) => {
-
-    const newUser = {
-        Sex: data.sex,
-        Name: data.nick,
-        Goal: data.goal,
-        Age: data.age,
-        Country: data.country,
-        Education: data.education,
-        Description: data.desc,
-        Login: data.login,
-        Password: data.password
-    }
-    
-    const result = await fetch("/join/registration", {
-        method: "POST",
-        body: JSON.stringify(newUser),
-        headers: {
-            "Content-type": "application/json"
-        }
-    })
-
-    
-    
-    return await result.json();
-};
-
-const Home = () => {
-    const [step, setStep] = useState(1);
-    const [userData, setUserData] = useState({
-        sex: '',
-        nick: '',
-        goal: '',
-        age: '',
-        country: '',
-        desc: '',
-        education: '',
-        login: '',
-        password: '',
-    });
-
-    const handleStepSubmit = (stepData) => {
-        setUserData({ ...userData, ...stepData });
-        setStep(step + 1);
-    };
-
-    const handlePrevStep = () => {
-        setStep(step - 1);
-    };
-
-    return (
-        <div>
-            {step === 1 && <SelectSex data={userData} onSubmit={handleStepSubmit} />}
-            {step === 2 && <EnterNick data={userData} onSubmit={handleStepSubmit} />}
-            {step === 3 && <SelectGoal data={userData} onSubmit={handleStepSubmit} />}
-            {step === 4 && <EnterAge data={userData} onSubmit={handleStepSubmit} />}
-            {step === 5 && <EnterCountry data={userData} onSubmit={handleStepSubmit} />}
-            {step === 6 && <EnterEducation data={userData} onSubmit={handleStepSubmit} />}
-            {step === 7 && <EnterDesc data={userData} onSubmit={handleStepSubmit} />}
-            {step === 8 && <EnterInfo data={userData} onSubmit={handleStepSubmit} />}
-            {step > 1 && (
-                <button onClick={handlePrevStep}>Previous</button>
-            )}
-            {step === 9 && console.log(FinalData(userData)) && handleStepSubmit}
-        </div>
-    );
-};
-
-export default Home;

@@ -20,6 +20,7 @@ builder.Services.AddAuthentication().AddJwtBearer(options =>
 {
     options.TokenValidationParameters = new TokenValidationParameters
     {
+        
         ValidateIssuerSigningKey = true,
         ValidateAudience = false,
         ValidateIssuer = false,
@@ -27,6 +28,7 @@ builder.Services.AddAuthentication().AddJwtBearer(options =>
             builder.Configuration.GetSection("AppSettings:Token").Value!))
     };
 });
+builder.Services.AddAuthorization();
 
 string connection = builder.Configuration.GetConnectionString("DefaultConnection");
 
@@ -44,6 +46,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
