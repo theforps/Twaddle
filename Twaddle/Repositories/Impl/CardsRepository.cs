@@ -16,7 +16,7 @@ public class CardsRepository : ICardsRepository
     public async Task<List<User>> GetAllCards()
     {
         var result = await _db.Users.ToListAsync();
-
+        
         return result;
     }
 }
