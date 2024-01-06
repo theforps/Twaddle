@@ -1,4 +1,5 @@
 using System.Text;
+using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -7,14 +8,19 @@ using Twaddle.Repositories.Impl;
 using Twaddle.Repositories.Interfaces;
 using Twaddle.Services.Impl;
 using Twaddle.Services.Interfaces;
+using Twaddle.Services.Mapping;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddAutoMapper(typeof(CardMapping));
+
 builder.Services.AddTransient<IJoinRepository, JoinRepository>();
+builder.Services.AddTransient<ICardsRepository, CardsRepository>();
 
 builder.Services.AddTransient<IJoinService, JoinService>();
+builder.Services.AddTransient<ICardsService, CardsService>();
 
 builder.Services.AddAuthentication().AddJwtBearer(options =>
 {

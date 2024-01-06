@@ -32,8 +32,7 @@ public class JoinRepository : IJoinRepository
 
     public async Task<User> GetUserByLogin(string login)
     {
-        User user = await _db.Users.FirstOrDefaultAsync(
-            x => x.Login.Equals(login));
+        User user = await _db.Users.FirstOrDefaultAsync(x => x.Login.ToLower().Equals(login.ToLower()));
 
         return user;
     }

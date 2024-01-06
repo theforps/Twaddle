@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
 import {Login, Registration} from '../requests/JoinQueries'
 import ModalButton from "../start/ModelBtn";
-import {useNavigate} from "react-router-dom";
 
-const Home = () => {
+const StartPage = () => {
     const [step, setStep] = useState(1);
     const [resultReg, setResult] = useState('');
     const [userData, setUserData] = useState({
@@ -31,14 +30,22 @@ const Home = () => {
     {
         const result = await Registration(userData);
         
-        setResult(result.data.description);
+        if(result.data.statusCode === 200) {
+            setResult(result.data.description);
+            return true;
+        }
+        
+        return false;
     }
     
     const login = async() => {
         
         const result = await Login(loginUser);
         
-        console.log(result.data.data);
+        if(result.status === 200) {
+            
+            sessionStorage.setItem('token', result.data.data);
+        }
     }
     
     const loginUser = {
@@ -91,10 +98,10 @@ const Home = () => {
                 {step === 6 && <EnterEducation data={userData} onSubmit={handleStepSubmit} />}
                 {step === 7 && <EnterDesc data={userData} onSubmit={handleStepSubmit} />}
                 {step === 8 && <EnterInfo data={userData} onSubmit={handleStepSubmit} />}
-                {step > 1 && (
+                {step > 1 && step < 9 && (
                     <button onClick={handlePrevStep}>Previous</button>
                 )}
-                {step === 9 && registration()}
+                {step === 9 && registration() && <div>{resultReg}</div>}
             </div>
 
         </div>
@@ -102,7 +109,7 @@ const Home = () => {
     
 };
 
-export default Home;
+export default StartPage;
 
 const SelectSex = ({ data, onSubmit }) => {
     const [sex, setSex] = useState(data.name || '');
