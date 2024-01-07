@@ -6,7 +6,10 @@ public class Match
 {
     [Key]
     public int Id { get; set; }
-    public required User SearchUser { get; set; }
-    public User? ResultUser { get; set; }
     public List<Message>? Messages { get; set; }
+    public bool IsMutually { get; set; } = false;
+    
+    public required List<User> Couple { get; set; }
+    
+    
 }

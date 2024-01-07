@@ -16,4 +16,6 @@ public class User
     public string Role { get; set; } = "User";
     public string Login { get; set; }= string.Empty;
     public string PasswordHash { get; set; }= string.Empty;
+    
+    public List<Match> Matches { get; set; }
 }

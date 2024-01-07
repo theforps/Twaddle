@@ -18,6 +18,7 @@ builder.Services.AddAutoMapper(typeof(CardMapping));
 
 builder.Services.AddTransient<IJoinRepository, JoinRepository>();
 builder.Services.AddTransient<ICardsRepository, CardsRepository>();
+builder.Services.AddTransient<IUserRepository, UserRepository>();
 
 builder.Services.AddTransient<IJoinService, JoinService>();
 builder.Services.AddTransient<ICardsService, CardsService>();

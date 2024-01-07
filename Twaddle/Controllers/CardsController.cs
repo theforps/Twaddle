@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Twaddle.Domain.DTO;
 using Twaddle.Services.Interfaces;
 
 namespace Twaddle.Controllers;
@@ -15,7 +16,7 @@ public class CardsController : ControllerBase
         _cardsService = cardsService;
     }
     
-    [HttpGet]
+    [HttpGet("forms")]
     public async Task<IActionResult>  GetCardsOfUsers()
     {
         string currentUser = HttpContext.User.Identity.Name;
@@ -27,6 +28,36 @@ public class CardsController : ControllerBase
             return Ok(result);
         }
 
-        return Ok();
+        return Unauthorized();
+    }
+    
+    [HttpGet("matches")]
+    public async Task<IActionResult>  GetUserMatches()
+    {
+        string currentUser = HttpContext.User.Identity.Name;
+
+        if (currentUser != null)
+        {
+            var result = await _cardsService.GetUserMatches(currentUser);
+
+            return Ok(result);
+        }
+
+        return Unauthorized();
+    }
+    
+    [HttpPost("set-match")]
+    public async Task<IActionResult>  SetUserMatch(SetMatchDTO secondLogin)
+    {
+        string currentUser = HttpContext.User.Identity.Name;
+
+        if (currentUser != null)
+        {
+            var result = await _cardsService.AddUserMatch(currentUser, secondLogin.SecondLogin);
+
+            return Ok(result);
+        }
+
+        return Unauthorized();
     }
 }

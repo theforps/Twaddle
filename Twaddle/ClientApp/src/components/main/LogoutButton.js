@@ -6,16 +6,12 @@ const LogoutButton = () => {
     const handleLogout = () => {
 
         sessionStorage.removeItem('token');
-        
-        return (
-            <Navigate to={"/join"}/>
-        )
     };
 
     return (
-        <button onClick={handleLogout}>
+        <a className={"btn btn-danger"} onClick={handleLogout}>
             Выйти
-        </button>
+        </a>
     );
 };
 

@@ -1,5 +1,5 @@
 import {Navigate} from "react-router-dom";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Tabs from "./Tabs";
 import InfiniteUserCard from "./InfinityUserCard";
 import LogoutButton from "./LogoutButton";
@@ -7,16 +7,16 @@ import LogoutButton from "./LogoutButton";
 const MainPage = () => {
 
     const [showProfileLink, setShowProfileLink] = useState(true);
-    
+
     if(sessionStorage.getItem('token') == null)
     {
         return <Navigate to={'/join'}/>
     }
-
+    
     const handleButtonClick = () => {
         setShowProfileLink((prevState) => !prevState);
     };
-    
+        
     return (
         <div className="m-5 w-100 d-flex">
             <div>

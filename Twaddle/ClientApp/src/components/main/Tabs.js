@@ -1,23 +1,34 @@
 // Tabs.js
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
+import {GetUserMatches} from "../requests/CardsQueries";
 
 const Tabs = () => {
     const [activeTab, setActiveTab] = useState('matches');
 
-    const matches = [
-        { id: 1, name: 'Никита 1'},
-        { id: 2, name: 'Никита 2'},
-    ];
-
+    const [matches, setMatches] = useState(null);
+    
+    const getMatches = async () => {
+        
+        const jwt = sessionStorage.getItem('token');
+        
+        const result = await GetUserMatches(jwt);
+        
+        setMatches(result.data.data);
+    }
+    
     const messages = [
-        { id: 1, name: 'Сообщение 1'},
-        { id: 2, name: 'Сообщение 2'},
+        { content: 'Сообщение 1'},
+        { content: 'Сообщение 2'},
     ];
     
     const handleTabClick = (tab) => {
         setActiveTab(tab);
     };
 
+    useEffect(() => {
+        getMatches();
+    }, []);
+    
     return (
         <div className="d-inline-block justify-content-center">
             <div className="tab-header">
@@ -28,12 +39,12 @@ const Tabs = () => {
                     Сообщения
                 </button>
             </div>
-            <div className="tab-content">
+            <div className="tab-content mt-4">
                 {activeTab === 'matches' && (
                     <ul>
-                        {matches.length > 0 ? (matches.map((matche) => (
-                            <li key={matche.id}>
-                                <a >{matche.name}</a>
+                        {matches != null ? (matches.map((match) => (
+                            <li className={"mt-2"}>
+                                <button >{match.name}</button>
                             </li>
                         ))) : (
                             <p>Совпадений нет.</p>
@@ -42,9 +53,9 @@ const Tabs = () => {
                 )}
                 {activeTab === 'messages' && (
                     <ul>
-                        {messages.length > 0 ? (messages.map((message) => (
-                            <li key={message.id}>
-                                <a >{message.name}</a>
+                        {messages != null ? (messages.map((message) => (
+                            <li className={"mt-2"}>
+                                <button >{message.content}</button>
                             </li>
                         ))) : (
                             <p>Собщений нет.</p>
