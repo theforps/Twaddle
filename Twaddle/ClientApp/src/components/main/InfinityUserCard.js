@@ -36,31 +36,31 @@ const InfiniteUserCard = () => {
     }, []);
     
     return (
-        <div className="w-75 d-flex justify-content-center">
-                <div className={"card w-75 border-3 border-danger"}>
+        <div className="d-flex justify-content-center">
+                <div className={"card border-3 border-light-subtle"}>
                     {userList.length > currentIndex &&  (
-                        <div className={"m-5"}>
+                        <div className={"m-4"}>
                             <div>
-                                <p>{userList[currentIndex].name}</p>
-                                <p>{userList[currentIndex].sex}</p>
-                                <p>{userList[currentIndex].goal}</p>
-                                <p>{userList[currentIndex].age}</p>
-                                <p>{userList[currentIndex].country}</p>
-                                <p>{userList[currentIndex].education}</p>
-                                <p>{userList[currentIndex].description}</p>
+                                <p>Имя: {userList[currentIndex].name}</p>
+                                <p>Пол: {userList[currentIndex].sex}</p>
+                                <p>Цель: {userList[currentIndex].goal}</p>
+                                <p>Возраст: {userList[currentIndex].age}</p>
+                                <p>Страна: {userList[currentIndex].country}</p>
+                                <p>Образование: {userList[currentIndex].education}</p>
+                                <p>Описание: {userList[currentIndex].description}</p>
                             </div>
                             <div className={"d-flex justify-content-center"}>
-                                <button className={"m-3"} onClick={() => goToNextCard}>
+                                <button className={"btn btn-danger m-3"} onClick={goToNextCard}>
                                     Дизлайк
                                 </button>
-                                <button className={"m-3"} onClick={() => setLike(userList[currentIndex].login)}>
+                                <button className={"btn btn-success m-3"} onClick={() => setLike(userList[currentIndex].login)}>
                                     Лайк
                                 </button>
                             </div>
                         </div>
                     )}
                     {(userList.length <= 0 || currentIndex >= userList.length ) && (
-                            <h3>Анкет больше нет</h3>
+                            <h1 className={"m-5"}>Анкет больше нет</h1>
                         )
                     }
                 </div>

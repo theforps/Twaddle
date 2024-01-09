@@ -56,7 +56,7 @@ const StartPage = () => {
     return (
         <div>
             <header>
-                <nav className="navbar bg-info p-2">
+                <nav className="navbar bg-secondary-subtle p-2">
                     <a className="navbar-brand" href="/">Twaddle</a>
                     <ul className="navbar-nav flex-grow">
                         <ModalButton
@@ -99,7 +99,7 @@ const StartPage = () => {
                 {step === 7 && <EnterDesc data={userData} onSubmit={handleStepSubmit} />}
                 {step === 8 && <EnterInfo data={userData} onSubmit={handleStepSubmit} />}
                 {step > 1 && step < 9 && (
-                    <button onClick={handlePrevStep}>Previous</button>
+                    <button className={"btn btn-danger"} onClick={handlePrevStep}>Назад</button>
                 )}
                 {step === 9 && registration() && <div>{resultReg}</div>}
             </div>
@@ -125,12 +125,12 @@ const SelectSex = ({ data, onSubmit }) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <p>Ваш пол</p>
+            <h1>Ваш пол</h1>
             <div>
-                <button onClick={() => handleSexSelection('Мужчина')}>
+                <button className={"btn btn-success"} onClick={() => handleSexSelection('Мужчина')}>
                     Мужчина
                 </button>
-                <button onClick={() => handleSexSelection('Женщина')}>
+                <button className={"btn btn-success"} onClick={() => handleSexSelection('Женщина')}>
                     Женщина
                 </button>
             </div>
@@ -148,11 +148,11 @@ const EnterNick = ({ data, onSubmit }) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <label>
+            <h1>
                 Ваше имя
                 <input type="text" value={nick} required={true} onChange={(e) => setNick(e.target.value)} />
-            </label>
-            <button type="submit">Next</button>
+            </h1>
+            <button className={"btn btn-success"} type="submit">Дальше</button>
         </form>
     );
 };
@@ -171,15 +171,15 @@ const SelectGoal = ({ data, onSubmit }) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <p>Ваша цель</p>
+            <h1>Ваша цель</h1>
             <div>
-                <button onClick={() => handleGoalSelection('Ищу бизнес-партнера')}>
+                <button className={"btn btn-success"} onClick={() => handleGoalSelection('Ищу бизнес-партнера')}>
                     Ищу бизнес-партнера
                 </button>
-                <button onClick={() => handleGoalSelection('Ищу заказчика')}>
+                <button className={"btn btn-success"} onClick={() => handleGoalSelection('Ищу заказчика')}>
                     Ищу заказчика
                 </button>
-                <button onClick={() => handleGoalSelection('Ищу исполнителя')}>
+                <button className={"btn btn-success"} onClick={() => handleGoalSelection('Ищу исполнителя')}>
                     Ищу исполнителя
                 </button>
             </div>
@@ -197,11 +197,11 @@ const EnterAge = ({ data, onSubmit }) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <label>
+            <h1>
                 Ваш возраст
                 <input type="number" min={16} required={true} onChange={(e) => setAge(e.target.value)} />
-            </label>
-            <button type="submit">Next</button>
+            </h1>
+            <button className={"btn btn-success"} type="submit">Дальше</button>
         </form>
     );
 };
@@ -216,11 +216,11 @@ const EnterCountry = ({ data, onSubmit }) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <label>
+            <h1>
                 Введите страну
                 <input type="text" required={true} onChange={(e) => setCountry(e.target.value)} />
-            </label>
-            <button type="submit">Next</button>
+            </h1>
+            <button className={"btn btn-success"} type="submit">Дальше</button>
         </form>
     );
 };
@@ -235,11 +235,11 @@ const EnterEducation = ({ data, onSubmit }) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <label>
+            <h1>
                 Введите образование
                 <input type="text" required={true} onChange={(e) => setEducation(e.target.value)} />
-            </label>
-            <button type="submit">Next</button>
+            </h1>
+            <button className={"btn btn-success"} type="submit">Дальше</button>
         </form>
     );
 };
@@ -254,11 +254,11 @@ const EnterDesc = ({ data, onSubmit }) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <label>
+            <h1>
                 Введите информацио о себе и о ваших планах
                 <textarea type="text" required={true} onChange={(e) => setDesc(e.target.value)} />
-            </label>
-            <button type="submit">Next</button>
+            </h1>
+            <button className={"btn btn-success"} type="submit">Дальше</button>
         </form>
     );
 };
@@ -274,15 +274,15 @@ const EnterInfo = ({ data, onSubmit }) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <label>
+            <h1>
                 Введите логин
                 <input type="text" required={true} onChange={(e) => setLogin(e.target.value)} />
-            </label>
-            <label>
+            </h1>
+            <h1>
                 Введите пароль
                 <input type="text" required={true} onChange={(e) => setPassword(e.target.value)} />
-            </label>
-            <button type="submit">Next</button>
+            </h1>
+            <button className={"btn btn-success"} type="submit">Дальше</button>
         </form>
     );
 };

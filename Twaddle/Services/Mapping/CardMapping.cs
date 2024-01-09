@@ -9,5 +9,6 @@ public class CardMapping : Profile
     public CardMapping()
     {
         CreateMap<User, UserDTO>().ReverseMap();
+        CreateMap<Match, MatchDTO>().ReverseMap();
     }
 }

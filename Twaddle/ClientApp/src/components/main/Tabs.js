@@ -2,10 +2,12 @@
 import React, {useEffect, useState} from 'react';
 import {GetUserMatches} from "../requests/CardsQueries";
 
-const Tabs = () => {
+const Tabs = ({openMes}) => {
     const [activeTab, setActiveTab] = useState('matches');
 
     const [matches, setMatches] = useState(null);
+    const [matchId, setMatchId] = useState(null);
+    const [messages, setMessages] = useState(null);
     
     const getMatches = async () => {
         
@@ -13,13 +15,16 @@ const Tabs = () => {
         
         const result = await GetUserMatches(jwt);
         
+        console.log(result.data)
+        
         setMatches(result.data.data);
+        setMessages(result.data.messages)
     }
     
-    const messages = [
-        { content: 'Сообщение 1'},
-        { content: 'Сообщение 2'},
-    ];
+    const handleOpenMatch = (id) => {
+        setMatchId(id);
+        openMes(matchId);
+    }
     
     const handleTabClick = (tab) => {
         setActiveTab(tab);
@@ -31,11 +36,11 @@ const Tabs = () => {
     
     return (
         <div className="d-inline-block justify-content-center">
-            <div className="tab-header">
-                <button className={activeTab === 'matches' ? 'active' : ''} onClick={() => handleTabClick('matches')}>
+            <div className="tab-header ">
+                <button className={"btn btn-outline-primary m-2"}  onClick={() => handleTabClick('matches')}>
                     Совпадения
                 </button>
-                <button className={activeTab === 'messages' ? 'active' : ''} onClick={() => handleTabClick('messages')}>
+                <button className={"btn btn-outline-info m-2"}  onClick={() => handleTabClick('messages')}>
                     Сообщения
                 </button>
             </div>
@@ -43,8 +48,10 @@ const Tabs = () => {
                 {activeTab === 'matches' && (
                     <ul>
                         {matches != null ? (matches.map((match) => (
-                            <li className={"mt-2"}>
-                                <button >{match.name}</button>
+                            <li key={match.id} className={"mt-2"}>
+                                <button className={"btn btn-primary"} onClick={() => handleOpenMatch(match?.id)}>
+                                    {match.pair.id + " " + match.pair.name}
+                                </button>
                             </li>
                         ))) : (
                             <p>Совпадений нет.</p>
@@ -55,7 +62,7 @@ const Tabs = () => {
                     <ul>
                         {messages != null ? (messages.map((message) => (
                             <li className={"mt-2"}>
-                                <button >{message.content}</button>
+                                <button className={"btn btn-info"}>{message.content}</button>
                             </li>
                         ))) : (
                             <p>Собщений нет.</p>

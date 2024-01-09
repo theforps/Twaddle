@@ -50,14 +50,29 @@ public class CardsController : ControllerBase
     public async Task<IActionResult>  SetUserMatch(SetMatchDTO secondLogin)
     {
         string currentUser = HttpContext.User.Identity.Name;
-
+    
         if (currentUser != null)
         {
             var result = await _cardsService.AddUserMatch(currentUser, secondLogin.SecondLogin);
-
+    
             return Ok(result);
         }
-
+    
+        return Unauthorized();
+    }
+    
+    [HttpGet("get-match/{id}")]
+    public async Task<IActionResult>  GetUserMatch(int id)
+    {
+        string currentUser = HttpContext.User.Identity.Name;
+    
+        if (currentUser != null)
+        {
+            var result = await _cardsService.GetUserMatch(id, currentUser);
+    
+            return Ok(result);
+        }
+    
         return Unauthorized();
     }
 }

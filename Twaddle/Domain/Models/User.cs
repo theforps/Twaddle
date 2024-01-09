@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace Twaddle.Domain.Models;
 
@@ -16,6 +17,6 @@ public class User
     public string Role { get; set; } = "User";
     public string Login { get; set; }= string.Empty;
     public string PasswordHash { get; set; }= string.Empty;
-    
+    [JsonIgnore]
     public List<Match> Matches { get; set; }
 }

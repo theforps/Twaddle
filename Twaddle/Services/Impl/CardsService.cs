@@ -17,7 +17,8 @@ public class CardsService : ICardsService
         _mapper = mapper;
         _userRepository = userRepository;
     }
-    
+
+    #region match
     public async Task<BaseResponse<List<UserDTO>>> RecommendedCardsForUser(string currentUser)
     {
         try
@@ -53,23 +54,13 @@ public class CardsService : ICardsService
 
             var matches = await _cardsRepository.GetUserMatches(user);
 
-            List<MatchDTO> result = new List<MatchDTO>();
+            var result = _mapper.Map<List<MatchDTO>>(matches);
 
-            foreach (var x in matches)
+            foreach (var x in result)
             {
-                if (x.IsMutually)
+                foreach (var c in matches)
                 {
-                    foreach (var c in x.Couple)
-                    {
-                        if (!c.Login.ToLower().Equals(userName.ToLower()))
-                        {
-                            result.Add(new MatchDTO()
-                            {
-                                Login = c.Login,
-                                Name = c.Name
-                            });
-                        }
-                    }
+                    x.Pair = c.Couple.FirstOrDefault(x => !x.Login.ToLower().Equals(userName.ToLower()));
                 }
             }
             
@@ -99,36 +90,65 @@ public class CardsService : ICardsService
         }
     }
 
-    public async Task<BaseResponse<List<MatchDTO>>> AddUserMatch(string firstLogin, string secondLogin)
+    public async Task<BaseResponse<MatchDTO>> GetUserMatch(int id, string userName)
     {
         try
         {
-            var firstUser = await _userRepository.GetUserByLogin(firstLogin);
-            var secondUser = await _userRepository.GetUserByLogin(secondLogin);
+            var response = await _cardsRepository.GetUserMatch(id);
 
-            var match = await _cardsRepository.SetUserMatch(firstUser, secondUser);
-
-            var result = new List<MatchDTO>();
+            var result = _mapper.Map<MatchDTO>(response);
             
-            foreach (var c in match.Couple)
-            {
-                result.Add(new MatchDTO()
-                {
-                    Login = c.Login,
-                    Name = c.Name
-                });
-            }
+            result.Pair = response.Couple.FirstOrDefault(x => !x.Login.ToLower().Equals(userName.ToLower()));
             
             if (result == null)
             {
-                return new BaseResponse<List<MatchDTO>>()
+                return new BaseResponse<MatchDTO>()
+                {
+                    Description = "Совпадение не было найдено.",
+                    StatusCode = 404
+                };
+            }
+            
+            return new BaseResponse<MatchDTO>()
+            {
+                Data = result,
+                Description = "Выполнено успешно.",
+                StatusCode = 200
+            };
+
+        }
+        catch (Exception e)
+        {
+            return new BaseResponse<MatchDTO>()
+            {
+                Description = e.Message,
+                StatusCode = 500
+            };
+        }
+    }
+
+    public async Task<BaseResponse<MatchDTO>> AddUserMatch(string currentUser, string secondLogin)
+    {
+        try
+        {
+            var firstUser = await _userRepository.GetUserByLogin(currentUser);
+            var secondUser = await _userRepository.GetUserByLogin(secondLogin);
+    
+            var match = await _cardsRepository.SetUserMatch(firstUser, secondUser);
+
+            var result = _mapper.Map<MatchDTO>(match);
+            result.Pair = match.Couple.FirstOrDefault(x => !x.Login.ToLower().Equals(currentUser.ToLower()));
+            
+            if (result == null)
+            {
+                return new BaseResponse<MatchDTO>()
                 {
                     Description = "Не удалось сохранить совпадение.",
                     StatusCode = 400
                 };
             }
             
-            return new BaseResponse<List<MatchDTO>>()
+            return new BaseResponse<MatchDTO>()
             {
                 Data = result,
                 Description = "Запрос успешно выполнен",
@@ -137,11 +157,50 @@ public class CardsService : ICardsService
         }
         catch (Exception e)
         {
-            return new BaseResponse<List<MatchDTO>>()
+            return new BaseResponse<MatchDTO>()
             {
                 Description = e.Message,
                 StatusCode = 500
             };
         }
     }
+    
+    #endregion
+
+    #region messages
+
+    // public async Task<BaseResponse<Match>> GetMessages(int matchId)
+    // {
+    //     try
+    //     {
+    //         var result = await _cardsRepository.GetMatchById(matchId);
+    //
+    //         if (result == null)
+    //         {
+    //             return new BaseResponse<Match>()
+    //             {
+    //                 Description = "Совпадение не найдено.",
+    //                 StatusCode = 404
+    //             };
+    //         }
+    //
+    //         return new BaseResponse<Match>()
+    //         {
+    //             Data = result,
+    //             Description = "Выполнено успешно.",
+    //             StatusCode = 200
+    //         };
+    //
+    //     }
+    //     catch (Exception ex)
+    //     {
+    //         return new BaseResponse<Match>()
+    //         {
+    //             Description = ex.Message,
+    //             StatusCode = 500
+    //         };
+    //     }
+    // }
+
+    #endregion
 }

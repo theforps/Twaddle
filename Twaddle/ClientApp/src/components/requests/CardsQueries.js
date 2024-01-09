@@ -20,6 +20,15 @@ export const GetUserMatches = async (jwt) => {
 
 };
 
+export const GetUserMatch = async (jwt, id) => {
+
+    return await axios.get(`/cards/get-match/${id}`, {
+        headers: {
+            Authorization: "Bearer " + jwt
+        }
+    });
+};
+
 export const SetUserMatch = async (jwt, login) => {
 
     return await axios.post('/cards/set-match', {

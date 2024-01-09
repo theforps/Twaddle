@@ -8,7 +8,6 @@ public class Match
     public int Id { get; set; }
     public List<Message>? Messages { get; set; }
     public bool IsMutually { get; set; } = false;
-    
     public required List<User> Couple { get; set; }
     
     
