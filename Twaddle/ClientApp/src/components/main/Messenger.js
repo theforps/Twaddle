@@ -12,8 +12,6 @@ const Messenger = ({matchId}) => {
         
         const result = await GetUserMatchMessages(jwt, matchId);
         
-        console.log(result);
-        
         setBuddy(result.data.data.senderInfo)
         setMessageList(result.data.data.messages)
     }
@@ -31,9 +29,9 @@ const Messenger = ({matchId}) => {
         
         const result = await SendMessage(jwt, newMessage);
         
-       console.log(result);
-        //сделать в виде возвращения истории как в get
-        setMessageList(messageList.slice());
+        console.log(result.data.data);
+        
+        setMessageList(result.data.data.messages.slice());
     }
 
     const scrollToBottom = () => {
@@ -45,8 +43,8 @@ const Messenger = ({matchId}) => {
     }, [messageList]);
     
     useEffect(() => {
-        getMatch();
-    }, []);
+        getMatch()
+    });
 
     return (
         <div 
@@ -95,7 +93,7 @@ const Messenger = ({matchId}) => {
             </div>
             <div className={"input-group d-flex mt-5 w-100"}>
                 <input type={"text"} id={"message"} className={"w-75"}/>
-                <button onClick={PostMes} className={"btn btn-success w-25"} type={"submit"}>Отправить</button>
+                <button onClick={PostMes} className={"btn btn-success w-25"}>Отправить</button>
             </div>
         </div>
     );

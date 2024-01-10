@@ -6,5 +6,5 @@ namespace Twaddle.Services.Interfaces;
 public interface IMessageService
 {
     Task<BaseResponse<HistoryDTO>> GetMessages(string currentUser, int matchId);
-    Task<BaseResponse<MatchDTO>> AddMessage(SetMessageDTO newMessage, string currentUser);
+    Task<BaseResponse<HistoryDTO>> AddMessage(SetMessageDTO newMessage, string currentUser);
 }

@@ -72,7 +72,7 @@ public class MessageService : IMessageService
         }
     }
 
-    public async Task<BaseResponse<MatchDTO>> AddMessage(SetMessageDTO newMessage, string currentUser)
+    public async Task<BaseResponse<HistoryDTO>> AddMessage(SetMessageDTO newMessage, string currentUser)
     {
         try
         {
@@ -93,18 +93,37 @@ public class MessageService : IMessageService
 
             var response = await _matchRepository.UpdateMatch(match);
 
-            var result = _mapper.Map<MatchDTO>(response);
-            
-            return new BaseResponse<MatchDTO>()
+            List<MessageDTO> tempHistory = new List<MessageDTO>();
+
+            foreach (var x in response.Messages)
             {
-                Data = result,
+                tempHistory.Add(new MessageDTO()
+                {
+                    Content = x.Content,
+                    CreatedTime = x.CreatedTime,
+                    IsSender = !x.Sender.Login.ToLower().Equals(currentUser.ToLower()),
+                    Login = x.Sender.Login
+                });
+            }
+
+            HistoryDTO dto = new HistoryDTO()
+            {
+                MatchId = response.Id,
+                Messages = tempHistory,
+                SenderInfo = _mapper.Map<UserDTO>(response.Couple
+                    .FirstOrDefault(x => !x.Login.ToLower().Equals(currentUser.ToLower())))
+            };
+            
+            return new BaseResponse<HistoryDTO>()
+            {
+                Data = dto,
                 Description = "Выполнено успешно.",
                 StatusCode = 200
             };
         }
         catch (Exception ex)
         {
-            return new BaseResponse<MatchDTO>()
+            return new BaseResponse<HistoryDTO>()
             {
                 Description = ex.Message,
                 StatusCode = 500
