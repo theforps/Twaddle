@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import {GetUserMatch} from "../requests/CardsQueries";
+import {GetUserMatchMessages, SendMessage} from "../requests/MessageQueries";
 
 const Messenger = ({matchId}) => {
     const [messageList, setMessageList] = useState([]);
@@ -10,16 +10,36 @@ const Messenger = ({matchId}) => {
         
         const jwt = sessionStorage.getItem('token');
         
-        const result = await GetUserMatch(jwt, matchId);
+        const result = await GetUserMatchMessages(jwt, matchId);
         
-        setBuddy(result.data.data.pair)
+        console.log(result);
+        
+        setBuddy(result.data.data.senderInfo)
         setMessageList(result.data.data.messages)
+    }
+
+    const PostMes = async () => {
+        
+        const jwt = sessionStorage.getItem('token');
+        const login = sessionStorage.getItem('user');
+        
+        const newMessage = {
+            MatchId : matchId,
+            MessageContent : document.getElementById("message").value,
+            LoginUser : login
+        }
+        
+        const result = await SendMessage(jwt, newMessage);
+        
+       console.log(result);
+        //сделать в виде возвращения истории как в get
+        setMessageList(messageList.slice());
     }
 
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     };
-
+    
     useEffect(() => {
         scrollToBottom();
     }, [messageList]);
@@ -29,44 +49,53 @@ const Messenger = ({matchId}) => {
     }, []);
 
     return (
-        <div className={"h-auto w-50 card border border-3 border-light-subtle"} style={{ height: '80vh', border: '1px solid #ccc', padding: '20px', overflowY: 'scroll' }}>
-            <div style={{ textAlign: 'center', marginBottom: '20px' }}>
+        <div 
+            className={"w-75 card border border-3 border-light-subtle"}>
+            <div 
+                style={{ textAlign: 'center', marginBottom: '20px' }}>
                 {buddy != null &&
-                    <h2>Имя: {buddy.name} User id: {buddy.id}</h2>
+                    <h2>Имя: {buddy.name} Возраст: {buddy.age}</h2>
                 }
             </div>
-            <div>
-                {messageList != null && messageList.map((message, index) => (
+            <div
+                style={{
+                maxHeight: '600px',
+                overflowY: 'auto', 
+                
+                }}>
+                {messageList != null && messageList.map(message => (
                     <div
-                        key={index}
+                        key={message.createdTime}
                         style={{
                             display: 'flex',
-                            justifyContent: message.sender === 'friend' ? 'flex-start' : 'flex-end',
+                            justifyContent: message.isSender ? 'flex-start' : 'flex-end',
+                            marginLeft: '10px',
                             marginBottom: '10px',
+                            marginRight: '10px'
                         }}
                     >
                         <div
                             style={{
-                                backgroundColor: message.sender === 'friend' ? '#eee' : '#007bff',
-                                color: message.sender === 'friend' ? '#000' : '#fff',
+                                backgroundColor: message.isSender ? '#eee' : '#007bff',
+                                color: message.isSender ? '#000' : '#fff',
                                 padding: '8px 12px',
                                 borderRadius: '8px',
                                 maxWidth: '70%',
                             }}
                         >
-                            {message.text}
+                            {message.content}
                         </div>
                     </div>
                     
                 ))}
-                {messageList == null || messageList.length <= 0 && (
+                {(messageList == null || messageList.length <= 0) && (
                     <h3>Сообщений пока нет</h3>
                 )}
                 <div ref={messagesEndRef} />
-                <div className={"input-group d-flex mt-5 w-100"}>
-                    <input className={"w-75"}/>
-                    <button className={"btn btn-success w-25"}>Отправить</button>
-                </div>
+            </div>
+            <div className={"input-group d-flex mt-5 w-100"}>
+                <input type={"text"} id={"message"} className={"w-75"}/>
+                <button onClick={PostMes} className={"btn btn-success w-25"} type={"submit"}>Отправить</button>
             </div>
         </div>
     );

@@ -14,14 +14,16 @@ public class JoinService : IJoinService
 {
     private readonly IJoinRepository _joinRepository;
     private readonly IConfiguration _configuration;
+    private readonly IMapper _mapper;
 
-    public JoinService(IJoinRepository joinRepository, IConfiguration configuration)
+    public JoinService(IJoinRepository joinRepository, IConfiguration configuration, IMapper mapper)
     {
         _joinRepository = joinRepository;
         _configuration = configuration;
+        _mapper = mapper;
     }
     
-    public async Task<BaseResponse<User>> Registration(RegDTO dto)
+    public async Task<BaseResponse<UserDTO>> Registration(RegDTO dto)
     {
         try
         {
@@ -32,27 +34,29 @@ public class JoinService : IJoinService
 
             user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(dto.Password);
             
-            var result = await _joinRepository.AddNewUser(user);
+            var response = await _joinRepository.AddNewUser(user);
  
-            if (result == null)
+            if (response == null)
             {
-                return new BaseResponse<User>()
+                return new BaseResponse<UserDTO>()
                 {
                     Description = "Такой пользователь уже создан. Измените ваш логин.",
                     StatusCode = 403
                 };
             }
+
+            var result = _mapper.Map<UserDTO>(response);
             
-            return new BaseResponse<User>()
+            return new BaseResponse<UserDTO>()
             {
-                Data = user,
+                Data = result,
                 StatusCode = 200,
                 Description = "Регистрация прошла успешно."
             };
         }
         catch (Exception e)
         {
-            return new BaseResponse<User>()
+            return new BaseResponse<UserDTO>()
             {
                 StatusCode = 500,
                 Description = e.Message
@@ -60,15 +64,15 @@ public class JoinService : IJoinService
         }
     }
     
-    public async Task<BaseResponse<string>> Login(LoginDTO dto)
+    public async Task<BaseResponse<LoginDTO>> Login(EntryDTO dto)
     {
         try
         {
             User user = await _joinRepository.GetUserByLogin(dto.Login);
-
+            
             if (user == null)
             {
-                return new BaseResponse<string>()
+                return new BaseResponse<LoginDTO>()
                 {
                     StatusCode = 403,
                     Description = "Пользователя с таким Логином не существует."
@@ -77,26 +81,31 @@ public class JoinService : IJoinService
             
             if (!BCrypt.Net.BCrypt.Verify(dto.Password, user.PasswordHash))
             {
-                return new BaseResponse<string>()
+                return new BaseResponse<LoginDTO>()
                 {
                     StatusCode = 403,
                     Description = "Неправильный пароль."
                 };
             }
 
-            string Token = CreateToken(user);
+            string token = CreateToken(user);
+            UserDTO userDto = _mapper.Map<UserDTO>(user);
             
-            return new BaseResponse<string>()
+            return new BaseResponse<LoginDTO>()
             {
                 StatusCode = 200,
-                Data = Token,
+                Data = new LoginDTO()
+                {
+                    JWT = token,
+                    User = userDto
+                },
                 Description = "Вход успешно выполнен."
             };
             
         }
         catch (Exception e)
         {
-            return new BaseResponse<string>()
+            return new BaseResponse<LoginDTO>()
             {
                 StatusCode = 500,
                 Description = e.Message

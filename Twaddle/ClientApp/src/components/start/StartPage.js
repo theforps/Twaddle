@@ -30,6 +30,8 @@ const StartPage = () => {
     {
         const result = await Registration(userData);
         
+        console.log(result.data);
+        
         if(result.data.statusCode === 200) {
             setResult(result.data.description);
             return true;
@@ -41,10 +43,13 @@ const StartPage = () => {
     const login = async() => {
         
         const result = await Login(loginUser);
+
+        console.log(result.data);
         
         if(result.status === 200) {
             
-            sessionStorage.setItem('token', result.data.data);
+            sessionStorage.setItem('token', result.data.data.jwt);
+            sessionStorage.setItem('user', result.data.data.user.login)
         }
     }
     

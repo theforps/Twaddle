@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {GetCards, SetUserMatch} from "../requests/CardsQueries";
+import {GetCards} from "../requests/CardsQueries";
+import {SetUserMatch} from "../requests/MatchQueries";
 
 const InfiniteUserCard = () => {
     const [userList, setUserList] = useState([]);
@@ -11,6 +12,8 @@ const InfiniteUserCard = () => {
         
         if(token != null) {
             const result = await GetCards(token)
+            
+            console.log(result.data);
             
             setUserList(result.data.data);
         }

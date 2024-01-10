@@ -1,6 +1,5 @@
-// Tabs.js
 import React, {useEffect, useState} from 'react';
-import {GetUserMatches} from "../requests/CardsQueries";
+import {GetUserMatches} from "../requests/MatchQueries";
 
 const Tabs = ({openMes}) => {
     const [activeTab, setActiveTab] = useState('matches');

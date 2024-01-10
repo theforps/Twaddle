@@ -28,51 +28,6 @@ public class CardsController : ControllerBase
             return Ok(result);
         }
 
-        return Unauthorized();
-    }
-    
-    [HttpGet("matches")]
-    public async Task<IActionResult>  GetUserMatches()
-    {
-        string currentUser = HttpContext.User.Identity.Name;
-
-        if (currentUser != null)
-        {
-            var result = await _cardsService.GetUserMatches(currentUser);
-
-            return Ok(result);
-        }
-
-        return Unauthorized();
-    }
-    
-    [HttpPost("set-match")]
-    public async Task<IActionResult>  SetUserMatch(SetMatchDTO secondLogin)
-    {
-        string currentUser = HttpContext.User.Identity.Name;
-    
-        if (currentUser != null)
-        {
-            var result = await _cardsService.AddUserMatch(currentUser, secondLogin.SecondLogin);
-    
-            return Ok(result);
-        }
-    
-        return Unauthorized();
-    }
-    
-    [HttpGet("get-match/{id}")]
-    public async Task<IActionResult>  GetUserMatch(int id)
-    {
-        string currentUser = HttpContext.User.Identity.Name;
-    
-        if (currentUser != null)
-        {
-            var result = await _cardsService.GetUserMatch(id, currentUser);
-    
-            return Ok(result);
-        }
-    
-        return Unauthorized();
+        return BadRequest();
     }
 }

@@ -25,7 +25,7 @@ public class JoinController : ControllerBase
     }
 
     [HttpPost("login")]
-    public async Task<IActionResult> Login(LoginDTO dto)
+    public async Task<IActionResult> Login(EntryDTO dto)
     {
         
         var result = await _joinService.Login(dto);

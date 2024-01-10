@@ -1,6 +1,6 @@
 ﻿namespace Twaddle.Domain.DTO;
 
-public class LoginDTO
+public class EntryDTO
 {
     public string Login { get; set; }
     public string Password { get; set; }
