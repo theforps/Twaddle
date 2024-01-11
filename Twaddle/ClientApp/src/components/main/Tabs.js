@@ -4,20 +4,35 @@ import {GetUserMatches} from "../requests/MatchQueries";
 const Tabs = ({openMes}) => {
     const [activeTab, setActiveTab] = useState('matches');
 
-    const [matches, setMatches] = useState(null);
+    const [matches, setMatches] = useState([]);
     const [matchId, setMatchId] = useState(null);
-    const [messages, setMessages] = useState(null);
+    const [messages, setMessages] = useState([]);
     
     const getMatches = async () => {
         
         const jwt = sessionStorage.getItem('token');
         
         const result = await GetUserMatches(jwt);
-        
+
+        console.log("Все метчи с сообщениями и без:")
         console.log(result.data)
         
-        setMatches(result.data.data);
-        setMessages(result.data.messages)
+        const tempArrayMatches = result.data.data;
+        
+        if(tempArrayMatches != null) {
+            for (let i = 0; i < tempArrayMatches.length; i++)
+            {
+                if (tempArrayMatches[i].messages.length == 0)
+                {
+                    matches.push(tempArrayMatches[i]);
+                }
+                if (tempArrayMatches[i].messages.length != 0) {
+                    messages.push(tempArrayMatches[i]);
+                }
+            }
+        }
+        setMatches(matches.slice());
+        setMessages(messages.slice());
     }
     
     const handleOpenMatch = (id) => {
@@ -43,15 +58,15 @@ const Tabs = ({openMes}) => {
                     Сообщения
                 </button>
             </div>
-            <div className="tab-content mt-4">
+            <div className="mt-2">
                 {activeTab === 'matches' && (
                     <ul>
-                        {matches != null ? (matches.map((match) => (
-                            <li key={match.id} className={"mt-2"}>
+                        {matches.length > 0 ? (matches.map((match) => (
+                            <div key={match.id} className={"mt-1"}>
                                 <button className={"btn btn-primary"} onClick={() => handleOpenMatch(match?.id)}>
                                     {match.pair.id + " " + match.pair.name}
                                 </button>
-                            </li>
+                            </div>
                         ))) : (
                             <p>Совпадений нет.</p>
                         )}
@@ -59,10 +74,13 @@ const Tabs = ({openMes}) => {
                 )}
                 {activeTab === 'messages' && (
                     <ul>
-                        {messages != null ? (messages.map((message) => (
-                            <li className={"mt-2"}>
-                                <button className={"btn btn-info"}>{message.content}</button>
-                            </li>
+                        {messages.length > 0 ? (messages.map((match) => (
+                            <div key={match.id} className={"mt-1"}>
+                                <button className={"btn btn-info"} onClick={() => handleOpenMatch(match?.id)}>
+                                    {match.pair.id + " " + match.pair.name}
+                                </button>
+                                <p>{match.messages[match.messages.length-1].content.slice(0, 15)}</p>
+                            </div>
                         ))) : (
                             <p>Собщений нет.</p>
                         )}

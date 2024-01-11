@@ -12,7 +12,8 @@ const InfiniteUserCard = () => {
         
         if(token != null) {
             const result = await GetCards(token)
-            
+
+            console.log("Карточки пользователей:");
             console.log(result.data);
             
             setUserList(result.data.data);
@@ -30,7 +31,8 @@ const InfiniteUserCard = () => {
         
         const result = await SetUserMatch(token, secondUser);
         
-        console.log(result)
+        console.log("Отправка метча:");
+        console.log(result.data);
     }
     
     

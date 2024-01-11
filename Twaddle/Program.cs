@@ -23,6 +23,7 @@ builder.Services.AddTransient<IJoinService, JoinService>();
 builder.Services.AddTransient<ICardsService, CardsService>();
 builder.Services.AddTransient<IMessageService, MessageService>();
 builder.Services.AddTransient<IMatchService, MatchService>();
+builder.Services.AddTransient<IUserService, UserService>();
 
 builder.Services.AddAuthentication().AddJwtBearer(options =>
 {

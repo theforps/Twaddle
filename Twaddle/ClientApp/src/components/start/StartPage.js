@@ -29,7 +29,8 @@ const StartPage = () => {
     const registration = async() =>
     {
         const result = await Registration(userData);
-        
+
+        console.log("Информация о регистрации:");
         console.log(result.data);
         
         if(result.data.statusCode === 200) {
@@ -44,6 +45,7 @@ const StartPage = () => {
         
         const result = await Login(loginUser);
 
+        console.log("Информация о входе в систему:");
         console.log(result.data);
         
         if(result.status === 200) {

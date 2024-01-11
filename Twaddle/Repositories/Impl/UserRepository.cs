@@ -21,4 +21,13 @@ public class UserRepository : IUserRepository
 
         return user;
     }
+
+    public async Task<User> UpdateUserInfo(User user)
+    {
+        var result = _db.Users.Update(user).Entity;
+
+        await _db.SaveChangesAsync();
+
+        return result;
+    }
 }

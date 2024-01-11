@@ -9,6 +9,7 @@ const context = [
   "/cards",
   "/message",
   "/match",
+  "/user",
 ];
 
 const onError = (err, req, resp, target) => {

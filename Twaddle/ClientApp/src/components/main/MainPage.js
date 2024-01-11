@@ -4,6 +4,7 @@ import Tabs from "./Tabs";
 import InfiniteUserCard from "./InfinityUserCard";
 import LogoutButton from "./LogoutButton";
 import Messenger from "./Messenger";
+import UserCard from "./UserCard";
 
 const MainPage = () => {
 
@@ -58,7 +59,7 @@ const MainPage = () => {
                 <Tabs openMes={handleMessagesShow}/>
             </div>
             {showProfile && !showMessages && (
-                <div>Информация о пользователе</div>
+                <UserCard />
             )}
             {showCards && !showMessages && (
                 <InfiniteUserCard/>

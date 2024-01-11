@@ -82,9 +82,9 @@ const Messenger = ({matchId}) => {
                             }}
                         >
                             {message.content}
+                            <p>{message.createdTime}</p>
                         </div>
                     </div>
-                    
                 ))}
                 {(messageList == null || messageList.length <= 0) && (
                     <h3>Сообщений пока нет</h3>
