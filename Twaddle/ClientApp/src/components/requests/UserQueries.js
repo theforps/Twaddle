@@ -17,3 +17,12 @@ export const UpdateUser = async (jwt, data) => {
         }
     });
 };
+
+export const DeleteUser = async (jwt) => {
+
+    return await axios.delete('/user/delete-info', {
+        headers: {
+            Authorization: "Bearer " + jwt
+        }
+    });
+};

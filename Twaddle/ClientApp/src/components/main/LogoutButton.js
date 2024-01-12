@@ -2,14 +2,14 @@ import React from 'react';
 import {Navigate} from "react-router-dom";
 
 const LogoutButton = () => {
-
+    
     const handleLogout = () => {
 
         sessionStorage.removeItem('token');
     };
 
     return (
-        <button className={"btn btn-danger m-2"} onClick={handleLogout}>
+        <button type={"submit"} className={"btn btn-danger d-block m-5 pe-5 ps-5"} onSubmit={handleLogout}>
             Выйти
         </button>
     );

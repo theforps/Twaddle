@@ -30,4 +30,14 @@ public class UserRepository : IUserRepository
 
         return result;
     }
+
+    public async Task<bool> DeleteUserInfo(User user)
+    {
+      
+        var result = _db.Users.Remove(user).Entity;
+
+        await _db.SaveChangesAsync();
+
+        return result == null;
+    }
 }

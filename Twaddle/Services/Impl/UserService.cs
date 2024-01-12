@@ -88,4 +88,39 @@ public class UserService : IUserService
             };
         }
     }
+
+    public async Task<BaseResponse<bool>> DeleteUserInfo(string currentUser)
+    {
+        try
+        {
+            var user = await _userRepository.GetUserByLogin(currentUser);
+
+            var result = await _userRepository.DeleteUserInfo(user);
+
+            if (!result)
+            {
+                return new BaseResponse<bool>()
+                {
+                    Data = false,
+                    Description = "Произошла ошибка во время удаления.",
+                    StatusCode = 400
+                };
+            }
+            
+            return new BaseResponse<bool>()
+            {
+                Data = true,
+                Description = "Удалено успешно.",
+                StatusCode = 200
+            };
+        }
+        catch (Exception e)
+        {
+            return new BaseResponse<bool>()
+            {
+                Description = e.Message,
+                StatusCode = 500
+            };
+        }
+    }
 }

@@ -35,4 +35,14 @@ public class UserController : ControllerBase
         
         return Ok(result);
     }
+    
+    [HttpDelete("delete-info")]
+    public async Task<IActionResult> DeleteInfo()
+    {
+        var currentUser = HttpContext.User.Identity.Name;
+
+        var result = await _userService.DeleteUserInfo(currentUser);
+        
+        return Ok(result);
+    }
 }

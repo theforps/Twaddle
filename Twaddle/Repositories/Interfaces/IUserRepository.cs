@@ -6,4 +6,5 @@ public interface IUserRepository
 {
     Task<User> GetUserByLogin(string login);
     Task<User> UpdateUserInfo(User user);
+    Task<bool> DeleteUserInfo(User user);
 }
