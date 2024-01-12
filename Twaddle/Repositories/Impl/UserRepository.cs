@@ -31,13 +31,10 @@ public class UserRepository : IUserRepository
         return result;
     }
 
-    public async Task<bool> DeleteUserInfo(User user)
+    public async Task DeleteUserInfo(User user)
     {
-      
-        var result = _db.Users.Remove(user).Entity;
+        _db.Users.Remove(user);
 
         await _db.SaveChangesAsync();
-
-        return result == null;
     }
 }

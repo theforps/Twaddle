@@ -6,6 +6,7 @@ const LogoutButton = () => {
     const handleLogout = () => {
 
         sessionStorage.removeItem('token');
+        sessionStorage.removeItem('user');
     };
 
     return (

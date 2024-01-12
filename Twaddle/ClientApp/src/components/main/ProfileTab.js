@@ -1,9 +1,10 @@
 import LogoutButton from "./LogoutButton";
 import React from "react";
+import {DeleteUser} from "../requests/UserQueries";
 
 const ProfileTab = () => {
 
-    const DeleteUser = async () => {
+    const handleDeleteUser = async () => {
         
         const jwt = sessionStorage.getItem('token');
         
@@ -17,13 +18,13 @@ const ProfileTab = () => {
     }
 
     return (
-        <div>
-            <button type={"submit"} className="btn btn-outline-danger d-block m-5" onSubmit={() => DeleteUser()}>
+        <form>
+            <button type={"submit"} onSubmit={handleDeleteUser} className="btn btn-outline-danger d-block m-5">
                 Удалить аккаунт
             </button>
             
             <LogoutButton />
-        </div>
+        </form>
     );
 }
 export default ProfileTab;

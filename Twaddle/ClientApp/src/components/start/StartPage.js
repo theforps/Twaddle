@@ -48,7 +48,7 @@ const StartPage = () => {
         console.log("Информация о входе в систему:");
         console.log(result.data);
         
-        if(result.status === 200) {
+        if(result.data.statusCode === 200) {
             
             sessionStorage.setItem('token', result.data.data.jwt);
             sessionStorage.setItem('user', result.data.data.user.login)
@@ -70,7 +70,7 @@ const StartPage = () => {
                             btnName={'Войти'}
                             title={'Вход в систему'}
                             modalContent= {
-                                <div>
+                                <form onSubmit={() => login()}> 
                                     <div>
                                         <label>Логин:</label>
                                         <input 
@@ -89,8 +89,8 @@ const StartPage = () => {
                                                 loginUser.Password = e.target.value}
                                         />
                                     </div>
-                                    <button className="succes" onClick={() => login()}>Войти</button>
-                                </div>
+                                    <button className="succes" type={"submit"}>Войти</button>
+                                </form>
                             }
                         />
                     </ul>

@@ -95,9 +95,11 @@ public class UserService : IUserService
         {
             var user = await _userRepository.GetUserByLogin(currentUser);
 
-            var result = await _userRepository.DeleteUserInfo(user);
-
-            if (!result)
+            await _userRepository.DeleteUserInfo(user);
+            
+            var check = await _userRepository.GetUserByLogin(currentUser);
+            
+            if (check != null)
             {
                 return new BaseResponse<bool>()
                 {
