@@ -13,7 +13,8 @@ export const UpdateUser = async (jwt, data) => {
 
     return await axios.put('/user/update-info', data, {
         headers: {
-            Authorization: "Bearer " + jwt
+            Authorization: "Bearer " + jwt,
+            'Content-Type': 'multipart/form-data'
         }
     });
 };

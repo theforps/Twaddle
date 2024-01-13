@@ -19,4 +19,5 @@ public class User
     public string PasswordHash { get; set; }= string.Empty;
     [JsonIgnore]
     public List<Match> Matches { get; set; }
+    public List<byte[]>? Pictures { get; set; }
 }

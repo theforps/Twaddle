@@ -70,7 +70,7 @@ const StartPage = () => {
                             btnName={'Войти'}
                             title={'Вход в систему'}
                             modalContent= {
-                                <form onSubmit={() => login()}> 
+                                <div> 
                                     <div>
                                         <label>Логин:</label>
                                         <input 
@@ -89,8 +89,8 @@ const StartPage = () => {
                                                 loginUser.Password = e.target.value}
                                         />
                                     </div>
-                                    <button className="succes" type={"submit"}>Войти</button>
-                                </form>
+                                    <button className="succes" onClick={login}>Войти</button>
+                                </div>
                             }
                         />
                     </ul>

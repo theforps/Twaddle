@@ -9,14 +9,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4b4d2340-c65b-4e65-b03f-0b97c3ad9834" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/dataSources/9097b515-aa90-41fc-a005-74861b014136.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/dataSources/9097b515-aa90-41fc-a005-74861b014136.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/dataSources/9097b515-aa90-41fc-a005-74861b014136/storage_v2/_src_/database/TwaddleDb.9SO1qw/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/dataSources/9097b515-aa90-41fc-a005-74861b014136/storage_v2/_src_/database/TwaddleDb.9SO1qw/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/main/LogoutButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/main/LogoutButton.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/main/ProfileTab.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/main/ProfileTab.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/main/UserCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/main/UserCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/requests/UserQueries.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/requests/UserQueries.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/start/StartPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/start/StartPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/Repositories/Impl/UserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Repositories/Impl/UserRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/Repositories/Interfaces/IUserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Repositories/Interfaces/IUserRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Twaddle/Controllers/UserController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Controllers/UserController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Twaddle/Domain/DTO/UserDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Domain/DTO/UserDTO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Twaddle/Domain/Models/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Domain/Models/User.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Twaddle/Services/Impl/UserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Services/Impl/UserService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/Twaddle.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Twaddle.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,12 +36,8 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/816dbaba8a29ece3dd3dc326642858d27d2d19142f9a2109bb04617985ec9/ExecutionContext.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/8aeca8dfcec95a81b42a28e5c138e1c321e89def3fed605511172a8beaec/AsyncTaskMethodBuilderT.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/bd1d5c50194fea68ff3559c160230b0ab50f5acf4ce3061bffd6d62958e2182/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e74356f198b598e97eaeea83e8b7b1f2bfe27c0a39fedf86bb7dc44827fbda/ActionMethodExecutor.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/Projects/C_Sharp/Fullstack/Twaddle/Twaddle/Services/Mapping/CardMapping.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/Projects/C_Sharp/Fullstack/Twaddle/Twaddle/Services/Mapping/CardMapping.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/Projects/C_Sharp/Fullstack/Twaddle/Twaddle/Repositories/Interfaces/IUserRepository.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/Projects/C_Sharp/Fullstack/Twaddle/Twaddle/Repositories/Interfaces/IUserRepository.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Twaddle/appsettings.Development.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Twaddle/appsettings.json" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -168,7 +166,9 @@
       <workItem from="1705088422656" duration="132000" />
       <workItem from="1705088579693" duration="2228000" />
       <workItem from="1705090846406" duration="337000" />
-      <workItem from="1705091202010" duration="1257000" />
+      <workItem from="1705091202010" duration="1648000" />
+      <workItem from="1705154483881" duration="8248000" />
+      <workItem from="1705174510062" duration="1295000" />
     </task>
     <task id="LOCAL-00001" summary=":)">
       <option name="closed" value="true" />
@@ -266,7 +266,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705090799784</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary=":)">
+      <option name="closed" value="true" />
+      <created>1705092843330</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1705092843330</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -292,7 +300,33 @@
               <option value="1468" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="3" />
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Twaddle/Services/Impl/JoinService.cs</url>
+          <line>26</line>
+          <properties documentPath="D:\Projects\C_Sharp\Fullstack\Twaddle\Twaddle\Services\Impl\JoinService.cs" initialLine="26" containingFunctionPresentation="Method 'Registration'">
+            <startOffsets>
+              <option value="795" />
+            </startOffsets>
+            <endOffsets>
+              <option value="796" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Twaddle/Controllers/JoinController.cs</url>
+          <line>19</line>
+          <properties documentPath="D:\Projects\C_Sharp\Fullstack\Twaddle\Twaddle\Controllers\JoinController.cs" initialLine="19" containingFunctionPresentation="Method 'Register'">
+            <startOffsets>
+              <option value="460" />
+            </startOffsets>
+            <endOffsets>
+              <option value="461" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
