@@ -3,7 +3,7 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.51">
     <root id="1">
       <DateStyle>dmy</DateStyle>
-      <IntrospectionStateNumber>2602</IntrospectionStateNumber>
+      <IntrospectionStateNumber>2617</IntrospectionStateNumber>
       <ServerVersion>16 rc 1</ServerVersion>
       <StartupTime>1705240701</StartupTime>
       <TimeZones>true ACDT
@@ -801,7 +801,7 @@ false Zulu
 14697||10|C|G
 14697||-9223372036854775808|U|G
 14697||10|U|G</Grants>
-      <IntrospectionStateNumber>2602</IntrospectionStateNumber>
+      <IntrospectionStateNumber>2617</IntrospectionStateNumber>
       <ObjectId>57687</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
@@ -4249,11 +4249,323 @@ false Zulu
     <schema id="270" parent="2" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>2602</IntrospectionStateNumber>
-      <LastIntrospectionLocalTimestamp>2024-01-14.14:46:12</LastIntrospectionLocalTimestamp>
+      <IntrospectionStateNumber>2617</IntrospectionStateNumber>
+      <LastIntrospectionLocalTimestamp>2024-01-14.21:41:05</LastIntrospectionLocalTimestamp>
       <ObjectId>2200</ObjectId>
       <StateNumber>524</StateNumber>
       <OwnerName>pg_database_owner</OwnerName>
     </schema>
+    <sequence id="271" parent="270" name="Matches_Id_seq">
+      <DasType>integer|0s</DasType>
+      <ObjectId>82263</ObjectId>
+      <SequenceIdentity>1</SequenceIdentity>
+      <StartValue>1</StartValue>
+      <StateNumber>2603</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </sequence>
+    <sequence id="272" parent="270" name="Message_Id_seq">
+      <DasType>integer|0s</DasType>
+      <ObjectId>82292</ObjectId>
+      <SequenceIdentity>1</SequenceIdentity>
+      <StartValue>1</StartValue>
+      <StateNumber>2603</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </sequence>
+    <sequence id="273" parent="270" name="Users_Id_seq">
+      <DasType>integer|0s</DasType>
+      <ObjectId>82269</ObjectId>
+      <SequenceIdentity>1</SequenceIdentity>
+      <StartValue>1</StartValue>
+      <StateNumber>2603</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </sequence>
+    <table id="274" parent="270" name="MatchUser">
+      <ObjectId>82277</ObjectId>
+      <StateNumber>2603</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <table id="275" parent="270" name="Matches">
+      <ObjectId>82264</ObjectId>
+      <StateNumber>2603</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <table id="276" parent="270" name="Message">
+      <ObjectId>82293</ObjectId>
+      <StateNumber>2603</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <table id="277" parent="270" name="Users">
+      <ObjectId>82270</ObjectId>
+      <StateNumber>2603</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <column id="278" parent="274" name="MatchId">
+      <DasType>integer|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>2603</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="279" parent="274" name="UserId">
+      <DasType>integer|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StateNumber>2603</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <foreign-key id="280" parent="274" name="FK_MatchUser_Matches_MatchId">
+      <ColNames>MatchId</ColNames>
+      <ObjectId>82282</ObjectId>
+      <OnDelete>cascade</OnDelete>
+      <StateNumber>2603</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>82264</RefTableId>
+    </foreign-key>
+    <foreign-key id="281" parent="274" name="FK_MatchUser_Users_UserId">
+      <ColNames>UserId</ColNames>
+      <ObjectId>82287</ObjectId>
+      <OnDelete>cascade</OnDelete>
+      <StateNumber>2603</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>82270</RefTableId>
+    </foreign-key>
+    <index id="282" parent="274" name="PK_MatchUser">
+      <ColNames>MatchId
+UserId</ColNames>
+      <ObjectId>82280</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>2603</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <index id="283" parent="274" name="IX_MatchUser_UserId">
+      <ColNames>UserId</ColNames>
+      <ObjectId>82310</ObjectId>
+      <StateNumber>2603</StateNumber>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <key id="284" parent="274" name="PK_MatchUser">
+      <ObjectId>82281</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>2603</StateNumber>
+      <UnderlyingIndexId>82280</UnderlyingIndexId>
+    </key>
+    <column id="285" parent="275" name="Id">
+      <DasType>integer|0s</DasType>
+      <IdentityKind>by-default</IdentityKind>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>2603</StateNumber>
+      <SequenceId>82263</SequenceId>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="286" parent="275" name="IsMutually">
+      <DasType>boolean|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StateNumber>2603</StateNumber>
+      <TypeId>16</TypeId>
+    </column>
+    <index id="287" parent="275" name="PK_Matches">
+      <ColNames>Id</ColNames>
+      <ObjectId>82267</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>2603</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <key id="288" parent="275" name="PK_Matches">
+      <ObjectId>82268</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>2603</StateNumber>
+      <UnderlyingIndexId>82267</UnderlyingIndexId>
+    </key>
+    <column id="289" parent="276" name="Id">
+      <DasType>integer|0s</DasType>
+      <IdentityKind>by-default</IdentityKind>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>2603</StateNumber>
+      <SequenceId>82292</SequenceId>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="290" parent="276" name="Content">
+      <DasType>text|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StateNumber>2603</StateNumber>
+      <TypeId>25</TypeId>
+    </column>
+    <column id="291" parent="276" name="SenderId">
+      <DasType>integer|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StateNumber>2603</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="292" parent="276" name="CreatedTime">
+      <DasType>timestamp|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+      <StateNumber>2603</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="293" parent="276" name="Viewed">
+      <DasType>boolean|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+      <StateNumber>2603</StateNumber>
+      <TypeId>16</TypeId>
+    </column>
+    <column id="294" parent="276" name="MatchId">
+      <DasType>integer|0s</DasType>
+      <Position>6</Position>
+      <StateNumber>2603</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <foreign-key id="295" parent="276" name="FK_Message_Users_SenderId">
+      <ColNames>SenderId</ColNames>
+      <ObjectId>82305</ObjectId>
+      <OnDelete>cascade</OnDelete>
+      <StateNumber>2603</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>82270</RefTableId>
+    </foreign-key>
+    <foreign-key id="296" parent="276" name="FK_Message_Matches_MatchId">
+      <ColNames>MatchId</ColNames>
+      <ObjectId>82300</ObjectId>
+      <StateNumber>2603</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>82264</RefTableId>
+    </foreign-key>
+    <index id="297" parent="276" name="PK_Message">
+      <ColNames>Id</ColNames>
+      <ObjectId>82298</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>2603</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <index id="298" parent="276" name="IX_Message_SenderId">
+      <ColNames>SenderId</ColNames>
+      <ObjectId>82312</ObjectId>
+      <StateNumber>2603</StateNumber>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <index id="299" parent="276" name="IX_Message_MatchId">
+      <ColNames>MatchId</ColNames>
+      <ObjectId>82311</ObjectId>
+      <StateNumber>2603</StateNumber>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <key id="300" parent="276" name="PK_Message">
+      <ObjectId>82299</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>2603</StateNumber>
+      <UnderlyingIndexId>82298</UnderlyingIndexId>
+    </key>
+    <column id="301" parent="277" name="Id">
+      <DasType>integer|0s</DasType>
+      <IdentityKind>by-default</IdentityKind>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>2603</StateNumber>
+      <SequenceId>82269</SequenceId>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="302" parent="277" name="Sex">
+      <DasType>text|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StateNumber>2603</StateNumber>
+      <TypeId>25</TypeId>
+    </column>
+    <column id="303" parent="277" name="Name">
+      <DasType>text|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StateNumber>2603</StateNumber>
+      <TypeId>25</TypeId>
+    </column>
+    <column id="304" parent="277" name="Goal">
+      <DasType>text|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+      <StateNumber>2603</StateNumber>
+      <TypeId>25</TypeId>
+    </column>
+    <column id="305" parent="277" name="Age">
+      <DasType>integer|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+      <StateNumber>2603</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="306" parent="277" name="Country">
+      <DasType>text|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+      <StateNumber>2603</StateNumber>
+      <TypeId>25</TypeId>
+    </column>
+    <column id="307" parent="277" name="Education">
+      <DasType>text|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>7</Position>
+      <StateNumber>2603</StateNumber>
+      <TypeId>25</TypeId>
+    </column>
+    <column id="308" parent="277" name="Description">
+      <DasType>text|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>8</Position>
+      <StateNumber>2603</StateNumber>
+      <TypeId>25</TypeId>
+    </column>
+    <column id="309" parent="277" name="Role">
+      <DasType>text|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>9</Position>
+      <StateNumber>2603</StateNumber>
+      <TypeId>25</TypeId>
+    </column>
+    <column id="310" parent="277" name="Login">
+      <DasType>text|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>10</Position>
+      <StateNumber>2603</StateNumber>
+      <TypeId>25</TypeId>
+    </column>
+    <column id="311" parent="277" name="PasswordHash">
+      <DasType>text|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>11</Position>
+      <StateNumber>2603</StateNumber>
+      <TypeId>25</TypeId>
+    </column>
+    <column id="312" parent="277" name="Pictures">
+      <DasType>bytea[]|0s</DasType>
+      <Position>12</Position>
+      <StateNumber>2603</StateNumber>
+      <TypeId>1001</TypeId>
+    </column>
+    <index id="313" parent="277" name="PK_Users">
+      <ColNames>Id</ColNames>
+      <ObjectId>82275</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>2603</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <key id="314" parent="277" name="PK_Users">
+      <ObjectId>82276</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>2603</StateNumber>
+      <UnderlyingIndexId>82275</UnderlyingIndexId>
+    </key>
   </database-model>
 </dataSource>

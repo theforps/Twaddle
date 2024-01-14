@@ -14,8 +14,6 @@ public class CardMapping : Profile
             .ForMember(x => x.PasswordHash, opt => opt.Ignore());
         CreateMap<User, UserDTO>().ForMember(x => 
             x.Images, opt => opt.MapFrom(x => x.Pictures)).ReverseMap();
-        CreateMap<User, UserUpdateDTO>()
-            .ReverseMap();
         CreateMap<Match, MatchDTO>().ReverseMap();
     }
 }

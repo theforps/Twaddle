@@ -49,27 +49,51 @@ const UserCard = () => {
             images: updatedImages,
         }));
     };
-    
+        
     const handleSaveClick = async() => {
 
         setIsEditing(false);
-        
-        const newUser = new FormData();
-            
-        newUser.append('name', user.name);
-        newUser.append('sex', user.sex);
-        newUser.append('goal', user.goal);
-        newUser.append('age', user.age);
-        newUser.append('country', user.country);
-        newUser.append('education', user.education);
-        newUser.append('description', user.description);
 
+        const base64Strings = [];
         if(images.images != null) {
-            for (let i = 0; i < images.images.length; i++) {
-                newUser.append('images', images.images[i]);
+            const fileList = images.images;
+
+            async function readFileAsDataURL(file) {
+                return new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+
+                    reader.onload = () => {
+                        const base64String = reader.result.split(",")[1];
+                        resolve(base64String);
+                    };
+
+                    reader.onerror = reject;
+
+                    reader.readAsDataURL(file);
+                });
+            }
+
+            for (let i = 0; i < fileList.length; i++) {
+                const file = fileList[i];
+                try {
+                    const base64String = await readFileAsDataURL(file);
+                    base64Strings.push(base64String);
+                } catch (error) {
+                    console.error('Error reading file:', error);
+                    // Handle the error as needed
+                }
             }
         }
-        
+        const newUser = {
+            name : user.name,
+            sex: user.sex,
+            goal: user.goal,
+            age: user.age,
+            country: user.country,
+            education: user.education,
+            description: user.description,
+            images: base64Strings,
+        }
         const jwt = sessionStorage.getItem('token');
 
         const result = await UpdateUser(jwt, newUser);
@@ -125,7 +149,7 @@ const UserCard = () => {
                             </label>
                             <label className={"d-block mb-2"}>
                                 Изображение
-                                <input type="file" name="image" accept={"image/*"} multiple value={images} onChange={handleImageUpload}/>
+                                <input type="file" name="image" accept={"image/*"} multiple onChange={handleImageUpload}/>
                             </label>
                         </div>
                     ) : user != null && (

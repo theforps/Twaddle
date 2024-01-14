@@ -52,7 +52,7 @@ public class UserService : IUserService
         }
     }
 
-    public async Task<BaseResponse<UserDTO>> UpdateUserInfo(UserUpdateDTO userDto, string login)
+    public async Task<BaseResponse<UserDTO>> UpdateUserInfo(UserDTO userDto, string login)
     {
         try
         {
@@ -62,21 +62,21 @@ public class UserService : IUserService
             var updateUser = _mapper.Map(newUser, oldUser);
             updateUser.Login = login;
 
-            if (userDto.Images != null)
-            {
-                foreach (var file in userDto.Images)
-                {
-                    if (file.Length > 0)
-                    {
-                        using (var ms = new MemoryStream())
-                        {
-                            file.CopyTo(ms);
-                            var fileBytes = ms.ToArray();
-                            updateUser.Pictures.Add(fileBytes);
-                        }
-                    }
-                }
-            }
+            // if (userDto.Images != null)
+            // {
+            //     foreach (var file in userDto.Images)
+            //     {
+            //         if (file.Length > 0)
+            //         {
+            //             using (var ms = new MemoryStream())
+            //             {
+            //                 file.CopyTo(ms);
+            //                 var fileBytes = ms.ToArray();
+            //                 updateUser.Pictures.Add(fileBytes);
+            //             }
+            //         }
+            //     }
+            // }
 
             var response = await _userRepository.UpdateUserInfo(updateUser);
             

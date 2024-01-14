@@ -9,17 +9,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4b4d2340-c65b-4e65-b03f-0b97c3ad9834" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Twaddle/Domain/DTO/UserUpdateDTO.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/dataSources/9097b515-aa90-41fc-a005-74861b014136.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/dataSources/9097b515-aa90-41fc-a005-74861b014136.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/dataSources/9097b515-aa90-41fc-a005-74861b014136/storage_v2/_src_/database/TwaddleDb.9SO1qw/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/dataSources/9097b515-aa90-41fc-a005-74861b014136/storage_v2/_src_/database/TwaddleDb.9SO1qw/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/main/UserCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/main/UserCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/requests/UserQueries.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/requests/UserQueries.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Twaddle/Controllers/UserController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Controllers/UserController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/Domain/DTO/UserDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Domain/DTO/UserDTO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Twaddle/Domain/DTO/UserUpdateDTO.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Twaddle/Services/Impl/UserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Services/Impl/UserService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Twaddle/Services/Interfaces/IUserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Services/Interfaces/IUserService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Twaddle/Services/Mapping/CardMapping.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Services/Mapping/CardMapping.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/Twaddle.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Twaddle.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +58,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    ".NET Launch Settings Profile.Twaddle.executor": "Run",
+    ".NET Launch Settings Profile.Twaddle.executor": "Debug",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -172,6 +171,8 @@
       <workItem from="1705174510062" duration="1481000" />
       <workItem from="1705229568013" duration="3412000" />
       <workItem from="1705243194137" duration="4159000" />
+      <workItem from="1705247493380" duration="65000" />
+      <workItem from="1705252928166" duration="5327000" />
     </task>
     <task id="LOCAL-00001" summary=":)">
       <option name="closed" value="true" />
@@ -285,7 +286,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705175984745</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary=":)">
+      <option name="closed" value="true" />
+      <created>1705247521022</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1705247521022</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -305,26 +314,13 @@
           <line>55</line>
           <properties documentPath="D:\Projects\C_Sharp\Fullstack\Twaddle\Twaddle\Services\Impl\UserService.cs" initialLine="55" containingFunctionPresentation="Method 'UpdateUserInfo'">
             <startOffsets>
-              <option value="1499" />
+              <option value="1493" />
             </startOffsets>
             <endOffsets>
-              <option value="1500" />
+              <option value="1494" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Twaddle/Services/Impl/UserService.cs</url>
-          <line>80</line>
-          <properties documentPath="D:\Projects\C_Sharp\Fullstack\Twaddle\Twaddle\Services\Impl\UserService.cs" initialLine="80" containingFunctionPresentation="Method 'UpdateUserInfo'">
-            <startOffsets>
-              <option value="2294" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2358" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

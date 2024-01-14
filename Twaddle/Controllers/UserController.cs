@@ -27,7 +27,7 @@ public class UserController : ControllerBase
     }
     
     [HttpPut("update-info")]
-    public async Task<IActionResult> UpdateInfo([FromForm] UserUpdateDTO userDto)
+    public async Task<IActionResult> UpdateInfo(UserDTO userDto)
     {
         var currentUser = HttpContext.User.Identity.Name;
 
