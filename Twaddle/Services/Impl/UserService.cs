@@ -33,6 +33,8 @@ public class UserService : IUserService
 
             var result = _mapper.Map<UserDTO>(response);
             
+            
+            
             return new BaseResponse<UserDTO>()
             {
                 Data = result,
@@ -50,7 +52,7 @@ public class UserService : IUserService
         }
     }
 
-    public async Task<BaseResponse<UserDTO>> UpdateUserInfo(UserDTO userDto, string login)
+    public async Task<BaseResponse<UserDTO>> UpdateUserInfo(UserUpdateDTO userDto, string login)
     {
         try
         {

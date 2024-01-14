@@ -5,6 +5,7 @@ const UserCard = () => {
     const[user, setUser] = useState(null);
     const [isEditing, setIsEditing] = useState(false);
     const [images, setImages] = useState([]);
+    const [pictures, setPictures] = useState([]);
     const GetUserInfo = async() => {
         
         const jwt = sessionStorage.getItem('token');
@@ -15,8 +16,20 @@ const UserCard = () => {
         console.log(result.data);
         
         setUser(result.data.data);
-        
-       
+
+        if(result.data.data.images != null) {
+            const yourArray = result.data.data.images;
+
+            const resultImages = [];
+
+            for (let i = 0; i < yourArray.length; i++) {
+                const dataUrl = yourArray[i];
+                const img = "data:image/png;base64," + dataUrl;
+                resultImages.push({ img, i });
+            }
+                
+            setPictures(resultImages);            
+        }
     }
     const handleEditClick = () => {
         setIsEditing(true);
@@ -51,7 +64,7 @@ const UserCard = () => {
         newUser.append('education', user.education);
         newUser.append('description', user.description);
 
-        if(images != null) {
+        if(images.images != null) {
             for (let i = 0; i < images.images.length; i++) {
                 newUser.append('images', images.images[i]);
             }
@@ -112,7 +125,7 @@ const UserCard = () => {
                             </label>
                             <label className={"d-block mb-2"}>
                                 Изображение
-                                <input type="file" name="image" accept={"image/*"} multiple value={user.image} onChange={handleImageUpload}/>
+                                <input type="file" name="image" accept={"image/*"} multiple value={images} onChange={handleImageUpload}/>
                             </label>
                         </div>
                     ) : user != null && (
@@ -124,6 +137,13 @@ const UserCard = () => {
                             <p>Страна: {user.country}</p>
                             <p>Образование: {user.education}</p>
                             <p>Описание: {user.description}</p>
+                            <div>
+                            {pictures.length > 0 && pictures.map((image => {
+                                return (
+                                <img key={image.i} alt={image.i} style={{width: "100px", height: "100px"}} src={image.img}/>
+                                )
+                            }))}
+                            </div>
                         </div>
                     )}
                     <div className={"d-flex justify-content-center"}>

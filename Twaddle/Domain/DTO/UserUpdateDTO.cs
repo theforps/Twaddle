@@ -1,6 +1,6 @@
 namespace Twaddle.Domain.DTO;
 
-public class UserDTO
+public class UserUpdateDTO
 {
     public string? Login { get; set; }
     public string Sex { get; set; }
@@ -10,5 +10,5 @@ public class UserDTO
     public string Country { get; set; }
     public string Education { get; set; }
     public string Description { get; set; }
-    public List<byte[]>? Images { get; set; }
+    public List<IFormFile>? Images { get; set; }
 }

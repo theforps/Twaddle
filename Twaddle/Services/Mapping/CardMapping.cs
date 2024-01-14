@@ -12,7 +12,10 @@ public class CardMapping : Profile
             .ForMember(x => x.Id, opt => opt.Ignore())
             .ForMember(x => x.Matches, opt => opt.Ignore())
             .ForMember(x => x.PasswordHash, opt => opt.Ignore());
-        CreateMap<User, UserDTO>().ReverseMap();
+        CreateMap<User, UserDTO>().ForMember(x => 
+            x.Images, opt => opt.MapFrom(x => x.Pictures)).ReverseMap();
+        CreateMap<User, UserUpdateDTO>()
+            .ReverseMap();
         CreateMap<Match, MatchDTO>().ReverseMap();
     }
 }
