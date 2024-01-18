@@ -31,12 +31,11 @@ public class MatchService : IMatchService
 
             var result = _mapper.Map<List<MatchDTO>>(matches);
 
-            foreach (var x in result)
+            for(int i = 0; i < result.Count; i++)
             {
-                foreach (var c in matches)
-                {
-                    x.Pair = c.Couple.FirstOrDefault(x => !x.Login.ToLower().Equals(userName.ToLower()));
-                }
+                result[i].Pair = matches[i].Couple
+                    .FirstOrDefault(x => 
+                        !x.Login.ToLower().Equals(userName.ToLower()))!;
             }
             
             if (result == null || result.Count == 0)
@@ -75,7 +74,9 @@ public class MatchService : IMatchService
             var match = await _matchRepository.SetUserMatch(firstUser, secondUser);
 
             var result = _mapper.Map<MatchDTO>(match);
-            result.Pair = match.Couple.FirstOrDefault(x => !x.Login.ToLower().Equals(currentUser.ToLower()));
+            result.Pair = match.Couple
+                .FirstOrDefault(x => 
+                    !x.Login.ToLower().Equals(currentUser.ToLower()));
             
             if (result == null)
             {
