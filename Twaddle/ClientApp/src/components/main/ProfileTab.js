@@ -18,13 +18,13 @@ const ProfileTab = () => {
     }
 
     return (
-        <form>
-            <button type={"submit"} onSubmit={handleDeleteUser} className="btn btn-outline-danger d-block m-5">
+        <div>
+            <button onClick={handleDeleteUser} className="btn btn-outline-danger d-block m-5">
                 Удалить аккаунт
             </button>
             
             <LogoutButton />
-        </form>
+        </div>
     );
 }
 export default ProfileTab;

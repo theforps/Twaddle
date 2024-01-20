@@ -10,7 +10,7 @@ const LogoutButton = () => {
     };
 
     return (
-        <button type={"submit"} className={"btn btn-danger d-block m-5 pe-5 ps-5"} onSubmit={handleLogout}>
+        <button className={"btn btn-danger d-block m-5 pe-5 ps-5"} onClick={handleLogout}>
             Выйти
         </button>
     );

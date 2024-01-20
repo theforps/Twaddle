@@ -11,14 +11,17 @@ public class MatchService : IMatchService
     private readonly IUserRepository _userRepository;
     private readonly IMatchRepository _matchRepository;
     private readonly IMapper _mapper;
+    private readonly ILikeRepository _likeRepository;
     public MatchService(
         IUserRepository userRepository, 
         IMapper mapper, 
-        IMatchRepository matchRepository)
+        IMatchRepository matchRepository, 
+        ILikeRepository likeRepository)
     {
         _userRepository = userRepository;
         _mapper = mapper;
         _matchRepository = matchRepository;
+        _likeRepository = likeRepository;
     }
     
     public async Task<BaseResponse<List<MatchDTO>>> GetUserMatches(string userName)
@@ -73,6 +76,8 @@ public class MatchService : IMatchService
     
             var match = await _matchRepository.SetUserMatch(firstUser, secondUser);
 
+            await _likeRepository.AddLike(currentUser, secondLogin);
+            
             var result = _mapper.Map<MatchDTO>(match);
             result.Pair = match.Couple
                 .FirstOrDefault(x => 

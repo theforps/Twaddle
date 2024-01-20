@@ -9,9 +9,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4b4d2340-c65b-4e65-b03f-0b97c3ad9834" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Twaddle/Domain/Models/Like.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Twaddle/Repositories/Impl/LikeRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Twaddle/Repositories/Interfaces/ILikeRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/dataSources/9097b515-aa90-41fc-a005-74861b014136.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/dataSources/9097b515-aa90-41fc-a005-74861b014136.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/dataSources/9097b515-aa90-41fc-a005-74861b014136/storage_v2/_src_/database/TwaddleDb.9SO1qw/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/dataSources/9097b515-aa90-41fc-a005-74861b014136/storage_v2/_src_/database/TwaddleDb.9SO1qw/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/main/LogoutButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/main/LogoutButton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/main/ProfileTab.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/main/ProfileTab.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Twaddle/Domain/AppDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Domain/AppDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Twaddle/Domain/DTO/MatchDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Domain/DTO/Match/MatchDTO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Twaddle/Domain/DTO/MessageDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Domain/DTO/Message/MessageDTO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Twaddle/Domain/DTO/SetMatchDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Domain/DTO/Match/SetMatchDTO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Twaddle/Domain/DTO/SetMessageDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Domain/DTO/Message/SetMessageDTO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Twaddle/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Twaddle/Services/Impl/CardsService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Services/Impl/CardsService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Twaddle/Services/Impl/MatchService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Services/Impl/MatchService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Twaddle/Twaddle.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Twaddle.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,10 +44,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock://D:/Projects/C_Sharp/Fullstack/Twaddle/Twaddle/Repositories/Interfaces/IUserRepository.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/Projects/C_Sharp/Fullstack/Twaddle/Twaddle/Repositories/Interfaces/IUserRepository.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Twaddle/appsettings.Development.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Twaddle/appsettings.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Twaddle/obj/Debug/net7.0/.NETCoreApp,Version=v7.0.AssemblyAttributes.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -67,7 +81,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs.jest.jest_package": "D:/Projects/C_Sharp/Fullstack/Twaddle/Twaddle/ClientApp/node_modules/react-scripts",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "terminal",
+    "settings.editor.selected.configurable": "RiderNuGetOptionsPageId",
     "ts.external.directory.path": "D:\\Projects\\C_Sharp\\Fullstack\\Twaddle\\Twaddle\\ClientApp\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   },
@@ -167,6 +181,8 @@
       <workItem from="1705247493380" duration="65000" />
       <workItem from="1705252928166" duration="5606000" />
       <workItem from="1705593206727" duration="2569000" />
+      <workItem from="1705744823630" duration="711000" />
+      <workItem from="1705745569857" duration="5626000" />
     </task>
     <task id="LOCAL-00001" summary=":)">
       <option name="closed" value="true" />
