@@ -25,6 +25,7 @@ builder.Services.AddTransient<ICardsService, CardsService>();
 builder.Services.AddTransient<IMessageService, MessageService>();
 builder.Services.AddTransient<IMatchService, MatchService>();
 builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<IRequestsService, RequestsService>();
 
 builder.Services.AddAuthentication().AddJwtBearer(options =>
 {
@@ -39,6 +40,7 @@ builder.Services.AddAuthentication().AddJwtBearer(options =>
     };
 });
 builder.Services.AddAuthorization();
+
 
 string connection = builder.Configuration.GetConnectionString("DefaultConnection");
 

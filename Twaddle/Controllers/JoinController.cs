@@ -9,15 +9,17 @@ namespace Twaddle.Controllers;
 public class JoinController : ControllerBase
 {
     private readonly IJoinService _joinService;
-
-    public JoinController(IJoinService joinService)
+    private readonly IRequestsService _requestsService;
+    public JoinController(IJoinService joinService, IRequestsService requestsService)
     {
         _joinService = joinService;
+        _requestsService = requestsService;
     }
     
     [HttpPost("registration")]
     public async Task<IActionResult> Register(RegDTO dto)
     {
+       
         var result = await _joinService.Registration(dto);
         
         
@@ -27,9 +29,7 @@ public class JoinController : ControllerBase
     [HttpPost("login")]
     public async Task<IActionResult> Login(EntryDTO dto)
     {
-        
         var result = await _joinService.Login(dto);
-
        
         return Ok(result);
     }

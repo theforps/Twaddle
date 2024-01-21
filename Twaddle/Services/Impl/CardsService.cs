@@ -1,4 +1,5 @@
 using AutoMapper;
+using Newtonsoft.Json;
 using Twaddle.Domain.DTO;
 using Twaddle.Domain.Models;
 using Twaddle.Repositories.Interfaces;
@@ -11,14 +12,20 @@ public class CardsService : ICardsService
     private readonly IMapper _mapper;
     private readonly ICardsRepository _cardsRepository;
     private readonly ILikeRepository _likeRepository;
+    private readonly IRequestsService _requestsService;
+    private readonly IUserRepository _userRepository;
     public CardsService(
         ICardsRepository cardsRepository, 
         IMapper mapper, 
-        ILikeRepository likeRepository)
+        ILikeRepository likeRepository, 
+        IRequestsService requestsService, 
+        IUserRepository userRepository)
     {
         _cardsRepository = cardsRepository;
         _mapper = mapper;
         _likeRepository = likeRepository;
+        _requestsService = requestsService;
+        _userRepository = userRepository;
     }
     
     public async Task<BaseResponse<List<UserDTO>>> RecommendedCardsForUser(string currentUser)
@@ -27,6 +34,8 @@ public class CardsService : ICardsService
         {
             await _likeRepository.DeleteLikes(currentUser);
 
+            var user = await _userRepository.GetUserByLogin(currentUser);
+            
             var lastLikes = await _likeRepository.GetUserLikes(currentUser);
             
             var response = await _cardsRepository.GetAllCards();
@@ -37,6 +46,14 @@ public class CardsService : ICardsService
                     .Contains(x.Login.ToLower()))
                 .Where(x => x.Login != currentUser)
                 .ToList();
+
+            var userString = JsonConvert.SerializeObject(user);
+            var usersString = JsonConvert.SerializeObject(users);
+            
+            var token = await _requestsService.GetIamToken();
+            var orderOfProfiles = await _requestsService.GetOrderOfUsers(token, userString, usersString);
+            
+            users = users.OrderBy(x => orderOfProfiles.FindIndex(y => x.Id == y)).ToList();
             
             var result = _mapper.Map<List<UserDTO>>(users);
             
