@@ -55,8 +55,8 @@ const MainPage = () => {
                         )}
                     </div>
                 </div>
-                {showCards && <Tabs openMes={handleMessagesShow}/>}
-                {showProfile && <ProfileTab/>}
+                {(showCards || showMessages) && <Tabs openMes={handleMessagesShow}/>}
+                {showProfile && !showMessages && <ProfileTab/>}
             </div>
             {showProfile && !showMessages && (
                 <UserCard />

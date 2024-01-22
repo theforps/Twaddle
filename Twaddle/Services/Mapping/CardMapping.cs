@@ -15,5 +15,6 @@ public class CardMapping : Profile
         CreateMap<User, UserDTO>().ForMember(x => 
             x.Images, opt => opt.MapFrom(x => x.Pictures)).ReverseMap();
         CreateMap<Match, MatchDTO>().ReverseMap();
+        CreateMap<User, UserRequestDTO>().ReverseMap();
     }
 }

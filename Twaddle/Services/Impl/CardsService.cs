@@ -47,14 +47,24 @@ public class CardsService : ICardsService
                 .Where(x => x.Login != currentUser)
                 .ToList();
 
-            var userString = JsonConvert.SerializeObject(user);
-            var usersString = JsonConvert.SerializeObject(users);
+            var requestUser = _mapper.Map<UserRequestDTO>(user);
+            var requestUsers = _mapper.Map<List<UserRequestDTO>>(users);
+            
+            var userString = JsonConvert.SerializeObject(requestUser);
+            var usersString = JsonConvert.SerializeObject(requestUsers);
             
             var token = await _requestsService.GetIamToken();
-            var orderOfProfiles = await _requestsService.GetOrderOfUsers(token, userString, usersString);
-            
-            users = users.OrderBy(x => orderOfProfiles.FindIndex(y => x.Id == y)).ToList();
-            
+
+            if (token != null)
+            {
+                var orderOfProfiles = await _requestsService.GetOrderOfUsers(token, userString, usersString);
+
+                if (orderOfProfiles != null)
+                {
+                    users = users.OrderBy(x => orderOfProfiles.FindIndex(y => x.Id == y)).ToList();
+                }
+            }
+
             var result = _mapper.Map<List<UserDTO>>(users);
             
             return new BaseResponse<List<UserDTO>>
