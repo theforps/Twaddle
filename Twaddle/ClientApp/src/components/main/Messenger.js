@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {GetUserMatchMessages, SendMessage} from "../requests/MessageQueries";
+import ModalButton from "../start/ModelBtn";
 
 const Messenger = ({matchId}) => {
     const [messageList, setMessageList] = useState([]);
@@ -60,6 +61,10 @@ const Messenger = ({matchId}) => {
 
     const handlePrevPhoto = () => {
         setCurrentPhotoIndex((prevIndex) => (prevIndex - 1 + photos.length) % photos.length);
+    };
+
+    const handleSendReport = () => {
+        //отправляет жалобу
     };
     
     useEffect(() => {
@@ -141,7 +146,26 @@ const Messenger = ({matchId}) => {
                     <p>{`Цель: ${buddy.goal}`}</p>
                     <p>{`Описание: ${buddy.description}`}</p>
                 </div>
-                <button className="btn btn-danger">Пожаловаться</button>
+                <ModalButton
+                    btnName={'Пожаловаться'}
+                    title={'Подать жалобу'}
+                    modalContent= {
+                        <div>
+                            <div className="m-3">
+                                <textarea
+                                    className="w-100 p-2"
+                                    style={{
+                                        height: "300px", 
+                                        resize:"none",
+                                        textWrap:"inherit",
+                                    }}
+                                    placeholder="Введите жалобу"
+                                />
+                            </div>
+                            <button className="btn btn-success">Отправить жалобу</button>
+                        </div>
+                    }
+                />
             </div>
             }
         </div>
