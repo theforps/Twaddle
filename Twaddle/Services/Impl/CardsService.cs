@@ -41,10 +41,18 @@ public class CardsService : ICardsService
             var response = await _cardsRepository.GetAllCards();
             
             var users = response
-                .Where(x => !lastLikes
+                .Where(x => 
+                    !lastLikes
                     .Select(c => c.Liked.ToLower())
                     .Contains(x.Login.ToLower()))
-                .Where(x => x.Login != currentUser)
+                .Where(x => 
+                    x.Login != currentUser)
+                .Where(x => 
+                    x.Matches
+                        .Where(c => 
+                            c.Couple.Contains(user) && c.IsMutually)
+                        .ToList()
+                        .Count() == 0)
                 .ToList();
 
             var requestUser = _mapper.Map<UserRequestDTO>(user);
@@ -53,17 +61,17 @@ public class CardsService : ICardsService
             var userString = JsonConvert.SerializeObject(requestUser);
             var usersString = JsonConvert.SerializeObject(requestUsers);
             
-            var token = await _requestsService.GetIamToken();
-
-            if (token != null)
-            {
-                var orderOfProfiles = await _requestsService.GetOrderOfUsers(token, userString, usersString);
-
-                if (orderOfProfiles != null)
-                {
-                    users = users.OrderBy(x => orderOfProfiles.FindIndex(y => x.Id == y)).ToList();
-                }
-            }
+            // var token = await _requestsService.GetIamToken();
+            //
+            // if (token != null)
+            // {
+            //     var orderOfProfiles = await _requestsService.GetOrderOfUsers(token, userString, usersString);
+            //
+            //     if (orderOfProfiles != null)
+            //     {
+            //         users = users.OrderBy(x => orderOfProfiles.FindIndex(y => x.Id == y)).ToList();
+            //     }
+            // }
 
             var result = _mapper.Map<List<UserDTO>>(users);
             

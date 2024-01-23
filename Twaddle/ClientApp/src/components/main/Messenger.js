@@ -4,6 +4,8 @@ import {GetUserMatchMessages, SendMessage} from "../requests/MessageQueries";
 const Messenger = ({matchId}) => {
     const [messageList, setMessageList] = useState([]);
     const [buddy, setBuddy] = useState(null);
+    const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
+    const [photos, setPhotos] = useState([])
     const messagesEndRef = useRef(null);
     const getMatch = async () =>
     {
@@ -11,9 +13,23 @@ const Messenger = ({matchId}) => {
         const jwt = sessionStorage.getItem('token');
         
         const result = await GetUserMatchMessages(jwt, matchId);
-        
+                
         setBuddy(result.data.data.senderInfo)
         setMessageList(result.data.data.messages)
+
+        if(buddy != null && buddy.images.length > 0) {
+            const yourArray = buddy.images;
+
+            const resultImages = [];
+
+            for (let i = 0; i < yourArray.length; i++) {
+                const dataUrl = yourArray[i];
+                const img = "data:image/png;base64," + dataUrl;
+                resultImages.push(img);
+            }
+
+            setPhotos(resultImages);
+        }
     }
 
     const PostMes = async () => {
@@ -37,6 +53,14 @@ const Messenger = ({matchId}) => {
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     };
+
+    const handleNextPhoto = () => {
+        setCurrentPhotoIndex((prevIndex) => (prevIndex + 1) % photos.length);
+    };
+
+    const handlePrevPhoto = () => {
+        setCurrentPhotoIndex((prevIndex) => (prevIndex - 1 + photos.length) % photos.length);
+    };
     
     useEffect(() => {
         scrollToBottom();
@@ -47,54 +71,79 @@ const Messenger = ({matchId}) => {
     });
 
     return (
-        <div 
-            className={"w-75 card border border-3 border-light-subtle"}>
-            <div 
-                style={{ textAlign: 'center', marginBottom: '20px' }}>
-                {buddy != null &&
-                    <h2>Имя: {buddy.name} Возраст: {buddy.age}</h2>
-                }
-            </div>
+        <div className={"d-flex"}>
             <div
-                style={{
-                maxHeight: '600px',
-                overflowY: 'auto', 
-                
-                }}>
-                {messageList != null && messageList.map(message => (
-                    <div
-                        key={message.createdTime}
-                        style={{
-                            display: 'flex',
-                            justifyContent: message.isSender ? 'flex-start' : 'flex-end',
-                            marginLeft: '10px',
-                            marginBottom: '10px',
-                            marginRight: '10px'
-                        }}
-                    >
+                className={"card border border-3 border-light-subtle p-3"}>
+                <div
+                    style={{
+                        minWidth:"600px",
+                        minHeight: "700px",
+                        overflowY: 'auto',
+                    }}>
+                    {messageList != null && messageList.map(message => (
                         <div
+                            key={message.createdTime}
                             style={{
-                                backgroundColor: message.isSender ? '#eee' : '#007bff',
-                                color: message.isSender ? '#000' : '#fff',
-                                padding: '8px 12px',
-                                borderRadius: '8px',
-                                maxWidth: '70%',
+                                display: 'flex',
+                                justifyContent: message.isSender ? 'flex-start' : 'flex-end',
+                                marginLeft: '10px',
+                                marginBottom: '10px',
+                                marginRight: '10px'
                             }}
                         >
-                            {message.content}
-                            <p>{message.createdTime}</p>
+                            <div
+                                style={{
+                                    backgroundColor: message.isSender ? '#eee' : '#007bff',
+                                    color: message.isSender ? '#000' : '#fff',
+                                    padding: '8px 12px',
+                                    borderRadius: '8px',
+                                    maxWidth: '70%',
+                                }}
+                            >
+                                {message.content}
+                                <p>{message.createdTime}</p>
+                            </div>
                         </div>
-                    </div>
-                ))}
-                {(messageList == null || messageList.length <= 0) && (
-                    <h3>Сообщений пока нет</h3>
-                )}
-                <div ref={messagesEndRef} />
+                    ))}
+                    {(messageList == null || messageList.length <= 0) && (
+                        <h3>Сообщений пока нет</h3>
+                    )}
+                    <div ref={messagesEndRef}/>
+                </div>
+                <div className={"mt-auto input-group d-flex mt-5 w-100"}>
+                    <input type={"text"} id={"message"} className={"w-75"}/>
+                    <button onClick={PostMes} className={"btn btn-success w-25"}>Отправить</button>
+                </div>
             </div>
-            <div className={"input-group d-flex mt-5 w-100"}>
-                <input type={"text"} id={"message"} className={"w-75"}/>
-                <button onClick={PostMes} className={"btn btn-success w-25"}>Отправить</button>
+            { buddy != null &&
+            <div className="border border-3 border-light-subtle p-3 ms-3 float-end">
+                <div className="photo-container m-2">
+                    {photos != null && photos.length > 0 && (
+                        <div>
+                            <button onClick={handlePrevPhoto}>&lt;</button>
+                            <img style={{width:"200px", height: "200px"}} src={photos[currentPhotoIndex]} alt={`User ${buddy.name}`}/>
+                            <button onClick={handleNextPhoto}>&gt;</button>
+                        </div>
+                    )}
+                    {photos.length == 0 &&
+                        <img 
+                            style={{maxWidth:"300px"}}
+                            src="https://tiktokgid.info/wp-content/uploads/2021/12/kak-sdelat-prozrachnuyu-avatarku-v-tik-tok(1).jpg" 
+                            alt={`User ${buddy.name}`}/>
+                    }
+                </div>
+                <div className="user-info">
+                    <h2>{buddy.name}</h2>
+                    <p>{`Возраст: ${buddy.age}`}</p>
+                    <p>{`Пол: ${buddy.sex}`}</p>
+                    <p>{`Страна: ${buddy.country}`}</p>
+                    <p>{`Образование: ${buddy.education}`}</p>
+                    <p>{`Цель: ${buddy.goal}`}</p>
+                    <p>{`Описание: ${buddy.description}`}</p>
+                </div>
+                <button className="btn btn-danger">Пожаловаться</button>
             </div>
+            }
         </div>
     );
 };
