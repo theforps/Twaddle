@@ -6,5 +6,5 @@ public interface ILikeRepository
 {
     Task AddLike(string currentUser, string liked);
     Task<List<Like>> GetUserLikes(string currentUser);
-    Task DeleteLikes(string currentUser);
+    Task DeleteLikes();
 }

@@ -8,3 +8,12 @@ export const GetCards = async (jwt) => {
         }
     });
 };
+
+export const SendReport = async (jwt, data) => {
+
+    return await axios.post('/cards/report', data, {
+        headers: {
+            Authorization: "Bearer " + jwt
+        }
+    });
+};

@@ -20,14 +20,17 @@ public class CardsController : ControllerBase
     public async Task<IActionResult>  GetCardsOfUsers()
     {
         string currentUser = HttpContext.User.Identity.Name;
+        
+        var result = await _cardsService.RecommendedCardsForUser(currentUser);
 
-        if (currentUser != null)
-        {
-            var result = await _cardsService.RecommendedCardsForUser(currentUser);
+        return Ok(result);
+    }
 
-            return Ok(result);
-        }
-
-        return BadRequest();
+    [HttpPost("report")]
+    public async Task<IActionResult> SendReport(ReportDTO reportDto)
+    {
+        var result = await _cardsService.AddNewReport(reportDto);
+        
+        return Ok(result);
     }
 }

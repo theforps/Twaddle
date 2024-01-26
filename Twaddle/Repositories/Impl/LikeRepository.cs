@@ -34,7 +34,7 @@ public class LikeRepository : ILikeRepository
         return result;
     }
 
-    public async Task DeleteLikes(string currentUser)
+    public async Task DeleteLikes()
     {
         var oldLikes = await _db.Likes
             .Where(x => (DateTime.Now - x.DateOfLike).Days >= 1)

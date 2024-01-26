@@ -24,4 +24,5 @@ public class AppDbContext: DbContext
     public DbSet<User> Users { get; set; }
     public DbSet<Match> Matches { get; set; }
     public DbSet<Like> Likes { get; set; }
+    public DbSet<Report> Reports { get; set; }
 }

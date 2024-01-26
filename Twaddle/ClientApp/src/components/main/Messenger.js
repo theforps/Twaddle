@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {GetUserMatchMessages, SendMessage} from "../requests/MessageQueries";
 import ModalButton from "../start/ModelBtn";
+import {SendReport} from "../requests/CardsQueries";
 
 const Messenger = ({matchId}) => {
     const [messageList, setMessageList] = useState([]);
@@ -63,9 +64,23 @@ const Messenger = ({matchId}) => {
         setCurrentPhotoIndex((prevIndex) => (prevIndex - 1 + photos.length) % photos.length);
     };
 
-    const handleSendReport = () => {
-        //отправляет жалобу
+    const handleSendReport = async() => {
+        const jwt = sessionStorage.getItem('token');
+        
+        
+        report.Culprit = buddy.login;
+        report.Content = document.getElementById("report").value;
+        
+        const result = await SendReport(jwt, report);
+
+        console.log(result.data.data);
     };
+    
+    
+    const report = {
+        Culprit: '',
+        Content: ''
+    }
     
     useEffect(() => {
         scrollToBottom();
@@ -82,8 +97,8 @@ const Messenger = ({matchId}) => {
                 <div
                     style={{
                         minWidth:"600px",
-                        minHeight: "700px",
-                        overflowY: 'auto',
+                        height: "700px",
+                        overflowY: "scroll",
                     }}>
                     {messageList != null && messageList.map(message => (
                         <div
@@ -120,7 +135,7 @@ const Messenger = ({matchId}) => {
                     <button onClick={PostMes} className={"btn btn-success w-25"}>Отправить</button>
                 </div>
             </div>
-            { buddy != null &&
+            { buddy != null && 
             <div className="border border-3 border-light-subtle p-3 ms-3 float-end">
                 <div className="photo-container m-2">
                     {photos != null && photos.length > 0 && (
@@ -153,6 +168,7 @@ const Messenger = ({matchId}) => {
                         <div>
                             <div className="m-3">
                                 <textarea
+                                    id="report"
                                     className="w-100 p-2"
                                     style={{
                                         height: "300px", 
@@ -162,9 +178,9 @@ const Messenger = ({matchId}) => {
                                     placeholder="Введите жалобу"
                                 />
                             </div>
-                            <button className="btn btn-success">Отправить жалобу</button>
+                            <button className="btn btn-success" type={"submit"} onClick={handleSendReport}>Отправить жалобу</button>
                         </div>
-                    }
+                        }
                 />
             </div>
             }

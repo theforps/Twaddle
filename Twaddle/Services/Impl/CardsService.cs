@@ -32,7 +32,7 @@ public class CardsService : ICardsService
     {
         try
         {
-            await _likeRepository.DeleteLikes(currentUser);
+            await _likeRepository.DeleteLikes();
 
             var user = await _userRepository.GetUserByLogin(currentUser);
             
@@ -87,6 +87,45 @@ public class CardsService : ICardsService
             return new BaseResponse<List<UserDTO>>()
             {
                 Description = ex.Message,
+                StatusCode = 500
+            };
+        }
+    }
+
+    public async Task<BaseResponse<ReportDTO>> AddNewReport(ReportDTO reportDto)
+    {
+        try
+        {
+            var user = await _userRepository.GetUserByLogin(reportDto.Culprit);
+
+            var report = new Report()
+            {
+                Culprit = user,
+                Content = reportDto.Content
+            };
+
+            var result = await _cardsRepository.AddReport(report);
+
+            if (report == null)
+            {
+                return new BaseResponse<ReportDTO>()
+                {
+                    Description = "Не удалось отправить жалобу.",
+                    StatusCode = 400
+                };
+            }
+            
+            return new BaseResponse<ReportDTO>()
+            {
+                Description = "Удалось отправить жалобу.",
+                StatusCode = 200
+            };
+        }
+        catch (Exception e)
+        {
+            return new BaseResponse<ReportDTO>()
+            {
+                Description = e.Message,
                 StatusCode = 500
             };
         }

@@ -19,4 +19,13 @@ public class CardsRepository : ICardsRepository
         
         return result;
     }
+
+    public async Task<Report> AddReport(Report report)
+    {
+        var result = _db.Reports.AddAsync(report).Result.Entity;
+
+        await _db.SaveChangesAsync();
+
+        return result;
+    }
 }
