@@ -9,19 +9,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4b4d2340-c65b-4e65-b03f-0b97c3ad9834" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Twaddle/Domain/DTO/ReportDTO.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Twaddle/Domain/Models/Report.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/dataSources/9097b515-aa90-41fc-a005-74861b014136.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/dataSources/9097b515-aa90-41fc-a005-74861b014136.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/dataSources/9097b515-aa90-41fc-a005-74861b014136/storage_v2/_src_/database/TwaddleDb.9SO1qw/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/dataSources/9097b515-aa90-41fc-a005-74861b014136/storage_v2/_src_/database/TwaddleDb.9SO1qw/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/main/Messenger.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/main/Messenger.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/requests/CardsQueries.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/requests/CardsQueries.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/Controllers/CardsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Controllers/CardsController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/Domain/AppDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Domain/AppDbContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/Repositories/Impl/CardsRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Repositories/Impl/CardsRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Twaddle/Domain/Models/Like.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Domain/Models/Like.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Twaddle/Repositories/Impl/LikeRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Repositories/Impl/LikeRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/Repositories/Interfaces/ICardsRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Repositories/Interfaces/ICardsRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Twaddle/Repositories/Interfaces/ILikeRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Repositories/Interfaces/ILikeRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Twaddle/Services/Impl/CardsService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Services/Impl/CardsService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/Services/Interfaces/ICardsService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Services/Interfaces/ICardsService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Twaddle/Services/Impl/MatchService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Services/Impl/MatchService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +56,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    ".NET Launch Settings Profile.Twaddle.executor": "Debug",
+    ".NET Launch Settings Profile.Twaddle.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -183,7 +178,9 @@
       <workItem from="1705942849854" duration="2372000" />
       <workItem from="1706008883674" duration="6255000" />
       <workItem from="1706035254505" duration="1022000" />
-      <workItem from="1706285231027" duration="4354000" />
+      <workItem from="1706285231027" duration="4376000" />
+      <workItem from="1706346006108" duration="598000" />
+      <workItem from="1706548611220" duration="580000" />
     </task>
     <task id="LOCAL-00001" summary=":)">
       <option name="closed" value="true" />
@@ -361,7 +358,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706036252300</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary=":)">
+      <option name="closed" value="true" />
+      <created>1706291402054</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1706291402054</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -394,10 +399,10 @@
           <line>97</line>
           <properties documentPath="D:\Projects\C_Sharp\Fullstack\Twaddle\Twaddle\Services\Impl\CardsService.cs" initialLine="97" containingFunctionPresentation="Method 'AddNewReport'">
             <startOffsets>
-              <option value="3282" />
+              <option value="3288" />
             </startOffsets>
             <endOffsets>
-              <option value="3283" />
+              <option value="3289" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="11" />

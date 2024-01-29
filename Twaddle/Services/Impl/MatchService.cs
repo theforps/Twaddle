@@ -76,7 +76,9 @@ public class MatchService : IMatchService
     
             var match = await _matchRepository.SetUserMatch(firstUser, secondUser);
 
-            await _likeRepository.AddLike(currentUser, secondLogin);
+            
+            
+            await _likeRepository.AddLike(firstUser, secondUser);
             
             var result = _mapper.Map<MatchDTO>(match);
             result.Pair = match.Couple

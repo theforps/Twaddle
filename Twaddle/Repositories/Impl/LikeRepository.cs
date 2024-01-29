@@ -13,7 +13,7 @@ public class LikeRepository : ILikeRepository
         _db = db;
     }
     
-    public async Task AddLike(string currentUser, string liked)
+    public async Task AddLike(User currentUser, User liked)
     {
         _db.Likes.Add(new Like()
         {
@@ -28,7 +28,7 @@ public class LikeRepository : ILikeRepository
     {
         var result = await _db.Likes
             .Where(x => 
-                x.Liker.ToLower().Equals(currentUser.ToLower()))
+                x.Liker.Login.ToLower().Equals(currentUser.ToLower()))
             .ToListAsync();
 
         return result;

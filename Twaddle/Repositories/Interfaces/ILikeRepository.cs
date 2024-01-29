@@ -4,7 +4,7 @@ namespace Twaddle.Repositories.Interfaces;
 
 public interface ILikeRepository
 {
-    Task AddLike(string currentUser, string liked);
+    Task AddLike(User currentUser, User liked);
     Task<List<Like>> GetUserLikes(string currentUser);
     Task DeleteLikes();
 }

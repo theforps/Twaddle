@@ -43,7 +43,7 @@ public class CardsService : ICardsService
             var users = response
                 .Where(x => 
                     !lastLikes
-                    .Select(c => c.Liked.ToLower())
+                    .Select(c => c.Liked.Login.ToLower())
                     .Contains(x.Login.ToLower()))
                 .Where(x => 
                     x.Login != currentUser)
