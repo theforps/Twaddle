@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Login, Registration} from '../requests/JoinQueries'
 import ModalButton from "../start/ModelBtn";
+import {GetCountries} from "../requests/RegInfoQueries";
 
 const StartPage = () => {
     const [step, setStep] = useState(1);
@@ -16,6 +17,11 @@ const StartPage = () => {
         login: '',
         password: '',
     });
+    const [countries, setCountries] = useState([]);
+
+    useEffect(() => {
+        getCountries();
+    }, []);
     
     const handleStepSubmit = (stepData) => {
         setUserData({ ...userData, ...stepData });
@@ -25,6 +31,13 @@ const StartPage = () => {
     const handlePrevStep = () => {
         setStep(step - 1);
     };
+    
+    const getCountries = async() =>
+    {
+        const result = await GetCountries();
+        
+        setCountries(result);
+    }
     
     const registration = async() =>
     {
@@ -51,7 +64,7 @@ const StartPage = () => {
         if(result.data.statusCode === 200) {
             
             sessionStorage.setItem('token', result.data.data.jwt);
-            sessionStorage.setItem('user', result.data.data.user.login)
+            sessionStorage.setItem('role', result.data.data.user.role)
         }
     }
     
@@ -101,7 +114,7 @@ const StartPage = () => {
                 {step === 2 && <EnterNick data={userData} onSubmit={handleStepSubmit} />}
                 {step === 3 && <SelectGoal data={userData} onSubmit={handleStepSubmit} />}
                 {step === 4 && <EnterAge data={userData} onSubmit={handleStepSubmit} />}
-                {step === 5 && <EnterCountry data={userData} onSubmit={handleStepSubmit} />}
+                {step === 5 && <EnterCountry data={userData} countries={countries} onSubmit={handleStepSubmit} />}
                 {step === 6 && <EnterEducation data={userData} onSubmit={handleStepSubmit} />}
                 {step === 7 && <EnterDesc data={userData} onSubmit={handleStepSubmit} />}
                 {step === 8 && <EnterInfo data={userData} onSubmit={handleStepSubmit} />}
@@ -213,31 +226,55 @@ const EnterAge = ({ data, onSubmit }) => {
     );
 };
 
-const EnterCountry = ({ data, onSubmit }) => {
+const EnterCountry = ({ data, onSubmit, countries }) => {
     const [country, setCountry] = useState(data.country);
-
+    const [isOpen, setIsOpen] = useState(false);
+    
     const handleSubmit = (e) => {
         e.preventDefault();
         onSubmit({ country });
     };
 
+    const toggleDropdown = () => {
+        setIsOpen(!isOpen);
+    };
+
+    const selectOption = (option) => {
+        setCountry(option);
+        setIsOpen(false);
+    };
+    
     return (
         <form onSubmit={handleSubmit}>
             <h1>
                 Введите страну
-                <input type="text" required={true} onChange={(e) => setCountry(e.target.value)} />
             </h1>
+            <div>
+                <button className="btn btn-secondary dropdown-toggle" type="button" onClick={toggleDropdown}>
+                    {country || 'Выберите страну'}
+                </button>
+                {isOpen && (
+                    <div className={"w-25 card mt-2"} style={{height: '200px', overflowY: 'scroll'}}>
+                        {countries.map(entity => (
+                            <a className="btn btn-outline-secondary mb-2" key={entity.country} onClick={() => selectOption(entity.country)}>
+                                {entity.country}
+                                <img src={entity.flag} className="ms-3" style={{width: '20px', height: '20px'}}/>
+                            </a>
+                        ))}
+                    </div>
+                )}
+            </div>
             <button className={"btn btn-success"} type="submit">Дальше</button>
         </form>
     );
 };
 
-const EnterEducation = ({ data, onSubmit }) => {
+const EnterEducation = ({data, onSubmit}) => {
     const [education, setEducation] = useState(data.education);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        onSubmit({ education });
+        onSubmit({education});
     };
 
     return (
