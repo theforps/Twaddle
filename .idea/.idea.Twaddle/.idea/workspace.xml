@@ -9,12 +9,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4b4d2340-c65b-4e65-b03f-0b97c3ad9834" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/requests/RegInfoQueries.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/dataSources/9097b515-aa90-41fc-a005-74861b014136.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/dataSources/9097b515-aa90-41fc-a005-74861b014136.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/dataSources/9097b515-aa90-41fc-a005-74861b014136/storage_v2/_src_/database/TwaddleDb.9SO1qw/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/dataSources/9097b515-aa90-41fc-a005-74861b014136/storage_v2/_src_/database/TwaddleDb.9SO1qw/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/main/UserCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/main/UserCard.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/start/StartPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/start/StartPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/Domain/DTO/UserDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Domain/DTO/UserDTO.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,7 +178,8 @@
       <workItem from="1706285231027" duration="4376000" />
       <workItem from="1706346006108" duration="598000" />
       <workItem from="1706548611220" duration="580000" />
-      <workItem from="1706693886549" duration="3972000" />
+      <workItem from="1706693886549" duration="4004000" />
+      <workItem from="1706717987415" duration="9032000" />
     </task>
     <task id="LOCAL-00001" summary=":)">
       <option name="closed" value="true" />
@@ -365,7 +365,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706291402054</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary=":)">
+      <option name="closed" value="true" />
+      <created>1706697907291</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1706697907291</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
