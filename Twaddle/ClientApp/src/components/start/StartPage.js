@@ -76,7 +76,7 @@ const StartPage = () => {
     return (
         <div>
             <nav className="navbar navbar-expand-lg navbar-light p-2">
-                <a className="navbar-brand" href="/">Twaddle</a>
+                <a className="navbar-brand text-white" href="/">Twaddle</a>
                 <div className="ms-auto">
                     <ModalButton
                         btnName={'Войти'}

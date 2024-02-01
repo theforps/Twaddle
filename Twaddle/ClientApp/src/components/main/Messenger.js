@@ -93,8 +93,9 @@ const Messenger = ({matchId}) => {
     return (
         <div className={"d-flex"}>
             <div
-                className={"card border border-3 border-light-subtle p-3"}>
+                className={"card me-3"}>
                 <div
+                    className="pb-3"
                     style={{
                         minWidth:"600px",
                         height: "700px",
@@ -117,11 +118,11 @@ const Messenger = ({matchId}) => {
                                     color: message.isSender ? '#000' : '#fff',
                                     padding: '8px 12px',
                                     borderRadius: '8px',
-                                    maxWidth: '70%',
+                                    maxWidth: '40%',
                                 }}
                             >
                                 {message.content}
-                                <p>{message.createdTime}</p>
+                                <p>{message.createdTime.slice(0, 19)}</p>
                             </div>
                         </div>
                     ))}
@@ -130,19 +131,20 @@ const Messenger = ({matchId}) => {
                     )}
                     <div ref={messagesEndRef}/>
                 </div>
-                <div className={"mt-auto input-group d-flex mt-5 w-100"}>
-                    <input type={"text"} id={"message"} className={"w-75"}/>
+                <div className={"mt-auto input-group w-100"}>
+                    <input placeholder={"Введите сообщение"} type={"text"} id={"message"} className={"form-control w-75"}/>
                     <button onClick={PostMes} className={"btn btn-success w-25"}>Отправить</button>
                 </div>
             </div>
             { buddy != null && 
-            <div className="border border-3 border-light-subtle p-3 ms-3 float-end">
-                <div className="photo-container m-2">
+            <div className="card">
+                <div className="card-img-top">
                     {photos != null && photos.length > 0 && (
                         <div>
-                            <button onClick={handlePrevPhoto}>&lt;</button>
-                            <img style={{width:"200px", height: "200px"}} src={photos[currentPhotoIndex]} alt={`User ${buddy.name}`}/>
-                            <button onClick={handleNextPhoto}>&gt;</button>
+                            <button className="btn btn-primary" onClick={handlePrevPhoto}>&lt;</button>
+                            <img style={{width: "200px", height: "200px"}} src={photos[currentPhotoIndex]}
+                                 alt={`User ${buddy.name}`}/>
+                            <button className="btn btn-primary" onClick={handleNextPhoto}>&gt;</button>
                         </div>
                     )}
                     {photos.length == 0 &&
@@ -152,36 +154,41 @@ const Messenger = ({matchId}) => {
                             alt={`User ${buddy.name}`}/>
                     }
                 </div>
-                <div className="user-info">
-                    <h2>{buddy.name}</h2>
-                    <p>{`Возраст: ${buddy.age}`}</p>
-                    <p>{`Пол: ${buddy.sex}`}</p>
-                    <p>{`Страна: ${buddy.country}`}</p>
-                    <p>{`Образование: ${buddy.education}`}</p>
-                    <p>{`Цель: ${buddy.goal}`}</p>
-                    <p>{`Описание: ${buddy.description}`}</p>
-                </div>
-                <ModalButton
-                    btnName={'Пожаловаться'}
-                    title={'Подать жалобу'}
-                    modalContent= {
-                        <div>
-                            <div className="m-3">
+                <div className="card-body">
+                    <h2 className="card-header text-center">{buddy.name}</h2>
+                    <p className="card-text m-2">{`Возраст: ${buddy.age}`}</p>
+                    <p className="card-text m-2">{`Пол: ${buddy.sex}`}</p>
+                    <p className="card-text m-2">{`Страна: ${buddy.country}`}</p>
+                    <p className="card-text m-2">{`Образование: ${buddy.education}`}</p>
+                    <p className="card-text m-2">{`Цель: ${buddy.goal}`}</p>
+                    <p className="card-text m-2">{`Описание: ${buddy.description}`}</p>
+                    <ModalButton
+                        btnName={'Пожаловаться'}
+                        title={'Подать жалобу'}
+                        modalContent= {
+                            <div>
+                                <div className="m-3">
                                 <textarea
                                     id="report"
-                                    className="w-100 p-2"
+                                    className="w-100 p-2 form-control"
                                     style={{
-                                        height: "300px", 
+                                        height: "300px",
                                         resize:"none",
                                         textWrap:"inherit",
                                     }}
                                     placeholder="Введите жалобу"
                                 />
+                                </div>
+                                <div className="justify-content-center d-flex">
+                                    <button className="btn btn-success" type={"submit"}
+                                            onClick={handleSendReport}>Отправить жалобу
+                                    </button>
+                                </div>
+
                             </div>
-                            <button className="btn btn-success" type={"submit"} onClick={handleSendReport}>Отправить жалобу</button>
-                        </div>
                         }
-                />
+                    />
+                </div>
             </div>
             }
         </div>

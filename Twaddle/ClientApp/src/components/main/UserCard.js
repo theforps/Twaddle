@@ -128,6 +128,39 @@ const UserCard = () => {
             {
                 isEditing ? 
                 (
+                    <div className="d-flex p-5">
+                        <div>
+                            {
+                                pictures.length > 1 &&
+                                <div>
+                                    <button className="btn btn-primary" onClick={handlePrevPhoto}>&lt;</button>
+                                    <img
+                                        className="card-img-top m-2"
+                                        style={{width: '350px', height: '550px'}}
+                                        src={pictures[currentPhotoIndex]}
+                                        alt={user.name}/>
+                                    <button className="btn btn-primary" onClick={handleNextPhoto}>&gt;</button>
+                                </div>
+                            }
+                            {
+                                pictures.length === 1 &&
+                                <div>
+                                    <img
+                                        className="card-img-top m-2"
+                                        style={{width: '350px', height: '550px'}}
+                                        src={pictures[currentPhotoIndex]}
+                                        alt={user.name}/>
+                                </div>
+                            }
+                            {
+                                pictures.length === 0 &&
+                                <img
+                                    style={{width: '350px', height: '550px'}}
+                                    className="card-img-top m-2"
+                                    src="https://tiktokgid.info/wp-content/uploads/2021/12/kak-sdelat-prozrachnuyu-avatarku-v-tik-tok(1).jpg"
+                                    alt="Profile"/>
+                            }
+                        </div>
                     <div className={"card-body"}>
                         <p className="card-text m-2">
                             Имя
@@ -162,6 +195,7 @@ const UserCard = () => {
                             <input type="file" className="form-control" accept={"image/*"} multiple
                                    onChange={handleImageUpload}/>
                         </p>
+                    </div>
                     </div>
                 )
                     : user != null &&

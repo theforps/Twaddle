@@ -78,8 +78,8 @@ const Tabs = ({openMes}) => {
                             <div key={match.id} className={"mt-1"}>
                                 <button className={"btn btn-info"} onClick={() => handleOpenMatch(match?.id)}>
                                     {match.pair.id + " " + match.pair.name}
+                                    <p>{match.messages[match.messages.length - 1].content.slice(0, 15)}</p>
                                 </button>
-                                <p>{match.messages[match.messages.length-1].content.slice(0, 15)}</p>
                             </div>
                         ))) : (
                             <p>Собщений нет.</p>
