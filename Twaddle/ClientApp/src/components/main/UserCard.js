@@ -136,7 +136,7 @@ const UserCard = () => {
                                     <button className="btn btn-primary" onClick={handlePrevPhoto}>&lt;</button>
                                     <img
                                         className="card-img-top m-2"
-                                        style={{width: '350px', height: '550px'}}
+                                        style={{width: '350px', height: '450px'}}
                                         src={pictures[currentPhotoIndex]}
                                         alt={user.name}/>
                                     <button className="btn btn-primary" onClick={handleNextPhoto}>&gt;</button>
@@ -147,7 +147,7 @@ const UserCard = () => {
                                 <div>
                                     <img
                                         className="card-img-top m-2"
-                                        style={{width: '350px', height: '550px'}}
+                                        style={{width: '350px', height: '450px'}}
                                         src={pictures[currentPhotoIndex]}
                                         alt={user.name}/>
                                 </div>
@@ -155,7 +155,7 @@ const UserCard = () => {
                             {
                                 pictures.length === 0 &&
                                 <img
-                                    style={{width: '350px', height: '550px'}}
+                                    style={{width: '350px', height: '450px'}}
                                     className="card-img-top m-2"
                                     src="https://tiktokgid.info/wp-content/uploads/2021/12/kak-sdelat-prozrachnuyu-avatarku-v-tik-tok(1).jpg"
                                     alt="Profile"/>
@@ -208,7 +208,7 @@ const UserCard = () => {
                                         <button className="btn btn-primary" onClick={handlePrevPhoto}>&lt;</button>
                                         <img
                                             className="card-img-top m-2"
-                                            style={{width: '350px', height: '550px'}}
+                                            style={{width: '350px', height: '450px'}}
                                             src={pictures[currentPhotoIndex]}
                                             alt={user.name}/>
                                         <button className="btn btn-primary" onClick={handleNextPhoto}>&gt;</button>
@@ -219,7 +219,7 @@ const UserCard = () => {
                                     <div>
                                         <img
                                             className="card-img-top m-2"
-                                            style={{width: '350px', height: '550px'}}
+                                            style={{width: '350px', height: '450px'}}
                                             src={pictures[currentPhotoIndex]}
                                             alt={user.name}/>
                                     </div>
@@ -227,7 +227,7 @@ const UserCard = () => {
                                 {
                                     pictures.length === 0 &&
                                     <img
-                                        style={{width: '350px', height: '550px'}}
+                                        style={{width: '350px', height: '450px'}}
                                         className="card-img-top m-2"
                                         src="https://tiktokgid.info/wp-content/uploads/2021/12/kak-sdelat-prozrachnuyu-avatarku-v-tik-tok(1).jpg"
                                         alt="Profile"/>

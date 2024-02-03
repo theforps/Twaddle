@@ -9,14 +9,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4b4d2340-c65b-4e65-b03f-0b97c3ad9834" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/dataSources/9097b515-aa90-41fc-a005-74861b014136.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/dataSources/9097b515-aa90-41fc-a005-74861b014136.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/dataSources/9097b515-aa90-41fc-a005-74861b014136/storage_v2/_src_/database/TwaddleDb.9SO1qw/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/dataSources/9097b515-aa90-41fc-a005-74861b014136/storage_v2/_src_/database/TwaddleDb.9SO1qw/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/main/InfinityUserCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/main/InfinityUserCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/main/LogoutButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/main/LogoutButton.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/main/Messenger.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/main/Messenger.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/main/ProfileTab.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/main/ProfileTab.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/main/Tabs.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/main/Tabs.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/main/UserCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/main/UserCard.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/start/ModelBtn.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/start/ModelBtn.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/start/StartPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/start/StartPage.js" afterDir="false" />
@@ -84,8 +82,8 @@
       &quot;postgresql&quot;
     ],
     &quot;rider.external.source.directories&quot;: [
-      &quot;C:\\Users\\thefo\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache&quot;,
-      &quot;C:\\Users\\thefo\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\thefo\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\thefo\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\SourcesCache&quot;,
       &quot;C:\\Users\\thefo\\AppData\\Local\\Symbols\\src&quot;
     ]
   }
@@ -187,6 +185,8 @@
       <workItem from="1706693886549" duration="4004000" />
       <workItem from="1706717987415" duration="9656000" />
       <workItem from="1706779560505" duration="7871000" />
+      <workItem from="1706868992382" duration="268000" />
+      <workItem from="1706869355148" duration="959000" />
     </task>
     <task id="LOCAL-00001" summary=":)">
       <option name="closed" value="true" />
@@ -406,28 +406,8 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Twaddle/Services/Impl/UserService.cs</url>
           <line>55</line>
-          <properties documentPath="D:\Projects\C_Sharp\Fullstack\Twaddle\Twaddle\Services\Impl\UserService.cs" initialLine="55" containingFunctionPresentation="Method 'UpdateUserInfo'">
-            <startOffsets>
-              <option value="1493" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1494" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="D:\Projects\C_Sharp\Fullstack\Twaddle\Twaddle\Services\Impl\UserService.cs" initialLine="55" containingFunctionPresentation="Method 'UpdateUserInfo'" />
           <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Twaddle/Services/Impl/CardsService.cs</url>
-          <line>97</line>
-          <properties documentPath="D:\Projects\C_Sharp\Fullstack\Twaddle\Twaddle\Services\Impl\CardsService.cs" initialLine="97" containingFunctionPresentation="Method 'AddNewReport'">
-            <startOffsets>
-              <option value="3288" />
-            </startOffsets>
-            <endOffsets>
-              <option value="3289" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
