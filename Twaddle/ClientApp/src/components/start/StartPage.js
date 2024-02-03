@@ -76,13 +76,13 @@ const StartPage = () => {
     return (
         <div>
             <nav className="navbar navbar-expand-lg navbar-light p-2">
-                <a className="navbar-brand text-white" href="/">Twaddle</a>
+                <a style={{fontSize: "40px"}} className="navbar-brand text-white" href="/">twaddle</a>
                 <div className="ms-auto">
                     <ModalButton
                         btnName={'Войти'}
                         title={'Вход в систему'}
                         modalContent={
-                            <form>
+                            <form method={"GET"} action={"/"}>
                                 <div className="form-group">
                                     <label className="m-2">Логин</label>
                                     <input 

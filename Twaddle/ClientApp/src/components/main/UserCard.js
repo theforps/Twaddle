@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {DeleteUser, GetUser, UpdateUser} from "../requests/UserQueries";
+import {GetUser, UpdateUser} from "../requests/UserQueries";
 
 const UserCard = () => {
     const[user, setUser] = useState(null);
