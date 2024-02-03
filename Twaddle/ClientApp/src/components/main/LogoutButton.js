@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 const LogoutButton = () => {
     
@@ -9,9 +10,9 @@ const LogoutButton = () => {
     };
 
     return (
-        <button className={"btn btn-danger"} onClick={handleLogout}>
+        <Link to={"/join"} className={"btn btn-danger"} onClick={handleLogout}>
             Выйти
-        </button>
+        </Link>
     );
 };
 

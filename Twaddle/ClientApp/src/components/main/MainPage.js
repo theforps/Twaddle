@@ -11,7 +11,8 @@ const MainPage = () => {
     const [showMessages, setShowMessages] = useState(false);
     const [showCards, setShowCards] = useState(true);
     const [userMatchId, setMatchId] = useState(null);
-
+    
+    
     if(sessionStorage.getItem('token') == null)
     {
         return <Navigate to={'/join'}/>

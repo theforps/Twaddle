@@ -5,6 +5,6 @@ namespace Twaddle.Services.Interfaces;
 
 public interface IJoinService
 {
-      Task<BaseResponse<UserDTO>> Registration(RegDTO dto);
+      Task<BaseResponse<LoginDTO>> Registration(RegDTO dto);
       Task<BaseResponse<LoginDTO>> Login(EntryDTO dto);
 }

@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Login, Registration} from '../requests/JoinQueries'
 import ModalButton from "../start/ModelBtn";
 import {GetCountries} from "../requests/RegInfoQueries";
+import {Link} from "react-router-dom";
 
 const StartPage = () => {
     const [step, setStep] = useState(1);
@@ -47,7 +48,8 @@ const StartPage = () => {
         console.log(result.data);
         
         if(result.data.statusCode === 200) {
-            setResult(result.data.description);
+            sessionStorage.setItem('token', result.data.data.jwt);
+            sessionStorage.setItem('role', result.data.data.user.role)
             return true;
         }
         
@@ -116,11 +118,16 @@ const StartPage = () => {
                 {step > 1 && step < 9 && (
                     <button className={"btn btn-danger"} onClick={handlePrevStep}>Назад</button>
                 )}
-                {step === 9 && registration() && 
-                    <div className="alert alert-success text-center" role="alert">
-                        {resultReg}
-                    </div>
+                {step === 9 &&
+                    <Link to={"/"} className={"btn btn-success"} onClick={() => registration()}>
+                        Завершить регистрацию
+                    </Link>
                 }
+                {/*{step === 9 && registration() && */}
+                {/*    <div className="alert alert-success text-center" role="alert">*/}
+                {/*        {resultReg}*/}
+                {/*    </div>*/}
+                {/*}*/}
             </div>
 
         </div>
