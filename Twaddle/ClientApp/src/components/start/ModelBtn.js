@@ -15,7 +15,7 @@ const ModalButton = ({modalContent, title, btnName}) =>
 
     return (
         <div>
-            <Button variant="outline-danger ps-5 pe-5 " onClick={handleOpenModal}>
+            <Button variant="success" onClick={handleOpenModal}>
                 {btnName}
             </Button>
 

@@ -1,11 +1,9 @@
 import {Navigate} from "react-router-dom";
 import React, {useEffect, useState} from "react";
-import Tabs from "./Tabs";
 import InfiniteUserCard from "./InfinityUserCard";
 import LogoutButton from "./LogoutButton";
 import Messenger from "./Messenger";
 import UserCard from "./UserCard";
-import ProfileTab from "./ProfileTab";
 
 const MainPage = () => {
 
@@ -27,7 +25,7 @@ const MainPage = () => {
 
     const handleMessagesShow = (id) => {
         setMatchId(id)
-        setShowProfile(true);
+        setShowProfile(false);
         setShowCards(false);
         setShowMessages(true);
     };
@@ -39,34 +37,48 @@ const MainPage = () => {
     };
     
     return (
-        <div className="m-5 w-100 d-flex">
-            <div className={"me-3 border border-3 card border-light-subtle"}>
-                <div className={"d-flex justify-content-center mb-4"}>
-                    <div>
-                        {!showCards && (
-                            <button className={"btn btn-secondary m-2"} onClick={handleCardsShow}>
-                                {'Меню'}
-                            </button>
-                        )}
-                        {!showProfile  && (
-                            <button className={"btn btn-secondary m-2"} onClick={handleProfileShow}>
-                                {'Профиль'}
-                            </button>
-                        )}
-                    </div>
-                </div>
-                {(showCards || showMessages) && <Tabs openMes={handleMessagesShow}/>}
-                {showProfile && !showMessages && <ProfileTab/>}
+        <div>
+            <nav className="navbar navbar-expand-lg navbar-light bg-light ps-3 pe-3 mt-2 mb-2">
+                <a className="navbar-brand" href="/">twaddle</a>
+                
+                <ul className="navbar-nav w-100">
+                    <li className="nav-item m-1">
+                        <button className={"btn btn-secondary"} onClick={handleProfileShow}>
+                            Профиль
+                        </button>
+                    </li>
+                    <li className="nav-item m-1">
+                        <button className={"btn btn-secondary"} onClick={handleCardsShow}>
+                            Анкеты
+                        </button>
+                    </li>
+                    <li className="nav-item m-1">
+                        <button className={"btn btn-secondary"} onClick={handleMessagesShow}>
+                            Сообщения
+                        </button>
+                    </li>
+                    <li className="nav-item m-1">
+                        <a className="btn btn-secondary" href="#">Вакансии</a>
+                    </li>
+                    <li className="nav-item m-1">
+                        <a className="btn btn-secondary" href="#">Лента</a>
+                    </li>
+                    <li className="nav-item ms-auto m-1">
+                        <LogoutButton />
+                    </li>
+                </ul>
+            </nav>
+            <div className={"d-flex bg-white justify-content-between"} style={{minHeight: '800px' ,height: 'calc(70vw * (9/16))'}}>
+                {showProfile && (
+                    <UserCard />
+                )}
+                {showCards && (
+                    <InfiniteUserCard openMes={handleMessagesShow}/>
+                )}
+                {showMessages && (
+                    <Messenger matchId={userMatchId}/>
+                )}
             </div>
-            {showProfile && !showMessages && (
-                <UserCard />
-            )}
-            {showCards && !showMessages && (
-                <InfiniteUserCard/>
-            )}
-            {showMessages && userMatchId != null && (
-                <Messenger matchId={userMatchId}/>
-            )}
         </div>
     )
 }

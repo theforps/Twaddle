@@ -99,7 +99,7 @@ const StartPage = () => {
                                         placeholder="Введите пароль"
                                         onChange={e => loginUser.Password = e.target.value}/>
                                 </div>
-                                <button onClick={login} className="btn btn-primary w-100 mt-3">Войти</button>
+                                <button onClick={login} type="button" className="btn btn-primary w-100 mt-3">Войти</button>
                             </form>
                         }/>
                 </div>

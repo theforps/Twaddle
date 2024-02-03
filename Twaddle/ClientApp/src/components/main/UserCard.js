@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {GetUser, UpdateUser} from "../requests/UserQueries";
+import {DeleteUser, GetUser, UpdateUser} from "../requests/UserQueries";
 
 const UserCard = () => {
     const[user, setUser] = useState(null);
@@ -36,6 +36,19 @@ const UserCard = () => {
         setIsEditing(true);
     };
 
+    const handleDeleteUser = async () => {
+
+        const jwt = sessionStorage.getItem('token');
+
+        const result = await DeleteUser(jwt);
+
+        console.log("Профиль удален:");
+        console.log(result.data);
+
+        sessionStorage.removeItem('token')
+        sessionStorage.removeItem('role');
+    }
+    
     const handleImageUpload = (event) => {
         const fileList = event.target.files;
         const updatedImages = [];
@@ -124,144 +137,165 @@ const UserCard = () => {
     }, []);
 
     return (
-        <div className={"card d-flex"}>
-            {
-                isEditing ? 
-                (
-                    <div className="d-flex p-5">
-                        <div>
-                            {
-                                pictures.length > 1 &&
-                                <div>
-                                    <button className="btn btn-primary" onClick={handlePrevPhoto}>&lt;</button>
-                                    <img
-                                        className="card-img-top m-2"
-                                        style={{width: '350px', height: '550px'}}
-                                        src={pictures[currentPhotoIndex]}
-                                        alt={user.name}/>
-                                    <button className="btn btn-primary" onClick={handleNextPhoto}>&gt;</button>
-                                </div>
-                            }
-                            {
-                                pictures.length === 1 &&
-                                <div>
-                                    <img
-                                        className="card-img-top m-2"
-                                        style={{width: '350px', height: '550px'}}
-                                        src={pictures[currentPhotoIndex]}
-                                        alt={user.name}/>
-                                </div>
-                            }
-                            {
-                                pictures.length === 0 &&
-                                <img
-                                    style={{width: '350px', height: '550px'}}
-                                    className="card-img-top m-2"
-                                    src="https://tiktokgid.info/wp-content/uploads/2021/12/kak-sdelat-prozrachnuyu-avatarku-v-tik-tok(1).jpg"
-                                    alt="Profile"/>
-                            }
-                        </div>
-                    <div className={"card-body"}>
-                        <p className="card-text m-2">
-                            Имя
-                            <input type="text" name="name" className="form-control" value={user.name} onChange={handleChange}/>
-                        </p>
-                        <p className="card-text m-2">
-                            Пол
-                            <input type="text" name="sex" className="form-control" value={user.sex} onChange={handleChange}/>
-                        </p>
-                        <p className="card-text m-2">
-                            Цель
-                            <input type="text" name="goal" className="form-control" value={user.goal} onChange={handleChange}/>
-                        </p>
-                        <p className="card-text m-2">
-                            Возраст
-                            <input type="number" name="age" className="form-control" value={user.age} onChange={handleChange}/>
-                        </p>
-                        <p className="card-text m-2">
-                            Страна
-                            <input type="text" name="country" className="form-control" value={user.country} onChange={handleChange}/>
-                        </p>
-                        <p className="card-text m-2">
-                            Образование
-                            <input type="text" name="education" className="form-control" value={user.education} onChange={handleChange}/>
-                        </p>
-                        <p className="card-text m-2">
-                            Описание
-                            <input type="text" name="description" className="form-control" value={user.description} onChange={handleChange}/>
-                        </p>
-                        <p className="card-text m-2">
-                            Фотография
-                            <input type="file" className="form-control" accept={"image/*"} multiple
-                                   onChange={handleImageUpload}/>
-                        </p>
-                    </div>
-                    </div>
-                )
-                    : user != null &&
-                    (
-                        <div className="d-flex p-5">
-                            <div>
-                                {
-                                    pictures.length > 1 &&
-                                    <div>
-                                        <button className="btn btn-primary" onClick={handlePrevPhoto}>&lt;</button>
-                                        <img
-                                            className="card-img-top m-2"
-                                            style={{width: '350px', height: '550px'}}
-                                            src={pictures[currentPhotoIndex]}
-                                            alt={user.name}/>
-                                        <button className="btn btn-primary" onClick={handleNextPhoto}>&gt;</button>
-                                    </div>
-                                }
-                                {
-                                    pictures.length === 1 &&
-                                    <div>
-                                        <img
-                                            className="card-img-top m-2"
-                                            style={{width: '350px', height: '550px'}}
-                                            src={pictures[currentPhotoIndex]}
-                                            alt={user.name}/>
-                                    </div>
-                                }
-                                {
-                                    pictures.length === 0 &&
-                                    <img
-                                        style={{width: '350px', height: '550px'}}
-                                        className="card-img-top m-2"
-                                        src="https://tiktokgid.info/wp-content/uploads/2021/12/kak-sdelat-prozrachnuyu-avatarku-v-tik-tok(1).jpg"
-                                        alt="Profile"/>
-                                }
-                            </div>
-                            <div className="card-body">
-                                <p className="card-text">Имя: {user.name}</p>
-                                <p className="card-text">Пол: {user.sex}</p>
-                                <p className="card-text">Цель: {user.goal}</p>
-                                <p className="card-text">Возраст: {user.age}</p>
-                                <p className="card-text">Страна: {user.country}</p>
-                                <p className="card-text">Образование: {user.education}</p>
-                                <p className="card-text">Описание: {user.description}</p>
-                            </div>
-                        </div>
-                    )
-            }
-            <div className={"btn-group m-2"}>
+        <div className={"d-flex w-100"}>
+            <div className={"btn-group-vertical bg-white"} style={{width: 'max-content'}}>
+                <button className="btn btn-primary">
+                    Оформить подписку
+                </button>
+
+                <button className="btn btn-success">
+                    Изменить логин
+                </button>
+
+                <button className="btn btn-success">
+                    Изменить пароль
+                </button>
+
+                <button onClick={handleDeleteUser} className="btn btn-outline-danger">
+                    Удалить аккаунт
+                </button>
+            </div>
+            <div className={"d-flex w-100 justify-content-center"}>
                 {
-                    isEditing ? 
+                    isEditing ?
                         (
-                            <div className="btn-group d-flex justify-content-center">
-                                <button className={"btn btn-success"} onClick={handleSaveClick}>
-                                    Сохранить
-                                </button>
-                                <button className={"btn btn-danger"} type="submit">Отмена</button>
+                            <div className="d-flex p-5">
+                                <div>
+                                    {
+                                        pictures.length > 1 &&
+                                        <div>
+                                            <button className="btn btn-primary" onClick={handlePrevPhoto}>&lt;</button>
+                                            <img
+                                                className="card-img-top m-2"
+                                                style={{width: '350px', height: '550px'}}
+                                                src={pictures[currentPhotoIndex]}
+                                                alt={user.name}/>
+                                            <button className="btn btn-primary" onClick={handleNextPhoto}>&gt;</button>
+                                        </div>
+                                    }
+                                    {
+                                        pictures.length === 1 &&
+                                        <div>
+                                            <img
+                                                className="card-img-top m-2"
+                                                style={{width: '350px', height: '550px'}}
+                                                src={pictures[currentPhotoIndex]}
+                                                alt={user.name}/>
+                                        </div>
+                                    }
+                                    {
+                                        pictures.length === 0 &&
+                                        <img
+                                            style={{width: '350px', height: '550px'}}
+                                            className="card-img-top m-2"
+                                            src="https://tiktokgid.info/wp-content/uploads/2021/12/kak-sdelat-prozrachnuyu-avatarku-v-tik-tok(1).jpg"
+                                            alt="Profile"/>
+                                    }
+                                </div>
+                                <div className={"card-body"}>
+                                    <p className="card-text m-2">
+                                        Имя
+                                        <input type="text" name="name" className="form-control" value={user.name}
+                                               onChange={handleChange}/>
+                                    </p>
+                                    <p className="card-text m-2">
+                                        Пол
+                                        <input type="text" name="sex" className="form-control" value={user.sex}
+                                               onChange={handleChange}/>
+                                    </p>
+                                    <p className="card-text m-2">
+                                        Цель
+                                        <input type="text" name="goal" className="form-control" value={user.goal}
+                                               onChange={handleChange}/>
+                                    </p>
+                                    <p className="card-text m-2">
+                                        Возраст
+                                        <input type="number" name="age" className="form-control" value={user.age}
+                                               onChange={handleChange}/>
+                                    </p>
+                                    <p className="card-text m-2">
+                                        Страна
+                                        <input type="text" name="country" className="form-control" value={user.country}
+                                               onChange={handleChange}/>
+                                    </p>
+                                    <p className="card-text m-2">
+                                        Образование
+                                        <input type="text" name="education" className="form-control"
+                                               value={user.education} onChange={handleChange}/>
+                                    </p>
+                                    <p className="card-text m-2">
+                                        Описание
+                                        <input type="text" name="description" className="form-control"
+                                               value={user.description} onChange={handleChange}/>
+                                    </p>
+                                    <p className="card-text m-2">
+                                        Фотография
+                                        <input type="file" className="form-control" accept={"image/*"} multiple
+                                               onChange={handleImageUpload}/>
+                                    </p>
+                                </div>
+                                <form className="btn-group d-flex justify-content-center">
+                                    <button className={"btn btn-success"} onClick={handleSaveClick}>
+                                        Сохранить
+                                    </button>
+                                    <button className={"btn btn-danger"} type="submit">Отмена</button>
+                                </form>
+                            </div>
+                        )
+                        : user != null &&
+                        (
+                            <div className="p-5 w-100 d-flex justify-content-center">
+                                <div className={"d-flex align-items-center w-100"}>
+                                    <div>
+                                        {
+                                            pictures.length > 1 &&
+                                            <div>
+                                                <button className="btn btn-primary" onClick={handlePrevPhoto}>&lt;</button>
+                                                <img
+                                                    className="card-img-top m-2"
+                                                    style={{width: '350px', height: '550px'}}
+                                                    src={pictures[currentPhotoIndex]}
+                                                    alt={user.name}/>
+                                                <button className="btn btn-primary" onClick={handleNextPhoto}>&gt;</button>
+                                            </div>
+                                        }
+                                        {
+                                            pictures.length === 1 &&
+                                            <div>
+                                                <img
+                                                    className="card-img-top m-2"
+                                                    style={{width: '350px', height: '550px'}}
+                                                    src={pictures[currentPhotoIndex]}
+                                                    alt={user.name}/>
+                                            </div>
+                                        }
+                                        {
+                                            pictures.length === 0 &&
+                                            <img
+                                                style={{width: '350px', height: '550px'}}
+                                                className="card-img-top m-2"
+                                                src="https://tiktokgid.info/wp-content/uploads/2021/12/kak-sdelat-prozrachnuyu-avatarku-v-tik-tok(1).jpg"
+                                                alt="Profile"/>
+                                        }
+                                    </div>
+                                    <div className="card-body m-3">
+                                        <p className="card-text">Имя: {user.name}</p>
+                                        <p className="card-text">Пол: {user.sex}</p>
+                                        <p className="card-text">Цель: {user.goal}</p>
+                                        <p className="card-text">Возраст: {user.age}</p>
+                                        <p className="card-text">Страна: {user.country}</p>
+                                        <p className="card-text">Образование: {user.education}</p>
+                                        <p className="card-text">Описание: {user.description}</p>
+                                    </div>
+                                </div>
+                                <div className={"d-block"}>
+                                    <button className={"btn btn-success"} onClick={handleEditClick}>
+                                        Изменить
+                                    </button>
+                                </div>
+
                             </div>
 
-                        )
-                        : 
-                        (
-                            <button className={"btn btn-success"} onClick={handleEditClick}>
-                                Изменить
-                            </button>
                         )
                 }
             </div>
