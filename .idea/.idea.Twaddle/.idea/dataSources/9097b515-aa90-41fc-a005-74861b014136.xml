@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="TwaddleDb@localhost">
-  <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.49">
+  <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.51">
     <root id="1">
       <DateStyle>dmy</DateStyle>
       <IntrospectionStateNumber>1655</IntrospectionStateNumber>
@@ -4250,8 +4250,7 @@ false Zulu
       <Comment>standard public schema</Comment>
       <Current>1</Current>
       <IntrospectionStateNumber>1655</IntrospectionStateNumber>
-      <IntrospectionTimestamp>2024-02-02.13:39:42.154</IntrospectionTimestamp>
-      <LocalIntrospectionTimestamp>2024-02-02.10:39:43</LocalIntrospectionTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-02-02.10:39:43</LastIntrospectionLocalTimestamp>
       <ObjectId>2200</ObjectId>
       <StateNumber>524</StateNumber>
       <OwnerName>pg_database_owner</OwnerName>
@@ -4259,7 +4258,7 @@ false Zulu
     <sequence id="271" parent="270" name="Likes_Id_seq">
       <DasType>integer|0s</DasType>
       <ObjectId>32952</ObjectId>
-      <SequenceIdentity>1(1)</SequenceIdentity>
+      <SequenceIdentity>1</SequenceIdentity>
       <StartValue>1</StartValue>
       <StateNumber>1649</StateNumber>
       <OwnerName>postgres</OwnerName>
@@ -4267,7 +4266,7 @@ false Zulu
     <sequence id="272" parent="270" name="Matches_Id_seq">
       <DasType>integer|0s</DasType>
       <ObjectId>32938</ObjectId>
-      <SequenceIdentity>1(1)</SequenceIdentity>
+      <SequenceIdentity>1</SequenceIdentity>
       <StartValue>1</StartValue>
       <StateNumber>1649</StateNumber>
       <OwnerName>postgres</OwnerName>
@@ -4275,7 +4274,7 @@ false Zulu
     <sequence id="273" parent="270" name="Message_Id_seq">
       <DasType>integer|0s</DasType>
       <ObjectId>32983</ObjectId>
-      <SequenceIdentity>1(1)</SequenceIdentity>
+      <SequenceIdentity>1</SequenceIdentity>
       <StartValue>1</StartValue>
       <StateNumber>1649</StateNumber>
       <OwnerName>postgres</OwnerName>
@@ -4283,7 +4282,7 @@ false Zulu
     <sequence id="274" parent="270" name="Reports_Id_seq">
       <DasType>integer|0s</DasType>
       <ObjectId>33001</ObjectId>
-      <SequenceIdentity>1(1)</SequenceIdentity>
+      <SequenceIdentity>1</SequenceIdentity>
       <StartValue>1</StartValue>
       <StateNumber>1649</StateNumber>
       <OwnerName>postgres</OwnerName>
@@ -4291,7 +4290,7 @@ false Zulu
     <sequence id="275" parent="270" name="Users_Id_seq">
       <DasType>integer|0s</DasType>
       <ObjectId>32944</ObjectId>
-      <SequenceIdentity>1(2)</SequenceIdentity>
+      <SequenceIdentity>1</SequenceIdentity>
       <StartValue>1</StartValue>
       <StateNumber>1649</StateNumber>
       <OwnerName>postgres</OwnerName>

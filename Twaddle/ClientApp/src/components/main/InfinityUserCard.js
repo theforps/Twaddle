@@ -5,8 +5,9 @@ import {GetUserMatches, SetUserMatch} from "../requests/MatchQueries";
 const InfiniteUserCard = ({openMes}) => {
     const [userList, setUserList] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [currentPhoto, setCurrentPhoto] = useState([]);
-    const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
+    
+    const [photoIndex, setPhotoIndex] = useState(0);
+    
     const [matches, setMatches] = useState([]);
     const [matchId, setMatchId] = useState(null);
     const getCards = async () => {
@@ -18,13 +19,8 @@ const InfiniteUserCard = ({openMes}) => {
             
             setUserList(result.data.data);
             
-            updatePhoto();
-            
             console.log("Карточки пользователей:");
             console.log(result.data.data);
-
-            console.log("Текущие фото:");
-            console.log(currentPhoto);
         }
     }
 
@@ -54,34 +50,14 @@ const InfiniteUserCard = ({openMes}) => {
         }
     }
     
-    const updatePhoto = () => {
-        if(userList != null && userList.length > 0 && userList[currentIndex].images != null) {
-            const yourArray = userList[currentIndex].images;
-
-            const resultImages = [];
-
-            for (let i = 0; i < yourArray.length; i++) {
-                const dataUrl = yourArray[i];
-                const img = "data:image/png;base64," + dataUrl;
-                resultImages.push(img);
-            }
-
-            setCurrentPhoto(resultImages);
-        }
-        else
-        {
-            setCurrentPhoto([]);
-        }
-    }
-    
     const goToNextCard = () => {
         setCurrentIndex(currentIndex + 1);
-
-        updatePhoto();
+        setPhotoIndex(0);
     };
-
+    
     const setLike = async(secondUser) => {
         setCurrentIndex(currentIndex + 1);
+        setPhotoIndex(0);
 
         const token = sessionStorage.getItem('token')
         
@@ -92,11 +68,11 @@ const InfiniteUserCard = ({openMes}) => {
     }
 
     const handleNextPhoto = () => {
-        setCurrentPhotoIndex((prevIndex) => (prevIndex + 1) % currentPhoto.length);
+        setPhotoIndex((prevIndex) => (prevIndex + 1) % userList[currentIndex].images.length);
     };
 
     const handlePrevPhoto = () => {
-        setCurrentPhotoIndex((prevIndex) => (prevIndex - 1 + currentPhoto.length) % currentPhoto.length);
+        setPhotoIndex((prevIndex) => (prevIndex - 1 + userList[currentIndex].images.length) % userList[currentIndex].images.length);
     };
 
     const handleOpenMatch = (id) => {
@@ -135,29 +111,29 @@ const InfiniteUserCard = ({openMes}) => {
                             <div className={"d-flex "}>
                                 <div>
                                     {
-                                        currentPhoto.length > 1 &&
+                                        userList[currentIndex].images.length > 1 &&
                                         <div>
                                             <button className="btn btn-primary" onClick={handlePrevPhoto}>&lt;</button>
                                             <img
                                                 className="card-img-top m-2"
                                                 style={{width: '350px', height: '550px'}}
-                                                src={currentPhoto[currentPhotoIndex]}
+                                                src={"data:image/png;base64," + userList[currentIndex].images[photoIndex]}
                                                 alt={"user"}/>
                                             <button className="btn btn-primary" onClick={handleNextPhoto}>&gt;</button>
                                         </div>
                                     }
                                     {
-                                        currentPhoto.length === 1 &&
+                                        userList[currentIndex].images.length === 1 &&
                                         <div>
                                             <img
                                                 className="card-img-top m-2"
                                                 style={{width: '350px', height: '550px'}}
-                                                src={userList[currentIndex].images[0]}
+                                                src={"data:image/png;base64," + userList[currentIndex].images[0]}
                                                 alt={"user"}/>
                                         </div>
                                     }
                                     {
-                                        currentPhoto.length === 0 &&
+                                        userList[currentIndex].images.length === 0 &&
                                         <img
                                             style={{width: '350px', height: '550px'}}
                                             className="card-img-top m-2"
