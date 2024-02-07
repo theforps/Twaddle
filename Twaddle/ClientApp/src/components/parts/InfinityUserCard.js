@@ -12,27 +12,15 @@ const InfiniteUserCard = ({openMes}) => {
     const [matchId, setMatchId] = useState(null);
     const getCards = async () => {
         
-        const token = sessionStorage.getItem('token')
+        const result = await GetCards()
         
-        if(token != null) {
-            const result = await GetCards(token)
-            
-            setUserList(result.data.data);
-            
-            console.log("Карточки пользователей:");
-            console.log(result.data.data);
-        }
+        setUserList(result.data.data);
     }
 
     const getMatches = async () => {
-
-        const jwt = sessionStorage.getItem('token');
-
-        const result = await GetUserMatches(jwt);
-
-        console.log("Все метчи:")
-        console.log(result.data)
-
+        
+        const result = await GetUserMatches();
+        
         const tempArrayMatches = result.data.data;
 
         if(tempArrayMatches != null) {
@@ -58,13 +46,8 @@ const InfiniteUserCard = ({openMes}) => {
     const setLike = async(secondUser) => {
         setCurrentIndex(currentIndex + 1);
         setPhotoIndex(0);
-
-        const token = sessionStorage.getItem('token')
         
-        const result = await SetUserMatch(token, secondUser);
-        
-        console.log("Отправка метча:");
-        console.log(result.data);
+        await SetUserMatch(secondUser);
     }
 
     const handleNextPhoto = () => {
@@ -76,8 +59,7 @@ const InfiniteUserCard = ({openMes}) => {
     };
 
     const handleOpenMatch = (id) => {
-        setMatchId(id);
-        openMes(matchId);
+        openMes(id);
     }
     
     useEffect(() => {

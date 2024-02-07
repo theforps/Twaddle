@@ -13,8 +13,17 @@ export const Registration = async (data) => {
             Login: data.login,
             Password: data.password
         };
+        
+        const result = await axios.post('/join/registration', user);
 
-        return await axios.post('/join/registration', user);
+        console.log("Информация о регистрации:");
+        console.log(result.data);
+
+        if(result.data.statusCode === 200) {
+            sessionStorage.setItem('token', result.data.data.jwt);
+            sessionStorage.setItem('role', result.data.data.user.role)
+        }
+        return result;
     }
     catch {
         return null;
@@ -24,9 +33,25 @@ export const Registration = async (data) => {
 export const Login = async (data) => {
     try {
 
-        return await axios.post('/join/login', data);
+        const result = await axios.post('/join/login', data);
+
+        console.log("Информация о входе в систему:");
+        console.log(result.data);
+
+        if(result.data.statusCode === 200) {
+
+            sessionStorage.setItem('token', result.data.data.jwt);
+            sessionStorage.setItem('role', result.data.data.user.role)
+        }
+        
+        return result;
     }
     catch {
-        return data;
+        return null;
     }
 };
+
+export const Logout = async() => {
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('role');
+}

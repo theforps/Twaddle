@@ -1,12 +1,7 @@
-import StartPage from "./components/start/StartPage";
-import MainPage from "./components/main/MainPage";
+import MainPage from "./components/base/MainPage";
 
 
 const AppRoutes = [
-  {
-    path: '/join',
-    element: <StartPage />
-  },
   {
     path: '/',
     element: <MainPage />

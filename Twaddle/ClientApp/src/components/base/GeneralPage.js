@@ -1,11 +1,11 @@
 import {Navigate} from "react-router-dom";
-import React, {useEffect, useState} from "react";
-import InfiniteUserCard from "./InfinityUserCard";
-import LogoutButton from "./LogoutButton";
-import Messenger from "./Messenger";
-import UserCard from "./UserCard";
+import React, {useState} from "react";
+import InfiniteUserCard from "../parts/InfinityUserCard";
+import LogoutButton from "../additionally/LogoutButton";
+import Messenger from "../parts/Messenger";
+import UserCard from "../parts/UserCard";
 
-const MainPage = () => {
+const GeneralPage = () => {
 
     const [showProfile, setShowProfile] = useState(false);
     const [showMessages, setShowMessages] = useState(false);
@@ -77,11 +77,11 @@ const MainPage = () => {
                     <InfiniteUserCard openMes={handleMessagesShow}/>
                 )}
                 {showMessages && (
-                    <Messenger matchId={userMatchId}/>
+                    <Messenger id={userMatchId}/>
                 )}
             </div>
         </div>
     )
 }
 
-export default MainPage;
+export default GeneralPage;

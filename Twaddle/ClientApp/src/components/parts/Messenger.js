@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {GetUserMatchMessages, SendMessage} from "../requests/MessageQueries";
-import ModalButton from "../start/ModelBtn";
+import ModalWindow from "../additionally/ModalWindow";
 import {SendReport} from "../requests/CardsQueries";
 import {GetUserMatches} from "../requests/MatchQueries";
 
@@ -15,37 +15,36 @@ const Messenger = ({id}) => {
     
     const getMatch = async () =>
     {
-        const jwt = sessionStorage.getItem('token');
-        
         if(matchId != null)
         {
-            const result = await GetUserMatchMessages(jwt, matchId);
+                       
+            const result = await GetUserMatchMessages(matchId);
             
-            setBuddy(result.data.data.senderInfo);
-            setMessageList(result.data.data.messages);
-            setMatchId(id);
-            
-            if(buddy != null && buddy.images.length > 0) {
-                const yourArray = buddy.images;
-    
-                const resultImages = [];
-    
-                for (let i = 0; i < yourArray.length; i++) {
-                    const dataUrl = yourArray[i];
-                    const img = "data:image/png;base64," + dataUrl;
-                    resultImages.push(img);
+            if(result != null)
+            {
+                setBuddy(result.data.data.senderInfo);
+                setMessageList(result.data.data.messages);
+                
+                if(buddy != null && buddy.images.length > 0) {
+                    const yourArray = buddy.images;
+        
+                    const resultImages = [];
+        
+                    for (let i = 0; i < yourArray.length; i++) {
+                        const dataUrl = yourArray[i];
+                        const img = "data:image/png;base64," + dataUrl;
+                        resultImages.push(img);
+                    }
+        
+                    setPhotos(resultImages);
                 }
-    
-                setPhotos(resultImages);
             }
         }
     }
     
     const getMatches = async () => {
-
-        const jwt = sessionStorage.getItem('token');
-
-        const result = await GetUserMatches(jwt);
+        
+        const result = await GetUserMatches();
 
         const tempArrayMatches = result.data.data;
 
@@ -65,18 +64,12 @@ const Messenger = ({id}) => {
     
     const PostMes = async () => {
         
-        const jwt = sessionStorage.getItem('token');
-        const login = sessionStorage.getItem('user');
-        
         const newMessage = {
             MatchId : matchId,
             MessageContent : document.getElementById("message").value,
-            LoginUser : login
         }
         
-        const result = await SendMessage(jwt, newMessage);
-        
-        console.log(result.data.data);
+        const result = await SendMessage(newMessage);
         
         setMessageList(result.data.data.messages.slice());
     }
@@ -90,15 +83,11 @@ const Messenger = ({id}) => {
     };
     
     const handleSendReport = async() => {
-        const jwt = sessionStorage.getItem('token');
-        
-        
+               
         report.Culprit = buddy.login;
         report.Content = document.getElementById("report").value;
         
-        const result = await SendReport(jwt, report);
-
-        console.log(result.data.data);
+        await SendReport(report);
     };
     
     const report = {
@@ -126,7 +115,7 @@ const Messenger = ({id}) => {
                 <div className="mt-2 text-start">
                     {messages.length > 0 ? (messages.map((match) => (
                         <div key={match.id} className={"mt-1"}>
-                            <button className={"btn btn-info"} onClick={() => handleOpenMatch(match?.id)}>
+                            <button className={"btn btn-info"} onClick={() => handleOpenMatch(match.id)}>
                                 {match.pair.id + " " + match.pair.name}
                             </button>
                         </div>
@@ -135,12 +124,12 @@ const Messenger = ({id}) => {
                     )}
                 </div>
             </div>
-            {messageList == null || messageList.length === 0 && (
+            {buddy == null && (
                 <div className={"card w-75 d-flex justify-content-center"}>
                     <h3 className={"text-center"}>Нужно выбрать собеседника</h3>
                 </div>
             )}
-            {messageList != null && messageList.length !== 0 && (
+            {buddy != null && (
             <div className={"card w-50"}>
                 <div
                     className="p-3"
@@ -190,7 +179,7 @@ const Messenger = ({id}) => {
                         <div>
                             <button className="btn btn-primary" onClick={handlePrevPhoto}>&lt;</button>
                             <img
-                                style={{maxWidth:"300px"}}
+                                style={{width:"100px", height:"100px"}}
                                 src={photos[currentPhotoIndex]}
                                  alt={`User ${buddy.name}`}/>
                             <button className="btn btn-primary" onClick={handleNextPhoto}>&gt;</button>
@@ -212,7 +201,7 @@ const Messenger = ({id}) => {
                     <p className="card-text m-2">{`Цель: ${buddy.goal}`}</p>
                     <p className="card-text m-2">{`Описание: ${buddy.description}`}</p>
                     <div className={"card-footer text-center"}>
-                        <ModalButton
+                        <ModalWindow
                             btnName={'Пожаловаться'}
                             title={'Подать жалобу'}
                             modalContent= {

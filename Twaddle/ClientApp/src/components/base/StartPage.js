@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Login, Registration} from '../requests/JoinQueries'
-import ModalButton from "../start/ModelBtn";
+import ModalWindow from "../additionally/ModalWindow";
 import {GetCountries} from "../requests/RegInfoQueries";
 import {Link} from "react-router-dom";
 
@@ -42,32 +42,12 @@ const StartPage = () => {
     
     const registration = async() =>
     {
-        const result = await Registration(userData);
-
-        console.log("Информация о регистрации:");
-        console.log(result.data);
-        
-        if(result.data.statusCode === 200) {
-            sessionStorage.setItem('token', result.data.data.jwt);
-            sessionStorage.setItem('role', result.data.data.user.role)
-            return true;
-        }
-        
-        return false;
+        await Registration(userData);
     }
     
     const login = async() => {
         
-        const result = await Login(loginUser);
-
-        console.log("Информация о входе в систему:");
-        console.log(result.data);
-        
-        if(result.data.statusCode === 200) {
-            
-            sessionStorage.setItem('token', result.data.data.jwt);
-            sessionStorage.setItem('role', result.data.data.user.role)
-        }
+        await Login(loginUser);
     }
     
     const loginUser = {
@@ -80,11 +60,11 @@ const StartPage = () => {
             <nav className="navbar navbar-expand-lg navbar-light p-2">
                 <a style={{fontSize: "40px"}} className="navbar-brand text-white" href="/">twaddle</a>
                 <div className="ms-auto">
-                    <ModalButton
+                    <ModalWindow
                         btnName={'Войти'}
                         title={'Вход в систему'}
                         modalContent={
-                            <form method={"GET"} action={"/"}>
+                            <form action={"/"}>
                                 <div className="form-group">
                                     <label className="m-2">Логин</label>
                                     <input 
@@ -101,7 +81,7 @@ const StartPage = () => {
                                         placeholder="Введите пароль"
                                         onChange={e => loginUser.Password = e.target.value}/>
                                 </div>
-                                <button onClick={login} type="button" className="btn btn-primary w-100 mt-3">Войти</button>
+                                <button onClick={() => login()} type="button" className="btn btn-primary w-100 mt-3">Войти</button>
                             </form>
                         }/>
                 </div>

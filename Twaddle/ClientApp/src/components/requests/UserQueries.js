@@ -1,28 +1,64 @@
 import axios from "axios";
 
-export const GetUser = async (jwt) => {
+export const GetUser = async () => {
+    try {
+        const jwt = sessionStorage.getItem('token');
+        
+        const result = await axios.get('/user/get-info', {
+            headers: {
+                Authorization: "Bearer " + jwt
+            }
+        });
 
-    return await axios.get('/user/get-info', {
-        headers: {
-            Authorization: "Bearer " + jwt
-        }
-    });
+        console.log("Профиль:")
+        console.log(result.data);
+        
+        return result;
+    }
+    catch {
+        return null;
+    }
 };
 
-export const UpdateUser = async (jwt, data) => {
+export const UpdateUser = async (data) => {
+    try {
+        const jwt = sessionStorage.getItem('token');
 
-    return await axios.put('/user/update-info', data, {
-        headers: {
-            Authorization: "Bearer " + jwt
-        }
-    });
+        const result = await axios.put('/user/update-info', data, {
+            headers: {
+                Authorization: "Bearer " + jwt
+            }
+        });
+
+        console.log("Измененный профиль:")
+        console.log(result.data);
+        
+        return result;
+    }
+    catch {
+        return null;
+    }
 };
 
-export const DeleteUser = async (jwt) => {
+export const DeleteUser = async () => {
+    try {
+        const jwt = sessionStorage.getItem('token');
 
-    return await axios.delete('/user/delete-info', {
-        headers: {
-            Authorization: "Bearer " + jwt
-        }
-    });
+        const result = await axios.delete('/user/delete-info', {
+            headers: {
+                Authorization: "Bearer " + jwt
+            }
+        });
+
+        console.log("Профиль удален:");
+        console.log(result.data);
+
+        sessionStorage.removeItem('token')
+        sessionStorage.removeItem('role');
+        
+        return result;
+    }
+    catch {
+        return null;
+    }
 };

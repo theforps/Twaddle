@@ -3,18 +3,15 @@ import {DeleteUser, GetUser, UpdateUser} from "../requests/UserQueries";
 
 const UserCard = () => {
     const[user, setUser] = useState(null);
+    
     const [isEditing, setIsEditing] = useState(false);
-    const [images, setImages] = useState([]);
+    const [imagesLoad, setImagesLoad] = useState([]);
+    
     const [pictures, setPictures] = useState([]);
     const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
     const GetUserInfo = async() => {
         
-        const jwt = sessionStorage.getItem('token');
-        
-        const result = await GetUser(jwt);
-        
-        console.log("Профиль:")
-        console.log(result.data);
+        const result = await GetUser();
         
         setUser(result.data.data);
 
@@ -37,16 +34,8 @@ const UserCard = () => {
     };
 
     const handleDeleteUser = async () => {
-
-        const jwt = sessionStorage.getItem('token');
-
-        const result = await DeleteUser(jwt);
-
-        console.log("Профиль удален:");
-        console.log(result.data);
-
-        sessionStorage.removeItem('token')
-        sessionStorage.removeItem('role');
+        
+        await DeleteUser();
     }
     
     const handleImageUpload = (event) => {
@@ -58,7 +47,7 @@ const UserCard = () => {
             updatedImages.push(file);
         }
 
-        setImages((prevFormData) => ({
+        setImagesLoad((prevFormData) => ({
             ...prevFormData,
             images: updatedImages,
         }));
@@ -69,8 +58,8 @@ const UserCard = () => {
         setIsEditing(false);
 
         const base64Strings = [];
-        if(images.images != null) {
-            const fileList = images.images;
+        if(imagesLoad.images != null) {
+            const fileList = imagesLoad.images;
 
             async function readFileAsDataURL(file) {
                 return new Promise((resolve, reject) => {
@@ -87,17 +76,14 @@ const UserCard = () => {
                 });
             }
 
-            for (let i = 0; i < fileList.length; i++) {
+            for (let i = 0; i < fileList.length; i++) 
+            {
                 const file = fileList[i];
-                try {
-                    const base64String = await readFileAsDataURL(file);
-                    base64Strings.push(base64String);
-                } catch (error) {
-                    console.error('Error reading file:', error);
-                    // Handle the error as needed
-                }
+                const base64String = await readFileAsDataURL(file);
+                base64Strings.push(base64String);
             }
         }
+        
         const newUser = {
             name : user.name,
             sex: user.sex,
@@ -109,12 +95,8 @@ const UserCard = () => {
             images: base64Strings,
             role: sessionStorage.getItem('role')
         }
-        const jwt = sessionStorage.getItem('token');
 
-        const result = await UpdateUser(jwt, newUser);
-
-        console.log("Измененный профиль:")
-        console.log(result.data);
+        const result = await UpdateUser(newUser);
 
         setUser(result.data.data);
     };

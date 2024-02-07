@@ -4,7 +4,7 @@ export const GetCountries = async() => {
     
     const data = await axios.get('https://countriesnow.space/api/v0.1/countries/flag/images');
     
-    const result = data.data.data.map(
+    return data.data.data.map(
         entity => {
             const country = entity.name;
             const flag = entity.flag;
@@ -12,6 +12,4 @@ export const GetCountries = async() => {
             return {country, flag}
         }
     );
-
-    return result
 };

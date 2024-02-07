@@ -1,7 +1,7 @@
 ﻿import {Button, Modal} from 'react-bootstrap'
 import React, {useState} from "react";
 
-const ModalButton = ({modalContent, title, btnName}) =>
+const ModalWindow = ({modalContent, title, btnName}) =>
 {
     const [snowModal, setSnowModal] = useState(false);
 
@@ -18,7 +18,7 @@ const ModalButton = ({modalContent, title, btnName}) =>
             <Button variant="success" onClick={handleOpenModal}>
                 {btnName}
             </Button>
-
+                
             <Modal show={snowModal} onHide={handleCloseModal}>
                 <Modal.Header closeButton>
                     <Modal.Title>{title}</Modal.Title>
@@ -31,4 +31,4 @@ const ModalButton = ({modalContent, title, btnName}) =>
     );
 };
 
-export default ModalButton;
+export default ModalWindow;
