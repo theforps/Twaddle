@@ -19,6 +19,8 @@ builder.Services.AddTransient<ICardsRepository, CardsRepository>();
 builder.Services.AddTransient<IUserRepository, UserRepository>();
 builder.Services.AddTransient<IMatchRepository, MatchRepository>();
 builder.Services.AddTransient<ILikeRepository, LikeRepository>();
+builder.Services.AddTransient<IOrderRepository, OrderRepository>();
+builder.Services.AddTransient<INewsRepository, NewsRepository>();
 
 builder.Services.AddTransient<IJoinService, JoinService>();
 builder.Services.AddTransient<ICardsService, CardsService>();

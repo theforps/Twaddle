@@ -59,10 +59,10 @@ const GeneralPage = () => {
                         </button>
                     </li>
                     <li className="nav-item m-1">
-                        <a className="btn btn-secondary" href="#">Вакансии</a>
+                        <a className="btn btn-secondary" href="#">Заказы</a>
                     </li>
                     <li className="nav-item m-1">
-                        <a className="btn btn-secondary" href="#">Лента</a>
+                        <a className="btn btn-secondary" href="#">Новости</a>
                     </li>
                     <li className="nav-item ms-auto m-1">
                         <LogoutButton />

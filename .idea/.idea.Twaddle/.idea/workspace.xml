@@ -9,23 +9,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4b4d2340-c65b-4e65-b03f-0b97c3ad9834" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/base/MainPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/dataSources/9097b515-aa90-41fc-a005-74861b014136.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/dataSources/9097b515-aa90-41fc-a005-74861b014136.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Twaddle/Domain/Models/News.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Twaddle/Domain/Models/Order.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Twaddle/Repositories/Impl/NewsRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Twaddle/Repositories/Impl/OrderRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Twaddle/Repositories/Interfaces/INewsRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Twaddle/Repositories/Interfaces/IOrderRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/AppRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/AppRoutes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/main/InfinityUserCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/parts/InfinityUserCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/main/LogoutButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/additionally/LogoutButton.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/main/MainPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/base/GeneralPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/main/Messenger.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/parts/Messenger.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/main/UserCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/parts/UserCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/requests/CardsQueries.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/requests/CardsQueries.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/requests/JoinQueries.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/requests/JoinQueries.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/requests/MatchQueries.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/requests/MatchQueries.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/requests/MessageQueries.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/requests/MessageQueries.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/requests/RegInfoQueries.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/requests/RegInfoQueries.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/requests/UserQueries.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/requests/UserQueries.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/start/ModelBtn.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/additionally/ModalWindow.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/start/StartPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/base/StartPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/base/GeneralPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/base/GeneralPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Twaddle/Domain/AppDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Domain/AppDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Twaddle/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -194,7 +187,8 @@
       <workItem from="1706779560505" duration="7871000" />
       <workItem from="1707151063875" duration="5290000" />
       <workItem from="1707233701268" duration="6732000" />
-      <workItem from="1707323910500" duration="3752000" />
+      <workItem from="1707323910500" duration="3787000" />
+      <workItem from="1708194190079" duration="3606000" />
     </task>
     <task id="LOCAL-00001" summary=":)">
       <option name="closed" value="true" />
@@ -412,7 +406,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707164428573</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary=":)">
+      <option name="closed" value="true" />
+      <created>1707328552758</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1707328552758</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
