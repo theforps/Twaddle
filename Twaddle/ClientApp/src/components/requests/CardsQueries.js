@@ -25,14 +25,14 @@ export const SendReport = async (data) => {
     try {
         const jwt = sessionStorage.getItem('token');
         
-        const result = await axios.post('/cards/report', data, {
+        await axios.post('/cards/report', data, {
             headers: {
                 Authorization: "Bearer " + jwt
             }
         });
         
         console.log("Отправленная жалоба:")
-        console.log(result.data.data);
+        console.log(data);
     }
     catch {
         return null;

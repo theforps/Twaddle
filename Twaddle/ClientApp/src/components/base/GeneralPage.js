@@ -4,14 +4,16 @@ import InfiniteUserCard from "../parts/InfinityUserCard";
 import LogoutButton from "../additionally/LogoutButton";
 import Messenger from "../parts/Messenger";
 import UserCard from "../parts/UserCard";
+import NewsMenu from "../parts/NewsMenu";
+import {GetNews} from "../requests/NewsQueries";
 
 const GeneralPage = () => {
 
     const [showProfile, setShowProfile] = useState(false);
     const [showMessages, setShowMessages] = useState(false);
+    const [showNews, setShowNews] = useState(false);
     const [showCards, setShowCards] = useState(true);
     const [userMatchId, setMatchId] = useState(null);
-    
     
     if(sessionStorage.getItem('token') == null)
     {
@@ -19,6 +21,9 @@ const GeneralPage = () => {
     }
     
     const handleCardsShow = () => {
+
+
+        setShowNews(false)
         setShowProfile(false);
         setShowCards(true);
         setShowMessages(false);
@@ -26,13 +31,25 @@ const GeneralPage = () => {
 
     const handleMessagesShow = (id) => {
         setMatchId(id)
+
+        setShowNews(false)
         setShowProfile(false);
         setShowCards(false);
         setShowMessages(true);
     };
 
     const handleProfileShow = () => {
+
+        setShowNews(false)
         setShowProfile(true);
+        setShowCards(false);
+        setShowMessages(false);
+    };
+
+    const handleNewsShow = () => {
+
+        setShowNews(true)
+        setShowProfile(false);
         setShowCards(false);
         setShowMessages(false);
     };
@@ -62,10 +79,12 @@ const GeneralPage = () => {
                         <a className="btn btn-secondary" href="#">Заказы</a>
                     </li>
                     <li className="nav-item m-1">
-                        <a className="btn btn-secondary" href="#">Новости</a>
+                        <button className={"btn btn-secondary"} onClick={handleNewsShow}>
+                            Новости
+                        </button>
                     </li>
                     <li className="nav-item ms-auto m-1">
-                        <LogoutButton />
+                        <LogoutButton/>
                     </li>
                 </ul>
             </nav>
@@ -78,6 +97,9 @@ const GeneralPage = () => {
                 )}
                 {showMessages && (
                     <Messenger id={userMatchId}/>
+                )}
+                {showNews && (
+                    <NewsMenu />
                 )}
             </div>
         </div>

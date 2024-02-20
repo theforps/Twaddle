@@ -16,5 +16,6 @@ public class CardMapping : Profile
             x.Images, opt => opt.MapFrom(x => x.Pictures)).ReverseMap();
         CreateMap<Match, MatchDTO>().ReverseMap();
         CreateMap<User, UserRequestDTO>().ReverseMap();
+        CreateMap<News, NewsDTO>().ReverseMap();
     }
 }

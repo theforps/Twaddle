@@ -14,9 +14,13 @@ public class NewsRepository : INewsRepository
         _db = db;
     }
     
-    public async Task<List<News>> GetNews()
+    public async Task<List<News>> GetNews(string? search)
     {
-        var news = await _db.News.ToListAsync();
+        var news = await _db.News
+            .Where(x => 
+                x.Description.ToLower().Contains(search!.ToLower().Trim()))
+            .Include(x => x.Creator)
+            .ToListAsync();
 
         return news;
     }
@@ -30,11 +34,11 @@ public class NewsRepository : INewsRepository
         return result;
     }
 
-    public async Task<News> AddLikeToNews(int id)
+    public async Task<News> AddLikeToNews(int id, string fanLogin)
     {
         var news = await _db.News.FirstOrDefaultAsync(x => x.Id == id);
 
-        news.CountOfMarks += 1;
+        news.Fans.Add(fanLogin);
 
         var result = _db.News.Update(news).Entity;
 

@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {GetCards} from "../requests/CardsQueries";
+import {GetCards, SendReport} from "../requests/CardsQueries";
 import {GetUserMatches, SetUserMatch} from "../requests/MatchQueries";
+import ModalWindow from "../additionally/ModalWindow";
 
 const InfiniteUserCard = ({openMes}) => {
     const [userList, setUserList] = useState([]);
@@ -9,7 +10,6 @@ const InfiniteUserCard = ({openMes}) => {
     const [photoIndex, setPhotoIndex] = useState(0);
     
     const [matches, setMatches] = useState([]);
-    const [matchId, setMatchId] = useState(null);
     const getCards = async () => {
         
         const result = await GetCards()
@@ -58,6 +58,21 @@ const InfiniteUserCard = ({openMes}) => {
         setPhotoIndex((prevIndex) => (prevIndex - 1 + userList[currentIndex].images.length) % userList[currentIndex].images.length);
     };
 
+    const handleSendReport = async() => {
+        
+        console.log(userList[currentIndex])
+        
+        report.Culprit = userList[currentIndex].login;
+        report.Content = document.getElementById("report").value;
+
+        await SendReport(report);
+    };
+
+    const report = {
+        Culprit: '',
+        Content: ''
+    }
+    
     const handleOpenMatch = (id) => {
         openMes(id);
     }
@@ -132,6 +147,34 @@ const InfiniteUserCard = ({openMes}) => {
                                         <p>Страна: {userList[currentIndex].country}</p>
                                         <p>Образование: {userList[currentIndex].education}</p>
                                         <p>Описание: {userList[currentIndex].description}</p>
+                                    </div>
+                                    <div className={"card-footer text-center"}>
+                                        <ModalWindow
+                                            btnName={'Пожаловаться'}
+                                            title={'Подать жалобу'}
+                                            modalContent={
+                                                <div>
+                                                    <div className="m-3">
+                                                        <textarea
+                                                            id="report"
+                                                            className="w-100 p-2 form-control"
+                                                            style={{
+                                                                height: "300px",
+                                                                resize: "none",
+                                                                textWrap: "inherit",
+                                                            }}
+                                                            placeholder="Введите жалобу"
+                                                        />
+                                                    </div>
+                                                    <div className="justify-content-center d-flex">
+                                                        <button className="btn btn-success" type={"submit"}
+                                                                onClick={handleSendReport}>Отправить жалобу
+                                                        </button>
+                                                    </div>
+
+                                                </div>
+                                            }
+                                        />
                                     </div>
                                 </div>
                             </div>

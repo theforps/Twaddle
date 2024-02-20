@@ -1,11 +1,9 @@
-using System.ComponentModel.DataAnnotations;
+using Twaddle.Domain.Models;
 
-namespace Twaddle.Domain.Models;
+namespace Twaddle.Domain.DTO;
 
-public class News
+public class NewsDTO
 {
-    [Key]
-    public int Id { get; set; }
     public User Creator { get; set; }
     public string Description { get; set; }
     public DateTime CreatedTime { get; set; } = DateTime.Now;

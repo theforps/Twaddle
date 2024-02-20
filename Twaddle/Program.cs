@@ -28,6 +28,7 @@ builder.Services.AddTransient<IMessageService, MessageService>();
 builder.Services.AddTransient<IMatchService, MatchService>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IRequestsService, RequestsService>();
+builder.Services.AddTransient<INewsService, NewsService>();
 
 builder.Services.AddAuthentication().AddJwtBearer(options =>
 {

@@ -10,6 +10,7 @@ const context = [
   "/message",
   "/match",
   "/user",
+  "/news",
 ];
 
 const onError = (err, req, resp, target) => {

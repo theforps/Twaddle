@@ -15,9 +15,10 @@ const Messenger = ({id}) => {
     
     const getMatch = async () =>
     {
-        if(matchId != null)
+        if(matchId != null && Number.isInteger(matchId))
         {
-                       
+ 
+            
             const result = await GetUserMatchMessages(matchId);
             
             if(result != null)
@@ -100,8 +101,8 @@ const Messenger = ({id}) => {
     }
     
     useEffect(() => {
-        getMatch()
-        getMatches()
+        getMatch();
+        getMatches();
     });
 
     return (
