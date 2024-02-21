@@ -22,6 +22,7 @@ export const Registration = async (data) => {
         if(result.data.statusCode === 200) {
             sessionStorage.setItem('token', result.data.data.jwt);
             sessionStorage.setItem('role', result.data.data.user.role)
+            sessionStorage.setItem('user', result.data.data.user.login)
         }
         return result;
     }
@@ -42,6 +43,7 @@ export const Login = async (data) => {
 
             sessionStorage.setItem('token', result.data.data.jwt);
             sessionStorage.setItem('role', result.data.data.user.role)
+            sessionStorage.setItem('user', result.data.data.user.login)
         }
         
         return result;
@@ -54,4 +56,6 @@ export const Login = async (data) => {
 export const Logout = async() => {
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('role');
+    sessionStorage.removeItem('user');
+    
 }

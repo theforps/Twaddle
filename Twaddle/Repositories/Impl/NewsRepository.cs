@@ -14,11 +14,11 @@ public class NewsRepository : INewsRepository
         _db = db;
     }
     
-    public async Task<List<News>> GetNews(string? search)
+    public async Task<List<News>> GetNews(string search)
     {
         var news = await _db.News
             .Where(x => 
-                x.Description.ToLower().Contains(search!.ToLower().Trim()))
+                x.Description.ToLower().Contains(search.ToLower().Trim()))
             .Include(x => x.Creator)
             .ToListAsync();
 
@@ -38,7 +38,14 @@ public class NewsRepository : INewsRepository
     {
         var news = await _db.News.FirstOrDefaultAsync(x => x.Id == id);
 
-        news.Fans.Add(fanLogin);
+        if (!news.Fans.Contains(fanLogin))
+        {
+            news.Fans.Add(fanLogin);
+        }
+        else
+        {
+            news.Fans.Remove(fanLogin);
+        }
 
         var result = _db.News.Update(news).Entity;
 
