@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {AddNews, GetNews, SetLike} from "../requests/NewsQueries";
+import {AddNews, DeleteNews, GetNews, SetLike} from "../requests/NewsQueries";
 import {Await} from "react-router-dom";
 import ModalWindow from "../additionally/ModalWindow";
 import {SendReport} from "../requests/CardsQueries";
@@ -58,7 +58,8 @@ const NewsMenu = () => {
         
         setNews(updatedNews);
     };
-
+    
+    
     const handleSendReport = async(login) => {
         
 
@@ -87,7 +88,6 @@ const NewsMenu = () => {
                             type="button">Искать
                     </button>
                 </div>
-                <button className="btn btn-primary m-auto">Мои посты</button>
             </div>
             <div className="card w-50 m-auto mb-3">
                 <div className="card-body">
@@ -106,6 +106,7 @@ const NewsMenu = () => {
                     </div>
                 </div>
             </div>
+            <div style={{maxHeight: "500px", overflowY: "scroll"}}>
             {loadNews && news != null && news.map(item => (
                 <div className="card w-50 m-auto mb-2" key={item.id}>
                     <div className="card-body">
@@ -114,37 +115,46 @@ const NewsMenu = () => {
                             <h6 className="card-subtitle mb-2 text-muted">{item.creator.name}</h6>
                             <h6 className="card-subtitle mb-2 text-muted">{new Date(item.createdTime).toLocaleString()}</h6>
                             <h6 className="card-subtitle mb-2 text-muted">{item.fans.length}</h6>
-                            <button className={"btn btn-primary"} onClick={() => handleLike(item.id)}>Лайк</button>
-                            {item.creator.login !== sessionStorage.getItem('user') && <ModalWindow
-                                btnName={'Пожаловаться'}
-                                title={'Подать жалобу'}
-                                modalContent={
-                                    <div>
-                                        <div className="m-3">
-                                                        <textarea
-                                                            id="report"
-                                                            className="w-100 p-2 form-control"
-                                                            style={{
-                                                                height: "300px",
-                                                                resize: "none",
-                                                                textWrap: "inherit",
-                                                            }}
-                                                            placeholder="Введите жалобу"
-                                                        />
+                            <div className={"btn-group"}>
+                                <button className={"btn btn-primary"} onClick={() => handleLike(item.id)}>Лайк</button>
+                                {item.creator.login !== sessionStorage.getItem('user') && <ModalWindow
+                                    btnName={'Пожаловаться'}
+                                    title={'Подать жалобу'}
+                                    modalContent={
+                                        <div>
+                                            <div className="m-3">
+                                                            <textarea
+                                                                id="report"
+                                                                className="w-100 p-2 form-control"
+                                                                style={{
+                                                                    height: "300px",
+                                                                    resize: "none",
+                                                                    textWrap: "inherit",
+                                                                }}
+                                                                placeholder="Введите жалобу"
+                                                            />
+                                            </div>
+                                            <div className="justify-content-center d-flex">
+                                                <button className="btn btn-success" type={"submit"}
+                                                        onClick={() => handleSendReport(item.creator.login)}>Отправить жалобу
+                                                </button>
+                                            </div>
                                         </div>
-                                        <div className="justify-content-center d-flex">
-                                            <button className="btn btn-success" type={"submit"}
-                                                    onClick={() => handleSendReport(item.creator.login)}>Отправить жалобу
-                                            </button>
-                                        </div>
-
-                                    </div>
+                                    }
+                                />}
+                                {item.creator.login === sessionStorage.getItem('user') && 
+                                    <button 
+                                        className={"btn btn-danger"}
+                                        onClick={() => DeleteNews(item.id)}>
+                                        Удалить
+                                    </button>
                                 }
-                            />}
+                            </div>
                         </div>
                     </div>
                 </div>
             ))}
+            </div>
         </div>
     );
 };

@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
-import {DeleteUser, GetUser, UpdateUser} from "../requests/UserQueries";
+import {DeleteUser, GetUser, UpdateUser, UpdateUserPassword} from "../requests/UserQueries";
+import ModalWindow from "../additionally/ModalWindow";
 
 const UserCard = () => {
     const[user, setUser] = useState(null);
@@ -114,6 +115,16 @@ const UserCard = () => {
         setCurrentPhotoIndex((prevIndex) => (prevIndex - 1 + pictures.length) % pictures.length);
     };
     
+    const handleChangePassword = async() => {
+        
+        const data = {
+            oldPassword : document.getElementById("oldPassword").value,
+            newPassword : document.getElementById("newPassword").value
+        }
+        
+        await UpdateUserPassword(data);
+    }
+    
     useEffect(() => {
         GetUserInfo()
     }, []);
@@ -124,14 +135,29 @@ const UserCard = () => {
                 <button className="btn btn-primary">
                     Оформить подписку
                 </button>
-
-                <button className="btn btn-success">
-                    Изменить логин
-                </button>
-
-                <button className="btn btn-success">
-                    Изменить пароль
-                </button>
+                
+                <ModalWindow
+                    btnName={'Изменить пароль'}
+                    title={'Подать жалобу'}
+                    modalContent={
+                        <div>
+                            <div className="input-group mb-3">
+                                <span className="input-group-text">Старый пароль</span>
+                                <input type="text" className="form-control" id="oldPassword" placeholder="Введите старый пароль"/>
+                            </div>
+                            <div className="input-group mb-3">
+                                <span className="input-group-text">Новый пароль</span>
+                                <input type="text" className="form-control" id="newPassword" placeholder="Введите новый пароль"/>
+                            </div>
+                            
+                            <div className="justify-content-center d-flex">
+                                <button className="btn btn-success" type={"button"}
+                                        onClick={() => handleChangePassword()}>Сменить пароль
+                                </button>
+                            </div>
+                        </div>
+                    }
+                />
 
                 <button onClick={handleDeleteUser} className="btn btn-outline-danger">
                     Удалить аккаунт
@@ -261,6 +287,7 @@ const UserCard = () => {
                                         }
                                     </div>
                                     <div className="card-body m-3">
+                                        <p className="card-text">Ваш логин: {user.login}</p>
                                         <p className="card-text">Имя: {user.name}</p>
                                         <p className="card-text">Пол: {user.sex}</p>
                                         <p className="card-text">Цель: {user.goal}</p>

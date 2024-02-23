@@ -57,4 +57,14 @@ public class NewsController : ControllerBase
         
         return Ok(result);
     }
+    
+    [HttpPost("delete-news/{id}")]
+    public async Task<IActionResult> DeleteNews(int id)
+    {
+        
+        var result = await _newsService.DeleteUserNews(id);
+        
+        return Ok(result);
+    }
 }
+

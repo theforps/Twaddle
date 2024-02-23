@@ -8,4 +8,5 @@ public interface IUserService
     Task<BaseResponse<UserDTO>> GetUserInfo(string login);
     Task<BaseResponse<UserDTO>> UpdateUserInfo(UserDTO userDto, string login);
     Task<BaseResponse<bool>> DeleteUserInfo(string currentUser);
+    Task<BaseResponse<UserDTO>> UpdateUserPassword(string currentUser, PasswordVerifyDTO passwordVerifyDto);
 }

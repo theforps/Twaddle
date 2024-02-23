@@ -109,4 +109,35 @@ public class NewsService : INewsService
             };
         }
     }
+
+    public async Task<BaseResponse<News>> DeleteUserNews(int id)
+    {
+        try
+        {
+            var result = await _newsRepository.DeleteNews(id);
+
+            if (!result)
+            {
+                return new BaseResponse<News>()
+                {
+                    StatusCode = 404,
+                    Description = "Не удалось найти новость."
+                };
+            }
+            
+            return new BaseResponse<News>()
+            {
+                StatusCode = 200,
+                Description = "Успешно удалено."
+            };
+        }
+        catch (Exception ex)
+        {
+            return new BaseResponse<News>()
+            {
+                StatusCode = 500,
+                Description = ex.Message
+            };
+        }
+    }
 }

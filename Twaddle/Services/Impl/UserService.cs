@@ -144,4 +144,51 @@ public class UserService : IUserService
             };
         }
     }
+
+    public async Task<BaseResponse<UserDTO>> UpdateUserPassword(string currentUser, PasswordVerifyDTO passwordVerifyDto)
+    {
+        try
+        {
+            var user = await _userRepository.GetUserByLogin(currentUser);
+            
+            if (!BCrypt.Net.BCrypt.Verify(passwordVerifyDto.oldPassword, user.PasswordHash))
+            {
+                return new BaseResponse<UserDTO>()
+                {
+                    StatusCode = 403,
+                    Description = "Неправильный пароль."
+                };
+            }
+            
+            user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(passwordVerifyDto.newPassword);
+
+            var response = await _userRepository.UpdateUserInfo(user);
+
+            var result = _mapper.Map<UserDTO>(response);
+
+            if (result == null)
+            {
+                return new BaseResponse<UserDTO>()
+                {
+                    StatusCode = 400,
+                    Description = "Не удалось обновить."
+                };
+            }
+            
+            return new BaseResponse<UserDTO>()
+            {
+                Data = result,
+                StatusCode = 200,
+                Description = "Пароль обновлен успешно."
+            };
+        }
+        catch (Exception ex)
+        {
+            return new BaseResponse<UserDTO>()
+            {
+                Description = ex.Message,
+                StatusCode = 500
+            };
+        }
+    }
 }

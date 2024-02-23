@@ -62,3 +62,23 @@ export const DeleteUser = async () => {
         return null;
     }
 };
+
+export const UpdateUserPassword = async (data) => {
+    try {
+        const jwt = sessionStorage.getItem('token');
+
+        const result = await axios.put('/user/update-password', data, {
+            headers: {
+                Authorization: "Bearer " + jwt
+            }
+        });
+
+        console.log("Результат изменения пароля:")
+        console.log(result.data);
+
+        return result;
+    }
+    catch {
+        return null;
+    }
+};

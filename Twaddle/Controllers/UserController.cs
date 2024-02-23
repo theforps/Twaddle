@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Twaddle.Domain.DTO;
+using Twaddle.Domain.Models;
 using Twaddle.Services.Interfaces;
 
 namespace Twaddle.Controllers;
@@ -42,6 +43,16 @@ public class UserController : ControllerBase
         var currentUser = HttpContext.User.Identity.Name;
 
         var result = await _userService.DeleteUserInfo(currentUser);
+        
+        return Ok(result);
+    }
+    
+    [HttpPut("update-password")]
+    public async Task<IActionResult> UpdateUserPassword(PasswordVerifyDTO passwordVerifyDto)
+    {
+        var currentUser = HttpContext.User.Identity.Name;
+
+        var result = await _userService.UpdateUserPassword(currentUser, passwordVerifyDto);
         
         return Ok(result);
     }

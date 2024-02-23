@@ -83,3 +83,25 @@ export const SetLike = async(id) => {
         return null;
     }
 }
+
+export const DeleteNews = async(id) => {
+
+    try {
+        const jwt = sessionStorage.getItem('token');
+
+        const result = await axios.post('/news/delete-news/'+id, null,{
+            headers: {
+                Authorization: "Bearer " + jwt,
+            }
+        });
+
+        console.log("Результат удаление поста поста:")
+        console.log(result.data.data)
+
+        return result.data.data
+    }
+    catch (ex) {
+        console.log(ex)
+        return null;
+    }
+}

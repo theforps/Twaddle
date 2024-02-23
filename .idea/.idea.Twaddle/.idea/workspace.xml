@@ -9,15 +9,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4b4d2340-c65b-4e65-b03f-0b97c3ad9834" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Twaddle/Domain/Models/Search.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Twaddle/Domain/DTO/PasswordVerifyDTO.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/parts/NewsMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/parts/NewsMenu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/requests/JoinQueries.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/requests/JoinQueries.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/parts/UserCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/parts/UserCard.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/requests/NewsQueries.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/requests/NewsQueries.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/requests/UserQueries.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/requests/UserQueries.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Twaddle/Controllers/NewsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Controllers/NewsController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/Repositories/Impl/NewsRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Repositories/Impl/NewsRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Twaddle/Controllers/UserController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Controllers/UserController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Twaddle/Services/Impl/NewsService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Services/Impl/NewsService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Twaddle/Services/Impl/UserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Services/Impl/UserService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Twaddle/Services/Interfaces/INewsService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Services/Interfaces/INewsService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Twaddle/Services/Interfaces/IUserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Services/Interfaces/IUserService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +38,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock://D:/Projects/C_Sharp/Fullstack/Twaddle/Twaddle/Domain/AppDbContext.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/Projects/C_Sharp/Fullstack/Twaddle/Twaddle/Services/Interfaces/INewsService.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Twaddle/appsettings.Development.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Twaddle/appsettings.json" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -56,7 +59,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    ".NET Launch Settings Profile.Twaddle.executor": "Run",
+    ".NET Launch Settings Profile.Twaddle.executor": "Debug",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -189,7 +192,8 @@
       <workItem from="1707323910500" duration="3787000" />
       <workItem from="1708194190079" duration="3679000" />
       <workItem from="1708440078782" duration="8889000" />
-      <workItem from="1708504098328" duration="14216000" />
+      <workItem from="1708504098328" duration="14246000" />
+      <workItem from="1708704615150" duration="4626000" />
     </task>
     <task id="LOCAL-00001" summary=":)">
       <option name="closed" value="true" />
@@ -431,7 +435,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708461994041</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary=":)">
+      <option name="closed" value="true" />
+      <created>1708545633683</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1708545633683</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
