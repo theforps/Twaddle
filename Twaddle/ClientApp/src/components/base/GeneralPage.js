@@ -1,11 +1,12 @@
 import {Navigate} from "react-router-dom";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import InfiniteUserCard from "../parts/InfinityUserCard";
 import LogoutButton from "../additionally/LogoutButton";
 import Messenger from "../parts/Messenger";
 import UserCard from "../parts/UserCard";
 import NewsMenu from "../parts/NewsMenu";
 import {GetNews} from "../requests/NewsQueries";
+import {GetSub} from "../requests/SubQueries";
 
 const GeneralPage = () => {
 
@@ -15,9 +16,17 @@ const GeneralPage = () => {
     const [showCards, setShowCards] = useState(true);
     const [userMatchId, setMatchId] = useState(null);
     
+    useEffect(() => {
+        checkSub();
+    }, []);
+    
     if(sessionStorage.getItem('token') == null)
     {
         return <Navigate to={'/join'}/>
+    }
+
+    const checkSub = async() => {
+        await GetSub();
     }
     
     const handleCardsShow = () => {

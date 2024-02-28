@@ -66,4 +66,14 @@ public class UserController : ControllerBase
 
         return Ok(response);
     }
+    
+    [HttpGet("user-sub")]
+    public async Task<IActionResult> GetSub()
+    {
+        var currentUser = HttpContext.User.Identity.Name;
+
+        var response = await _userService.GetSubscription(currentUser);
+
+        return Ok(response);
+    }
 }

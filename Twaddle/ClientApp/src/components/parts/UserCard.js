@@ -1,12 +1,14 @@
 import React, {useEffect, useState} from "react";
 import {DeleteUser, GetUser, UpdateUser, UpdateUserPassword} from "../requests/UserQueries";
 import ModalWindow from "../additionally/ModalWindow";
+import {AddSub, GetSub} from "../requests/SubQueries";
 
 const UserCard = () => {
     const[user, setUser] = useState(null);
     const [selectedPeriod, setSelectedPeriod] = useState(null);
     const [isEditing, setIsEditing] = useState(false);
     const [imagesLoad, setImagesLoad] = useState([]);
+    const [sub, setSub] = useState(null);
     
     const [pictures, setPictures] = useState([]);
     const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
@@ -129,12 +131,23 @@ const UserCard = () => {
         setSelectedPeriod(period);
     };
 
-    const handleSubscription = () => {
+    const checkSub = async() => {
+        const sub = await GetSub();
+        
+        setSub(sub.data)
+    }
+    
+    const handleSubscription = async() => {
+        
+        const result = selectedPeriod;
+        
+        await AddSub(result);
         
     };
     
     useEffect(() => {
         GetUserInfo()
+        checkSub()
     }, []);
 
     return (
@@ -145,34 +158,46 @@ const UserCard = () => {
                     title={'Подписка'}
                     modalContent={
                         <div>
-                            <h2>Выберите подписку</h2>
-                            <p>Описание подписки: ...</p>
-
-                            <div className={"btn-group d-flex justify-content-center mb-3"}> 
-                                <button
-                                    className={"btn btn-outline-info"}
-                                    onClick={() => handlePeriodSelection('monthly')}
-                                    disabled={selectedPeriod === 'monthly'}
-                                >
-                                    Ежемесячно ($10/мес)
-                                </button>
-                                <button
-                                    className={"btn btn-outline-primary"}
-                                    onClick={() => handlePeriodSelection('yearly')}
-                                    disabled={selectedPeriod === 'yearly'}
-                                >
-                                    Ежегодно ($100/год)
-                                </button>
-                            </div>
-
-                            {selectedPeriod && (
-                                <div className="justify-content-center d-flex">
-                                    <button className="btn btn-success" onClick={handleSubscription}>Оформить подписку</button>
+                            {sub == null &&
+                                <div>    
+                                    <h2>Выберите подписку</h2>
+                                    <p>Описание подписки: ...</p>
+        
+                                    <div className={"btn-group d-flex justify-content-center mb-3"}> 
+                                        <button
+                                            className={"btn btn-outline-secondary"}
+                                            onClick={() => handlePeriodSelection('month')}
+                                            disabled={selectedPeriod === 'month'}
+                                        >
+                                            Ежемесячно (1000 руб./мес)
+                                        </button>
+                                        <button
+                                            className={"btn btn-outline-primary"}
+                                            onClick={() => handlePeriodSelection('year')}
+                                            disabled={selectedPeriod === 'year'}
+                                        >
+                                            Ежегодно (10000 руб./год)
+                                        </button>
+                                    </div>
+                                    {selectedPeriod && (
+                                        <div className="justify-content-center d-flex">
+                                            <button className="btn btn-success" onClick={() => handleSubscription()}>Оформить подписку</button>
+                                        </div>
+                                    )}
                                 </div>
-                            )}
+                            }
+                            {sub != null &&
+                                <div>
+                                    <p>Описание подписки</p>
+                                    <p>Дата начала: {sub.startTime}</p>
+                                    <p>Дата окончания: {sub.endTime}</p>
+                                </div>
+                            }
+
                         </div>
                     }
                 />
+                
                 <button className={"btn btn-success"} onClick={handleEditClick}>
                     Изменить личные данные
                 </button>

@@ -255,8 +255,8 @@ public class UserService : IUserService
             {
                 return new BaseResponse<SubDTO>()
                 {
-                    Description = "Подписка закончилась.",
-                    StatusCode = 400
+                    Description = "Подписка не оформлена.",
+                    StatusCode = 404
                 };
             }
 

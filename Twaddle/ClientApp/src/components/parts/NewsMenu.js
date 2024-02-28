@@ -3,11 +3,16 @@ import {AddNews, DeleteNews, GetNews, SetLike} from "../requests/NewsQueries";
 import {Await} from "react-router-dom";
 import ModalWindow from "../additionally/ModalWindow";
 import {SendReport} from "../requests/CardsQueries";
+import {GetSub} from "../requests/SubQueries";
 
 const NewsMenu = () => {
     const [newPost, setNewPost] = useState('');
     const [news, setNews] = useState([]);
-    
+    const [sub, setSub] = useState(null);
+
+    useEffect(() => {
+        checkSub()
+    }, []);
     
     const loadNews = async(data) => {
         
@@ -59,6 +64,12 @@ const NewsMenu = () => {
         setNews(updatedNews);
     };
     
+    const checkSub = async() => {
+
+        const result = await GetSub();
+        
+        setSub(result.data);
+    }
     
     const handleSendReport = async(login) => {
         
@@ -90,23 +101,25 @@ const NewsMenu = () => {
                     </button>
                 </div>
             </div>
-            <div className="card w-50 m-auto mb-3">
-                <div className="card-body">
-                    <div className="input-group">
-                        <textarea
-                            onChange={handleNewPostChange}
-                            value={newPost}
-                            className="form-control"
-                            placeholder={"Что нового?"}
-                            style={{height: "150px", resize: "none"}}></textarea>
-                        <button
-                            onClick={() => handlePostSubmit()}
-                            className="btn btn-outline-secondary"
-                            type="button">Запостить
-                        </button>
+            {sub != null &&
+                <div className="card w-50 m-auto mb-3">
+                    <div className="card-body">
+                        <div className="input-group">
+                            <textarea
+                                onChange={handleNewPostChange}
+                                value={newPost}
+                                className="form-control"
+                                placeholder={"Что нового?"}
+                                style={{height: "150px", resize: "none"}}></textarea>
+                            <button
+                                onClick={() => handlePostSubmit()}
+                                className="btn btn-outline-secondary"
+                                type="button">Запостить
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
             <div style={{maxHeight: "500px", overflowY: "scroll"}}>
             {loadNews && news != null && news.map(item => (
                 <div className="card w-50 m-auto mb-2" key={item.id}>
