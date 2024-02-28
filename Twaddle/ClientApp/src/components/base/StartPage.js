@@ -189,10 +189,6 @@ const SelectGoal = ({data, onSubmit}) => {
                 <div className="card-body d-flex flex-column align-items-center justify-content-around">
                     <h3 className="card-title text-center">Ваша цель</h3>
                     <div className={"btn-group-vertical btn-group-lg"} role="group">
-                        <button className={"btn btn-success"}
-                                onClick={() => handleGoalSelection('Ищу бизнес-партнера')}>
-                            Ищу бизнес-партнера
-                        </button>
                         <button className={"btn btn-outline-success"} onClick={() => handleGoalSelection('Ищу заказчика')}>
                             Ищу заказчика
                         </button>

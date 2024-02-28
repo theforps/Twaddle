@@ -191,4 +191,102 @@ public class UserService : IUserService
             };
         }
     }
+
+    public async Task<BaseResponse<SubDTO>> AddNewSubscription(string login, string period)
+    {
+        try
+        {
+            var user = await _userRepository.GetUserByLogin(login);
+
+            var endTime = DateTime.Now;
+
+            if (period.Equals("year"))
+                endTime = endTime.AddYears(1);
+            else if (period.Equals("month"))
+                endTime = endTime.AddMonths(1);
+            
+            Subscription subscription = new Subscription()
+            {
+                Client = user,
+                EndTime = endTime
+            };
+
+            var response = await _userRepository.AddSub(subscription);
+
+            if (!response)
+            {
+                return new BaseResponse<SubDTO>()
+                {
+                    Description = "Не удалось добавить подписку.",
+                    StatusCode = 400
+                };
+            }
+
+            var sub = await _userRepository.GetSubscription(user.Id);
+
+            var result = _mapper.Map<SubDTO>(sub);
+            
+            return new BaseResponse<SubDTO>()
+            {
+                Data = result,
+                Description = "Подписка успешно оформлена.",
+                StatusCode = 200
+            };
+        }
+        catch (Exception ex)
+        {
+            return new BaseResponse<SubDTO>()
+            {
+                Description = ex.Message,
+                StatusCode = 500
+            };
+        }
+    }
+
+    public async Task<BaseResponse<SubDTO>> GetSubscription(string login)
+    {
+        try
+        {
+            var user = await _userRepository.GetUserByLogin(login);
+
+            var checkSubTerm = await _userRepository.CheckSubTerm(user.Id);
+
+            if (!checkSubTerm)
+            {
+                return new BaseResponse<SubDTO>()
+                {
+                    Description = "Подписка закончилась.",
+                    StatusCode = 400
+                };
+            }
+
+            var response = await _userRepository.GetSubscription(user.Id);
+
+            if (response == null)
+            {
+                return new BaseResponse<SubDTO>()
+                {
+                    Description = "Подписка не оформлена.",
+                    StatusCode = 404
+                };
+            }
+            
+            var result = _mapper.Map<SubDTO>(response);
+            
+            return new BaseResponse<SubDTO>()
+            {
+                Data = result,
+                Description = "Подписка оформлена.",
+                StatusCode = 200
+            };
+        }
+        catch (Exception ex)
+        {
+            return new BaseResponse<SubDTO>()
+            {
+                Description = ex.Message,
+                StatusCode = 500
+            };
+        }
+    }
 }

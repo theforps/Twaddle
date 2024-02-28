@@ -17,5 +17,6 @@ public class CardMapping : Profile
         CreateMap<Match, MatchDTO>().ReverseMap();
         CreateMap<User, UserRequestDTO>().ReverseMap();
         CreateMap<News, NewsDTO>().ReverseMap();
+        CreateMap<Subscription, SubDTO>().ReverseMap();
     }
 }

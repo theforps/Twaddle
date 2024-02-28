@@ -37,4 +37,49 @@ public class UserRepository : IUserRepository
 
         await _db.SaveChangesAsync();
     }
+
+    public async Task<bool> AddSub(Subscription sub)
+    {
+        var checkSub = await _db.Subscriptions
+            .FirstOrDefaultAsync(x => x.Client.Id == sub.Client.Id);
+
+        if (checkSub == null)
+        {
+            _db.Subscriptions.Add(sub);
+            await _db.SaveChangesAsync();
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public async Task<bool> CheckSubTerm(int userId)
+    {
+        var sub = await _db.Subscriptions
+            .FirstOrDefaultAsync(x => x.Client.Id == userId);
+
+        if (sub != null)
+        {
+            if (sub.EndTime <= DateTime.Now)
+            {
+                _db.Subscriptions.Remove(sub);
+                await _db.SaveChangesAsync();
+
+                return false;
+            }
+            
+            return true;
+        }
+
+        return false;
+    }
+
+    public async Task<Subscription> GetSubscription(int userId)
+    {
+        var sub = await _db.Subscriptions
+            .FirstOrDefaultAsync(x => x.Client.Id == userId);
+
+        return sub;
+    }
 }

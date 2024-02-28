@@ -27,4 +27,5 @@ public class AppDbContext: DbContext
     public DbSet<Report> Reports { get; set; }
     public DbSet<Order> Orders { get; set; }
     public DbSet<News> News { get; set; }
+    public DbSet<Subscription> Subscriptions { get; set; }
 }

@@ -56,4 +56,14 @@ public class UserController : ControllerBase
         
         return Ok(result);
     }
+
+    [HttpPost("arrange-sub")]
+    public async Task<IActionResult> ArrangeSub(Search search)
+    {
+        var currentUser = HttpContext.User.Identity.Name;
+
+        var response = await _userService.AddNewSubscription(currentUser, search.key);
+
+        return Ok(response);
+    }
 }

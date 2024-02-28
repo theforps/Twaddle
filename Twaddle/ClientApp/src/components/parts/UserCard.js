@@ -4,7 +4,7 @@ import ModalWindow from "../additionally/ModalWindow";
 
 const UserCard = () => {
     const[user, setUser] = useState(null);
-    
+    const [selectedPeriod, setSelectedPeriod] = useState(null);
     const [isEditing, setIsEditing] = useState(false);
     const [imagesLoad, setImagesLoad] = useState([]);
     
@@ -124,6 +124,14 @@ const UserCard = () => {
         
         await UpdateUserPassword(data);
     }
+
+    const handlePeriodSelection = (period) => {
+        setSelectedPeriod(period);
+    };
+
+    const handleSubscription = () => {
+        
+    };
     
     useEffect(() => {
         GetUserInfo()
@@ -131,15 +139,48 @@ const UserCard = () => {
 
     return (
         <div className={"d-flex w-100"}>
-            <div className={"btn-group-vertical bg-white"} style={{width: 'max-content'}}>
-                <button className="btn btn-primary">
-                    Оформить подписку
+            <div className={"bg-white"} style={{width: 'max-content'}}>
+                <ModalWindow
+                    btnName={'Подписка'}
+                    title={'Подписка'}
+                    modalContent={
+                        <div>
+                            <h2>Выберите подписку</h2>
+                            <p>Описание подписки: ...</p>
+
+                            <div className={"btn-group d-flex justify-content-center mb-3"}> 
+                                <button
+                                    className={"btn btn-outline-info"}
+                                    onClick={() => handlePeriodSelection('monthly')}
+                                    disabled={selectedPeriod === 'monthly'}
+                                >
+                                    Ежемесячно ($10/мес)
+                                </button>
+                                <button
+                                    className={"btn btn-outline-primary"}
+                                    onClick={() => handlePeriodSelection('yearly')}
+                                    disabled={selectedPeriod === 'yearly'}
+                                >
+                                    Ежегодно ($100/год)
+                                </button>
+                            </div>
+
+                            {selectedPeriod && (
+                                <div className="justify-content-center d-flex">
+                                    <button className="btn btn-success" onClick={handleSubscription}>Оформить подписку</button>
+                                </div>
+                            )}
+                        </div>
+                    }
+                />
+                <button className={"btn btn-success"} onClick={handleEditClick}>
+                    Изменить личные данные
                 </button>
-                
                 <ModalWindow
                     btnName={'Изменить пароль'}
-                    title={'Подать жалобу'}
+                    title={'Изменение пароля'}
                     modalContent={
+                    
                         <div>
                             <div className="input-group mb-3">
                                 <span className="input-group-text">Старый пароль</span>
@@ -297,12 +338,6 @@ const UserCard = () => {
                                         <p className="card-text">Описание: {user.description}</p>
                                     </div>
                                 </div>
-                                <div className={"d-block"}>
-                                    <button className={"btn btn-success"} onClick={handleEditClick}>
-                                        Изменить
-                                    </button>
-                                </div>
-
                             </div>
 
                         )

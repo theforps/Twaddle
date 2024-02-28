@@ -76,6 +76,7 @@ const NewsMenu = () => {
     
     return (
         <div className={"w-100 "}>
+            <p>Сделать сортировку (показать только мои, по новизне, по количеству лайков)</p>
             <div className={"d-flex"}>
                 <div className="input-group mb-3 w-50 m-auto">
                     <input
