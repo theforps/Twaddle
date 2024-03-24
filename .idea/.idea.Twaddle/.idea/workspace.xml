@@ -9,18 +9,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4b4d2340-c65b-4e65-b03f-0b97c3ad9834" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/requests/SubQueries.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/dataSources.local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/parts/OrderList.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/requests/OrdersQueries.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Twaddle/Controllers/OrdersController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Twaddle/Domain/Models/Feedback.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Twaddle/Services/Impl/OrdersService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Twaddle/Services/Interfaces/IOrdersService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/dataSources/9097b515-aa90-41fc-a005-74861b014136.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/dataSources/9097b515-aa90-41fc-a005-74861b014136.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/dataSources/9097b515-aa90-41fc-a005-74861b014136/storage_v2/_src_/database/TwaddleDb.9SO1qw/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/dataSources/9097b515-aa90-41fc-a005-74861b014136/storage_v2/_src_/database/TwaddleDb.9SO1qw/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/base/GeneralPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/base/GeneralPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/parts/NewsMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/parts/NewsMenu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/parts/UserCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/parts/UserCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/Controllers/UserController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Controllers/UserController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/Domain/DTO/SubDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Domain/DTO/SubDTO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/Services/Impl/UserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Services/Impl/UserService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/base/StartPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/base/StartPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/setupProxy.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/setupProxy.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Twaddle/Domain/Models/Order.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Domain/Models/Order.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Twaddle/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Twaddle/Repositories/Impl/OrderRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Repositories/Impl/OrderRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Twaddle/Repositories/Interfaces/IOrderRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Repositories/Interfaces/IOrderRepository.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,39 +61,39 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Launch Settings Profile.Twaddle.executor": "Debug",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "XThreadsFramesViewSplitterKey": "0.655102",
-    "database.data.extractors.current.export.id": "JSON-Groovy.json.groovy",
-    "database.data.extractors.current.id": "JSON-Groovy.json.groovy",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs.jest.jest_package": "D:/Projects/C_Sharp/Fullstack/Twaddle/Twaddle/ClientApp/node_modules/react-scripts",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.environmentSetup",
-    "ts.external.directory.path": "D:\\Projects\\C_Sharp\\Fullstack\\Twaddle\\Twaddle\\ClientApp\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Launch Settings Profile.Twaddle.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.655102&quot;,
+    &quot;database.data.extractors.current.export.id&quot;: &quot;JSON-Groovy.json.groovy&quot;,
+    &quot;database.data.extractors.current.id&quot;: &quot;JSON-Groovy.json.groovy&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs.jest.jest_package&quot;: &quot;D:/Projects/C_Sharp/Fullstack/Twaddle/Twaddle/ClientApp/node_modules/react-scripts&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.environmentSetup&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\Projects\\C_Sharp\\Fullstack\\Twaddle\\Twaddle\\ClientApp\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ],
-    "rider.external.source.directories": [
-      "C:\\Users\\thefo\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache",
-      "C:\\Users\\thefo\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache",
-      "C:\\Users\\thefo\\AppData\\Local\\Symbols\\src"
+    &quot;rider.external.source.directories&quot;: [
+      &quot;C:\\Users\\thefo\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\thefo\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\thefo\\AppData\\Local\\Symbols\\src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Launch Settings Profile.Twaddle">
     <configuration name="Tests in ClientApp/" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
@@ -194,6 +198,8 @@
       <workItem from="1708440078782" duration="8889000" />
       <workItem from="1708504098328" duration="14246000" />
       <workItem from="1708704615150" duration="4626000" />
+      <workItem from="1711192030501" duration="5093000" />
+      <workItem from="1711277360456" duration="5304000" />
     </task>
     <task id="LOCAL-00001" summary=":)">
       <option name="closed" value="true" />

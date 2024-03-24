@@ -7,6 +7,7 @@ import UserCard from "../parts/UserCard";
 import NewsMenu from "../parts/NewsMenu";
 import {GetNews} from "../requests/NewsQueries";
 import {GetSub} from "../requests/SubQueries";
+import OrderList from "../parts/OrderList";
 
 const GeneralPage = () => {
 
@@ -14,6 +15,7 @@ const GeneralPage = () => {
     const [showMessages, setShowMessages] = useState(false);
     const [showNews, setShowNews] = useState(false);
     const [showCards, setShowCards] = useState(true);
+    const [showOrders, setShowOrders] = useState(false);
     const [userMatchId, setMatchId] = useState(null);
     
     useEffect(() => {
@@ -31,7 +33,7 @@ const GeneralPage = () => {
     
     const handleCardsShow = () => {
 
-
+        setShowOrders(false);
         setShowNews(false)
         setShowProfile(false);
         setShowCards(true);
@@ -40,7 +42,7 @@ const GeneralPage = () => {
 
     const handleMessagesShow = (id) => {
         setMatchId(id)
-
+        setShowOrders(false);
         setShowNews(false)
         setShowProfile(false);
         setShowCards(false);
@@ -48,7 +50,7 @@ const GeneralPage = () => {
     };
 
     const handleProfileShow = () => {
-
+        setShowOrders(false);
         setShowNews(false)
         setShowProfile(true);
         setShowCards(false);
@@ -61,6 +63,16 @@ const GeneralPage = () => {
         setShowProfile(false);
         setShowCards(false);
         setShowMessages(false);
+        setShowOrders(false);
+    };
+
+    const handleOrdersShow = () => {
+
+        setShowNews(false);
+        setShowProfile(false);
+        setShowCards(false);
+        setShowMessages(false);
+        setShowOrders(true);
     };
     
     return (
@@ -85,7 +97,9 @@ const GeneralPage = () => {
                         </button>
                     </li>
                     <li className="nav-item m-1">
-                        <a className="btn btn-secondary" href="#">Заказы</a>
+                        <button className={"btn btn-secondary"} onClick={handleOrdersShow}>
+                            Заказы
+                        </button>
                     </li>
                     <li className="nav-item m-1">
                         <button className={"btn btn-secondary"} onClick={handleNewsShow}>
@@ -100,6 +114,9 @@ const GeneralPage = () => {
             <div className={"d-flex bg-white justify-content-between"} style={{minHeight: '800px' ,height: 'calc(70vw * (9/16))'}}>
                 {showProfile && (
                     <UserCard />
+                )}
+                {showOrders && (
+                    <OrderList />
                 )}
                 {showCards && (
                     <InfiniteUserCard openMes={handleMessagesShow}/>

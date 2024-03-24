@@ -16,9 +16,16 @@ public class OrderRepository : IOrderRepository
     
     public async Task<List<Order>> GetOrders()
     {
-        var orders = await _db.Orders.ToListAsync();
+        var orders = await _db.Orders.Include(x => x.Creator).ToListAsync();
 
         return orders;
+    }
+
+    public async Task<Order> GetOrderById(int id)
+    {
+        var order = await _db.Orders.Include(x => x.Feedbacks).FirstOrDefaultAsync(x => x.Id == id);
+
+        return order;
     }
 
     public async Task<List<Order>> GetOrdersSearch(string word)

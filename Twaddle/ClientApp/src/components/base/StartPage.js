@@ -6,7 +6,6 @@ import {Link} from "react-router-dom";
 
 const StartPage = () => {
     const [step, setStep] = useState(1);
-    const [resultReg, setResult] = useState('');
     const [userData, setUserData] = useState({
         sex: '',
         nick: '',
