@@ -14,16 +14,22 @@ public class OrderRepository : IOrderRepository
         _db = db;
     }
     
-    public async Task<List<Order>> GetOrders()
+    public async Task<List<Order>> GetOrders(int id)
     {
-        var orders = await _db.Orders.Include(x => x.Creator).ToListAsync();
+        var orders = await _db.Orders
+            .Include(x => x.Creator)
+            .Where(x => x.Feedbacks
+                .Where(c => c.Wanting.Id == id).Count() == 0)
+            .ToListAsync();
 
         return orders;
     }
 
     public async Task<Order> GetOrderById(int id)
     {
-        var order = await _db.Orders.Include(x => x.Feedbacks).FirstOrDefaultAsync(x => x.Id == id);
+        var order = await _db.Orders
+            .Include(x => x.Feedbacks)
+            .FirstOrDefaultAsync(x => x.Id == id);
 
         return order;
     }
@@ -55,6 +61,20 @@ public class OrderRepository : IOrderRepository
         if (order != null)
         {
             _db.Orders.Remove(order);
+            await _db.SaveChangesAsync();
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public async Task<bool> AddFeedback(Order order)
+    {
+        var result = _db.Orders.Update(order).Entity;
+
+        if (result != null)
+        {
             await _db.SaveChangesAsync();
 
             return true;

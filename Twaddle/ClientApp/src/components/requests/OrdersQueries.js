@@ -43,3 +43,27 @@ export const DeleteOrder = async(id) => {
         return null;
     }
 }
+
+export const SendFeedBack = async(comment, id) => {
+
+    try {
+        const jwt = sessionStorage.getItem('token');
+
+        const result = await axios.post('/orders/send-feedback/'+ id,{
+            key:comment
+        },{
+            headers: {
+                Authorization: "Bearer " + jwt,
+            }
+        });
+
+        console.log("Результат отправки отклика:")
+        console.log(result.data.data)
+
+        return result.data.data
+    }
+    catch (ex) {
+        console.log(ex)
+        return null;
+    }
+}

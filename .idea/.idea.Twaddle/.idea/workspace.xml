@@ -9,22 +9,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4b4d2340-c65b-4e65-b03f-0b97c3ad9834" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/parts/OrderList.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/requests/OrdersQueries.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Twaddle/Controllers/OrdersController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Twaddle/Domain/Models/Feedback.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Twaddle/Services/Impl/OrdersService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Twaddle/Services/Interfaces/IOrdersService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/dataSources/9097b515-aa90-41fc-a005-74861b014136.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/dataSources/9097b515-aa90-41fc-a005-74861b014136.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/dataSources/9097b515-aa90-41fc-a005-74861b014136/storage_v2/_src_/database/TwaddleDb.9SO1qw/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/dataSources/9097b515-aa90-41fc-a005-74861b014136/storage_v2/_src_/database/TwaddleDb.9SO1qw/schema/public.abK9xQ.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Twaddle/Domain/DTO/OrderDTO.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/base/GeneralPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/base/GeneralPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/base/StartPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/base/StartPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/setupProxy.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/setupProxy.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/Domain/Models/Order.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Domain/Models/Order.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/parts/OrderList.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/parts/OrderList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/requests/OrdersQueries.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/requests/OrdersQueries.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Twaddle/Controllers/OrdersController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Controllers/OrdersController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Twaddle/Repositories/Impl/OrderRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Repositories/Impl/OrderRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Twaddle/Repositories/Interfaces/IOrderRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Repositories/Interfaces/IOrderRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Twaddle/Services/Impl/OrdersService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Services/Impl/OrdersService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Twaddle/Services/Interfaces/IOrdersService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Services/Interfaces/IOrdersService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Twaddle/Services/Mapping/CardMapping.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Services/Mapping/CardMapping.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -199,7 +193,8 @@
       <workItem from="1708504098328" duration="14246000" />
       <workItem from="1708704615150" duration="4626000" />
       <workItem from="1711192030501" duration="5093000" />
-      <workItem from="1711277360456" duration="5304000" />
+      <workItem from="1711277360456" duration="6556000" />
+      <workItem from="1711463873801" duration="5521000" />
     </task>
     <task id="LOCAL-00001" summary=":)">
       <option name="closed" value="true" />
@@ -449,7 +444,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708545633683</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary=":)">
+      <option name="closed" value="true" />
+      <created>1711291028953</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1711291028953</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

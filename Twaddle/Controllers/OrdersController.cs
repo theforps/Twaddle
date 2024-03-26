@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Twaddle.Domain.DTO;
+using Twaddle.Domain.Models;
 using Twaddle.Services.Interfaces;
 
 namespace Twaddle.Controllers;
@@ -19,18 +19,37 @@ public class OrdersController : ControllerBase
     [HttpGet("all-orders")]
     public async Task<IActionResult>  GetOrders()
     {
-
-        var result = await _ordersService.GetAllOrders();
+        var login = HttpContext.User.Identity.Name;
+        
+        var result = await _ordersService.GetAllOrders(login);
 
         return Ok(result);
     }
     
     [HttpDelete("delete-order/{id}")]
-    public async Task<IActionResult>  GetOrders(int id)
+    public async Task<IActionResult>  DeleteOrder(int id)
     {
 
         var result = await _ordersService.DeleteOrder(id);
 
         return Ok(result);
     }
+    
+    [HttpPost("send-feedback/{id}")]
+    public async Task<IActionResult>  SendFeedback(Search search, int id)
+    {
+        var login = HttpContext.User.Identity.Name;
+        
+        var result = await _ordersService.AddFeedbackToOrder(id, search, login);
+
+        return Ok(result);
+    }
+    
+    // [HttpGet("get-feedbacks-order/{id}")]
+    // public async Task<IActionResult>  GetFeedbacks(int id)
+    // {
+    //     var result = await _ordersService.GetAllFeedbackOfOrders(id);
+    //
+    //     return Ok(result);
+    // }
 }
