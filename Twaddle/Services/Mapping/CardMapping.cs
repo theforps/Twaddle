@@ -19,5 +19,6 @@ public class CardMapping : Profile
         CreateMap<News, NewsDTO>().ReverseMap();
         CreateMap<Subscription, SubDTO>().ReverseMap();
         CreateMap<Order, OrderDTO>().ReverseMap();
+        CreateMap<Feedback, FeedbackDTO>().ReverseMap();
     }
 }

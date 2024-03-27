@@ -31,14 +31,44 @@ public class MatchController : ControllerBase
         return BadRequest();
     }
     
-    [HttpPost("set-match")]
-    public async Task<IActionResult>  SetUserMatch(SetMatchDTO secondLogin)
+    [HttpPost("set-match-form")]
+    public async Task<IActionResult>  SetUserMatchForm(SetMatchDTO secondLogin)
     {
         string currentUser = HttpContext.User.Identity.Name;
     
         if (currentUser != null)
         {
-            var result = await _matchService.AddUserMatch(currentUser, secondLogin.SecondLogin);
+            var result = await _matchService.AddUserMatch(currentUser, secondLogin.SecondLogin, null);
+    
+            return Ok(result);
+        }
+    
+        return BadRequest();
+    }
+    
+    [HttpPost("set-match-order/{orderId}")]
+    public async Task<IActionResult>  SetUserMatchOrder(SetMatchDTO secondLogin, int orderId)
+    {
+        string currentUser = HttpContext.User.Identity.Name;
+    
+        if (currentUser != null)
+        {
+            var result = await _matchService.AddUserMatch(currentUser, secondLogin.SecondLogin, orderId);
+    
+            return Ok(result);
+        }
+    
+        return BadRequest();
+    }
+    
+    [HttpGet("get-match-order/{wantingUser}/{orderId}")]
+    public async Task<IActionResult>  SetUserMatchOrder(string wantingUser, int orderId)
+    {
+        string currentUser = HttpContext.User.Identity.Name;
+    
+        if (currentUser != null)
+        {
+            var result = await _matchService.GetUserMatchByOrder(wantingUser, orderId);
     
             return Ok(result);
         }

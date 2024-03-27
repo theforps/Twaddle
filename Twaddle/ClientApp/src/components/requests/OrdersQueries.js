@@ -67,3 +67,25 @@ export const SendFeedBack = async(comment, id) => {
         return null;
     }
 }
+
+export const GetFeedbackOfOrder = async(id) => {
+
+    try {
+        const jwt = sessionStorage.getItem('token');
+
+        const result = await axios.get('/orders/get-feedbacks-order/'+ id,{
+            headers: {
+                Authorization: "Bearer " + jwt,
+            }
+        });
+
+        console.log("Все отклики заказа:")
+        console.log(result.data.data)
+
+        return result.data.data
+    }
+    catch (ex) {
+        console.log(ex)
+        return null;
+    }
+}

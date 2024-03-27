@@ -6,7 +6,7 @@ public class Feedback
 {
     [Key]
     public int Id { get; set; }
-    public string? Comment { get; set; } = null;
+    public string? Comment { get; set; }
     public User Wanting { get; set; }
-    public bool? IsLike { get; set; } = null;
+    public bool? IsLike { get; set; } = false;
 }

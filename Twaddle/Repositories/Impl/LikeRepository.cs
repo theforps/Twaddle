@@ -34,6 +34,17 @@ public class LikeRepository : ILikeRepository
         return result;
     }
 
+    public async Task<bool> LikeExist(string currentUser, string secondUser)
+    {
+        var result = await _db.Likes
+            .Where(x => 
+                x.Liker.Login.ToLower().Equals(currentUser.ToLower()) 
+                && x.Liked.Login.ToLower().Equals(secondUser.ToLower()))
+            .ToListAsync();
+
+        return result.Count > 0;
+    }
+
     public async Task DeleteLikes()
     {
         var oldLikes = await _db.Likes

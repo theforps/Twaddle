@@ -10,4 +10,6 @@ public interface IOrderRepository
     Task<Order> AddOrder(Order order);
     Task<bool> DeleteOrder(int id);
     Task<bool> AddFeedback(Order orders);
+    Task<List<Feedback>> GetFeedbacks(int id);
+    Task<bool> SetLikeFeedback(int? id, string wanting);
 }

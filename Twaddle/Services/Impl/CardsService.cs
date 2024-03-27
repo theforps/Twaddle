@@ -32,7 +32,7 @@ public class CardsService : ICardsService
     {
         try
         {
-            await _likeRepository.DeleteLikes();
+            //await _likeRepository.DeleteLikes();
 
             var user = await _userRepository.GetUserByLogin(currentUser);
             

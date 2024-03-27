@@ -36,26 +36,32 @@ public class MatchRepository : IMatchRepository
         return result;
     }
 
-    public async Task<Match> SetUserMatch(User userSender, User userResult)
+    public async Task<Match> SetUserMatch(User userSender, User userResult, int? orderId)
     {
-        var match = await _db.Matches
-            .Include(x => x.Couple)
-            .Include(x => x.Messages)
-            .AsSplitQuery()
-            .FirstOrDefaultAsync(x => 
-                x.Couple.Contains(userSender) && x.Couple.Contains(userResult));
-
         Match result;
         
-        if (match != null)
+        if (orderId != null)
         {
-            match.IsMutually = true;
-            result = _db.Matches.Update(match).Entity;
+            var order = await _db.Orders
+                .FirstOrDefaultAsync(x => x.Id == orderId);
+            
+            var newMatch = new Match()
+            {
+                Couple = new List<User>()
+                {
+                    userSender,
+                    userResult
+                },
+                Order = order
+            };
+            
+            result = _db.Matches.AddAsync(newMatch).Result.Entity;
         }
         else
         {
             var newMatch = new Match()
             {
+                IsMutually = true,
                 Couple = new List<User>()
                 {
                     userSender,
@@ -76,6 +82,16 @@ public class MatchRepository : IMatchRepository
         var result = _db.Matches.Update(match).Entity;
 
         await _db.SaveChangesAsync();
+
+        return result;
+    }
+
+    public Task<Match> GetUserMatchByOrderId(string wantingUser, int orderId)
+    {
+        var result = _db.Matches
+            .Where(x => x.Order.Feedbacks
+                .Where(c => c.Wanting.Login.ToLower().Equals(wantingUser.ToLower())).Count() > 0)
+            .FirstOrDefaultAsync(x => x.Order.Id == orderId);
 
         return result;
     }

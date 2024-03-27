@@ -92,6 +92,7 @@ const InfiniteUserCard = ({openMes}) => {
                 </div>
                 <div className="mt-2 d-inline">
                     {matches.length > 0 ? (matches.map((match) => (
+                        match.isMutually && 
                         <button key={match.id} className={"btn btn-primary m-1"} onClick={() => handleOpenMatch(match.id)}>
                             {match.pair.id + " " + match.pair.name}
                         </button>

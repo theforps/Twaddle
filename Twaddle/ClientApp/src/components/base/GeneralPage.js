@@ -116,7 +116,7 @@ const GeneralPage = () => {
                     <UserCard />
                 )}
                 {showOrders && (
-                    <OrderList />
+                    <OrderList openMes={handleMessagesShow}/>
                 )}
                 {showCards && (
                     <InfiniteUserCard openMes={handleMessagesShow}/>

@@ -45,11 +45,11 @@ public class OrdersController : ControllerBase
         return Ok(result);
     }
     
-    // [HttpGet("get-feedbacks-order/{id}")]
-    // public async Task<IActionResult>  GetFeedbacks(int id)
-    // {
-    //     var result = await _ordersService.GetAllFeedbackOfOrders(id);
-    //
-    //     return Ok(result);
-    // }
+    [HttpGet("get-feedbacks-order/{id}")]
+    public async Task<IActionResult>  GetFeedbacks(int id)
+    {
+        var result = await _ordersService.GetAllFeedbackOfOrders(id);
+    
+        return Ok(result);
+    }
 }

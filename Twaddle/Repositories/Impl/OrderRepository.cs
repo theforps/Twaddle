@@ -82,4 +82,40 @@ public class OrderRepository : IOrderRepository
 
         return false;
     }
+
+    public async Task<List<Feedback>> GetFeedbacks(int id)
+    {
+        var feedbacks = await _db.Orders
+            .Include(x => x.Feedbacks)
+            .ThenInclude(c => c.Wanting)
+            .Where(x => x.Id == id)
+            .SelectMany(x => x.Feedbacks)
+            .ToListAsync();
+
+        return feedbacks;
+    }
+
+    public async Task<bool> SetLikeFeedback(int? id, string wanting)
+    {
+        var order = await _db.Orders
+            .Include(x => x.Feedbacks)
+            .ThenInclude(c => c.Wanting)
+            .FirstOrDefaultAsync(x => x.Id == id);
+        
+        var feedbacks = order
+            .Feedbacks
+            .FirstOrDefault(x => x.Wanting.Login.ToLower().Equals(wanting.ToLower()));
+
+        feedbacks.IsLike = true;
+
+        var result = _db.Orders.Update(order).Entity;
+
+        if(result != null)
+        {
+            await _db.SaveChangesAsync();
+            return true;
+        }
+
+        return false;
+    }
 }

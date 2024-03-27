@@ -2,9 +2,11 @@ import React, {useEffect, useState} from "react";
 import ModalWindow from "../additionally/ModalWindow";
 import {SendReport} from "../requests/CardsQueries";
 import {GetSub} from "../requests/SubQueries";
-import {DeleteOrder, GetOrders, SendFeedBack} from "../requests/OrdersQueries";
+import {DeleteOrder, GetFeedbackOfOrder, GetOrders, SendFeedBack} from "../requests/OrdersQueries";
+import ModalFeedback from "../additionally/ModalFeedback";
+import {GetUserMatchOrder, SetUserMatchOrder} from "../requests/MatchQueries";
 
-const OrderList = () => {
+const OrderList = ({openMes}) => {
 
     const [sub, setSub] = useState(null);
     const [orders, setOrders] = useState([]);
@@ -29,10 +31,26 @@ const OrderList = () => {
         const result = await GetOrders();
         
         setOrders(result);
+
     }
 
+    const getFeedbacks = async (id) => {
 
+       
+        const result = await GetFeedbackOfOrder(id);
+        
+        if(result != null) {
+            setFeedbacks(result);
+        }
+    }
 
+    const handleGetOrderMatch = async (wantingLogin, orderId) => {
+        
+        const result = await GetUserMatchOrder(wantingLogin, orderId);
+        
+        openMes(result.data.data.id);
+    }
+    
     const handleSendReport = async(login) => {
 
 
@@ -41,7 +59,14 @@ const OrderList = () => {
 
         await SendReport(report);
     };
-
+    
+    const handleSetApproval = async (wantingLogin, orderId) => 
+    {
+        await SetUserMatchOrder(wantingLogin, orderId);
+        
+        setOrders(orders.slice());
+    }
+    
     const handleSendReaction = async(comment, id) => {
 
         await SendFeedBack(comment, id);
@@ -143,31 +168,42 @@ const OrderList = () => {
                                     >
                                         Удалить
                                     </button>
-                                    {feedbacks.length > 0 &&
-                                        <ModalWindow
-                                            btnName={'Посмотреть отклики'}
-                                            title={'Все отклики на заказ'}
-                                            modalContent={
-                                                <div>
-                                                    {feedbacks.map(item => (
-                                                        <div className="card" style="width: 18rem;">
-                                                            <div className="card-body">
-                                                                <h5 className="card-title">Card title</h5>
-                                                                <h6 className="card-subtitle mb-2 text-muted">Card
-                                                                    subtitle</h6>
-                                                                <p className="card-text">Some quick example text to
-                                                                    build on the card title and make up the bulk of the
-                                                                    card's content.</p>
-                                                                <a href="#" className="card-link">Card link</a>
-                                                                <a href="#" className="card-link">Another link</a>
-                                                            </div>
+                                    <ModalFeedback
+                                        btnName={'Посмотреть отклики'}
+                                        title={'Все отклики на заказ'}
+                                        getFeedback={() => getFeedbacks(item.id)}
+                                        modalContent={
+                                            <div>
+                                                {feedbacks.length > 0 && feedbacks.map(feed => (
+                                                    <div className="card" key={feed.id}>
+                                                        <div className="card-body">
+                                                            <h5 className="card-title">{feed.wanting.name}</h5>
+                                                            <h6 className="card-subtitle mb-2 text-muted">{feed.wanting.description}</h6>
+                                                            <p className="card-text">{feed.comment}</p>
                                                         </div>
-                                                        ))
-                                                    }
-                                                </div>
-                                            }
-                                        />
-                                    }
+                                                        <div className={"btn-group"}>
+                                                            {!feed.isLike && 
+                                                                <button 
+                                                                    className={"btn btn-primary"} 
+                                                                    onClick={() => handleSetApproval(feed.wanting.login, item.id)}
+                                                                >Одобрить</button>
+                                                            }
+                                                            {feed.isLike &&
+                                                                <button 
+                                                                    className={"btn btn-success"}
+                                                                    onClick={() => handleGetOrderMatch(feed.wanting.login, item.id)}
+                                                                >Написать сообщение</button>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                    ))
+                                                }
+                                                {feedbacks.length === 0 &&
+                                                    <div>Откликов нет</div>
+                                                }
+                                            </div>
+                                        }
+                                    />
                                 </div>
                             )}
                         </div>

@@ -134,4 +134,38 @@ public class OrdersService : IOrdersService
             };
         }
     }
+
+    public async Task<BaseResponse<List<FeedbackDTO>>> GetAllFeedbackOfOrders(int id)
+    {
+        try
+        {
+            var feedbacks = await _orderRepository.GetFeedbacks(id);
+
+            var result = _mapper.Map<List<FeedbackDTO>>(feedbacks);
+
+            if (result == null)
+            {
+                return new BaseResponse<List<FeedbackDTO>>()
+                {
+                    StatusCode = 404,
+                    Description = "Нет откликов."
+                };
+            }
+            
+            return new BaseResponse<List<FeedbackDTO>>()
+            {
+                StatusCode = 200,
+                Description = "Успешно.",
+                Data = result
+            };
+        }
+        catch (Exception ex)
+        {
+            return new BaseResponse<List<FeedbackDTO>>()
+            {
+                StatusCode = 500,
+                Description = ex.Message,
+            };
+        }
+    }
 }
