@@ -37,6 +37,7 @@ public class OrderRepository : IOrderRepository
     public async Task<List<Order>> GetOrdersSearch(string word)
     {
         var orders = await _db.Orders
+            .Include(x => x.Creator)
             .Where(x => 
                 x.Description.ToLower().Contains(word.ToLower()) || 
                 x.Title.ToLower().Contains(word.ToLower()))

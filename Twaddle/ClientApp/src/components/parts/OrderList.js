@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import ModalWindow from "../additionally/ModalWindow";
 import {SendReport} from "../requests/CardsQueries";
 import {GetSub} from "../requests/SubQueries";
-import {DeleteOrder, GetFeedbackOfOrder, GetOrders, SendFeedBack} from "../requests/OrdersQueries";
+import {AddOrder, DeleteOrder, GetFeedbackOfOrder, GetOrders, SendFeedBack} from "../requests/OrdersQueries";
 import ModalFeedback from "../additionally/ModalFeedback";
 import {GetUserMatchOrder, SetUserMatchOrder} from "../requests/MatchQueries";
 
@@ -26,14 +26,22 @@ const OrderList = ({openMes}) => {
         setSub(result.data);
     }
 
-    const getOrders = async () => {
+    const getOrders = async (data) => {
         
-        const result = await GetOrders();
+        const result = await GetOrders(data);
         
         setOrders(result);
 
     }
 
+    const handleSearch = () => {
+
+        const search = document.getElementById("search").value;
+
+
+        getOrders(search)
+    };
+    
     const getFeedbacks = async (id) => {
 
        
@@ -49,6 +57,18 @@ const OrderList = ({openMes}) => {
         const result = await GetUserMatchOrder(wantingLogin, orderId);
         
         openMes(result.data.data.id);
+    }
+    
+    const handleCreateOrder = async() => {
+        
+        const order = {
+            title : document.getElementById("title").value,
+            description : document.getElementById("description").value,
+            startPrice : document.getElementById("startPrice").value,
+            endPrice : document.getElementById("endPrice").value,
+        };
+        
+        await AddOrder(order);
     }
     
     const handleSendReport = async(login) => {
@@ -83,15 +103,54 @@ const OrderList = ({openMes}) => {
         <div className={"w-100 "}>
             <p>Сделать сортировку (показать только мои, по новизне, по количеству откликов(ебануть рандом) )</p>
             {sub != null &&
-                <button className={"btn btn-success"}>
-                    Создать свой заказ
-                </button>
+                <ModalWindow
+                    btnName={'Создать свой заказ'}
+                    title={'Создание заказа'}
+                    modalContent={
+                        <div>
+                            <div className="m-3">
+                                <input
+                                    id="title"
+                                    className="w-100 p-2 form-control"
+                                    placeholder="Введите заголовок"
+                                />
+                                <input
+                                    id="description"
+                                    className="w-100 p-2 form-control"
+                                    placeholder="Введите описание"
+                                />
+                                <input
+                                    id="startPrice"
+                                    type={"number"}
+                                    className="w-100 p-2 form-control"
+                                    placeholder="Начальная стоимость"
+                                />
+                                <input
+                                    id="endPrice"
+                                    type={"number"}
+                                    className="w-100 p-2 form-control"
+                                    placeholder="Конечная стоимость"
+                                />
+                            </div>
+                            <div className="justify-content-center d-flex">
+                                <button className="btn btn-success"
+                                        onClick={() => handleCreateOrder()}
+                                >Создать
+                                </button>
+                            </div>
+                        </div>
+                    }
+                />
             }
             <div className={"d-flex w-100"}>
                 <div className="input-group w-50">
-                    <input type="search" className="form-control rounded" placeholder="Search" aria-label="Search"
+                    <input type="search" id="search" className="form-control rounded" placeholder="Search" aria-label="Search"
                            aria-describedby="search-addon"/>
-                    <button type="button" className="btn btn-outline-primary" data-mdb-ripple-init>search</button>
+                    <button 
+                        onClick={() => handleSearch()}
+                        type="button" 
+                        className="btn btn-outline-primary" 
+                        data-mdb-ripple-init>search</button>
                 </div>
             </div>
             <div>

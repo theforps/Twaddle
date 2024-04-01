@@ -19,13 +19,22 @@ public class OrdersService : IOrdersService
     }
     
     
-    public async Task<BaseResponse<List<OrderDTO>>> GetAllOrders(string currentUser)
+    public async Task<BaseResponse<List<OrderDTO>>> GetAllOrders(string currentUser, string search)
     {
         try
         {
             var user = await _userRepository.GetUserByLogin(currentUser);
+
+            List<Order> response;
             
-            var response = await _orderRepository.GetOrders(user.Id);
+            if (search == "")
+            {
+                response = await _orderRepository.GetOrders(user.Id);
+            }
+            else
+            {
+                response = await _orderRepository.GetOrdersSearch(search);
+            }
 
             var result = _mapper.Map<List<OrderDTO>>(response);
             
@@ -48,6 +57,46 @@ public class OrdersService : IOrdersService
         catch (Exception ex)
         {
             return new BaseResponse<List<OrderDTO>>()
+            {
+                StatusCode = 500,
+                Description = ex.Message
+            };
+        }
+    }
+
+    public async Task<BaseResponse<OrderDTO>> AddNewOrder(string currentUser, NewOrderDTO orderDto)
+    {
+        try
+        {
+            var newOrder = _mapper.Map<Order>(orderDto);
+
+            var user = await _userRepository.GetUserByLogin(currentUser);
+
+            newOrder.Creator = user;
+
+            var createdOrder = await _orderRepository.AddOrder(newOrder);
+            
+            if (createdOrder == null)
+            {
+                return new BaseResponse<OrderDTO>()
+                {
+                    StatusCode = 400,
+                    Description = "Не удалось создать заказ."
+                };
+            }
+            
+            var result = _mapper.Map<OrderDTO>(createdOrder);
+            
+            return new BaseResponse<OrderDTO>()
+            {
+                StatusCode = 200,
+                Description = "Успешно.",
+                Data = result
+            };
+        }
+        catch (Exception ex)
+        {
+            return new BaseResponse<OrderDTO>()
             {
                 StatusCode = 500,
                 Description = ex.Message

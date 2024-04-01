@@ -19,7 +19,7 @@ public class MatchRepository : IMatchRepository
             .Include(x => x.Couple)
             .Include(x => x.Messages)
             .AsSplitQuery()
-            .Where(x => x.Couple.Contains(user) && x.IsMutually)
+            .Where(x => x.Couple.Contains(user))
             .ToListAsync();
 
         return matches;

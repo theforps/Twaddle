@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Twaddle.Domain.DTO;
 using Twaddle.Domain.Models;
 using Twaddle.Services.Interfaces;
 
@@ -21,7 +22,28 @@ public class OrdersController : ControllerBase
     {
         var login = HttpContext.User.Identity.Name;
         
-        var result = await _ordersService.GetAllOrders(login);
+        var result = await _ordersService.GetAllOrders(login, "");
+
+        return Ok(result);
+    }
+    
+    [HttpPost("all-orders")]
+    public async Task<IActionResult>  GetOrders(Search search)
+    {
+        var login = HttpContext.User.Identity.Name;
+        
+        var result = await _ordersService.GetAllOrders(login, search.key);
+
+        return Ok(result);
+    }
+    
+    [HttpPost("add-order")]
+    public async Task<IActionResult>  AddOrder(NewOrderDTO newOrderDto)
+    {
+
+        var username = HttpContext.User.Identity.Name;
+
+        var result = await _ordersService.AddNewOrder(username, newOrderDto);
 
         return Ok(result);
     }

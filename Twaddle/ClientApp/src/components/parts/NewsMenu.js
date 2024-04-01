@@ -12,6 +12,7 @@ const NewsMenu = () => {
 
     useEffect(() => {
         checkSub()
+        loadNews()
     }, []);
     
     const loadNews = async(data) => {
