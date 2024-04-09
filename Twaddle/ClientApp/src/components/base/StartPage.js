@@ -258,14 +258,8 @@ const EnterCountry = ({data, onSubmit, countries}) => {
                                 {countries.map(entity => (
                                     <a 
                                         className="btn btn-outline-secondary mb-2"
-                                        onClick={() => selectOption(entity.country)}>
-                                        {entity.country}
-                                        <img 
-                                            alt={entity.country}
-                                            src={entity.flag} 
-                                            key={entity.country} 
-                                            className="ms-3" 
-                                            style={{width: '20px', height: '20px'}}/>
+                                        onClick={() => selectOption(entity.name)}>
+                                        {entity.name}
                                     </a>
                                 ))}
                             </div>

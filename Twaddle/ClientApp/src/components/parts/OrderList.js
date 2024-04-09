@@ -154,7 +154,7 @@ const OrderList = ({openMes}) => {
                 </div>
             </div>
             <div>
-                {orders.length > 0 &&
+                {orders != null && orders.length > 0 &&
                     orders.map(item => (
                     <div key={item.id} className="card">
                         <div className="card-body">

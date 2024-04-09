@@ -2,14 +2,16 @@ import axios from "axios";
 
 export const GetCountries = async() => {
     
-    const data = await axios.get('https://countriesnow.space/api/v0.1/countries/flag/images');
+    const jwt = "hJs8oMXQudaDEixZq5I-3hDB1f71x9";
     
-    return data.data.data.map(
-        entity => {
-            const country = entity.name;
-            const flag = entity.flag;
-
-            return {country, flag}
+    const data = await axios.get('https://data-api.oxilor.com/rest/countries', {
+        headers: {
+            Authorization: "Bearer " + jwt,
         }
-    );
+    });
+    
+    
+    
+    return data.data;
+    
 };
