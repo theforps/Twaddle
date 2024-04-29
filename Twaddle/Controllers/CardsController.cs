@@ -5,6 +5,7 @@ using Twaddle.Services.Interfaces;
 
 namespace Twaddle.Controllers;
 
+[ProducesResponseType(StatusCodes.Status200OK)]
 [Route("[controller]")]
 [ApiController]
 [Authorize]
