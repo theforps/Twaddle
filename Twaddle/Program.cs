@@ -51,6 +51,8 @@ string connection = builder.Configuration.GetConnectionString("DefaultConnection
 builder.Services.AddDbContext<AppDbContext>(
     options => options.UseNpgsql(connection));
 
+builder.Services.AddSwaggerGen();
+
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
@@ -70,5 +72,7 @@ app.MapControllerRoute(
     pattern: "{controller}/{action=Index}/{id?}");
 
 app.MapFallbackToFile("index.html");
+
+app.UseSwagger().UseSwaggerUI();
 
 app.Run();

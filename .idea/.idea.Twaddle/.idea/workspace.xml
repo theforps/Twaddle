@@ -11,12 +11,9 @@
     <list default="true" id="4b4d2340-c65b-4e65-b03f-0b97c3ad9834" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/dataSources/69668772-d469-41bd-bf95-4f0bd0178b28.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/dataSources/69668772-d469-41bd-bf95-4f0bd0178b28.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/dataSources/69668772-d469-41bd-bf95-4f0bd0178b28/storage_v2/_src_/database/TwaddleDb.9SO1qw/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/dataSources/69668772-d469-41bd-bf95-4f0bd0178b28/storage_v2/_src_/database/TwaddleDb.9SO1qw/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Twaddle/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/base/StartPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/base/StartPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/parts/NewsMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/parts/NewsMenu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/parts/OrderList.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/parts/OrderList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/requests/RegInfoQueries.js" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/ClientApp/src/components/requests/RegInfoQueries.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Twaddle/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Twaddle/Twaddle.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Twaddle/Twaddle.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,8 +77,8 @@
       "postgresql"
     ],
     "rider.external.source.directories": [
-      "C:\\Users\\thefo\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\DecompilerCache",
-      "C:\\Users\\thefo\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\SourcesCache",
+      "C:\\Users\\thefo\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache",
+      "C:\\Users\\thefo\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache",
       "C:\\Users\\thefo\\AppData\\Local\\Symbols\\src"
     ]
   }
@@ -204,6 +201,7 @@
       <workItem from="1711573298278" duration="669000" />
       <workItem from="1711969198317" duration="4618000" />
       <workItem from="1712683947361" duration="2268000" />
+      <workItem from="1714396311766" duration="610000" />
     </task>
     <task id="LOCAL-00001" summary=":)">
       <option name="closed" value="true" />
