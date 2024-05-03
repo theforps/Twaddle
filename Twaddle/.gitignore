@@ -34,7 +34,7 @@ Obj/
 *.idea
 **/idea
 /wwwroot/dist/
-
+workspace.xml
 # MSTest test Results
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
