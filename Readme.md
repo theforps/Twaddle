@@ -32,3 +32,35 @@ Run the following command in the ```Twaddle``` directory.
 dotnet run
 ```
 The backend and frontend should start at the same time.
+
+
+### Configuration ```appsettings.json```
+* **AppSettings** - token for jwt authorization encryption.
+* **ConnectionStrings** - database connection string.
+* [**YandexGPT**](https://yandex.cloud/en/docs/foundation-models) - AI for the selection of questionnaires.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
