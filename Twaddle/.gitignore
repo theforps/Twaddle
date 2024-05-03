@@ -32,6 +32,7 @@ Obj/
 .idea/
 *.vs
 *.idea
+**/idea
 /wwwroot/dist/
 
 # MSTest test Results
