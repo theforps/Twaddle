@@ -16,10 +16,10 @@ public class MatchRepository : IMatchRepository
     public async Task<List<Match>> GetUserMatchesMutually(User user)
     {
         var matches = await _db.Matches
-            .Include(x => x.Couple)
             .Include(x => x.Messages)
             .AsSplitQuery()
             .Where(x => x.Couple.Contains(user))
+            .Include(x => x.Couple)
             .ToListAsync();
 
         return matches;

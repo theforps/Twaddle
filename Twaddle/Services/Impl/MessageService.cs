@@ -44,7 +44,11 @@ public class MessageService : IMessageService
                 SenderInfo = _mapper.Map<UserDTO>(result.Couple
                     .FirstOrDefault(x => !x.Login.ToLower().Equals(currentUser.ToLower())))
             };
-    
+
+            var sender = await _userRepository.GetUserByLogin(dto.SenderInfo.Login);
+
+            dto.SenderInfo.Images = sender.Pictures;
+            
             if (result == null)
             {
                 return new BaseResponse<HistoryDTO>()

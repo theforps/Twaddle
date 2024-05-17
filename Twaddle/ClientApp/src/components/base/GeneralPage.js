@@ -77,41 +77,41 @@ const GeneralPage = () => {
     
     return (
         <div>
-            <nav className="navbar navbar-expand-lg navbar-light bg-light ps-3 pe-3 mt-2 mb-2">
-                <a className="navbar-brand" href="/">twaddle</a>
-                
-                <ul className="navbar-nav w-100">
-                    <li className="nav-item m-1">
-                        <button className={"btn btn-secondary"} onClick={handleProfileShow}>
+            <nav className="navbar navbar-expand-lg navbar-light bg-light ps-4 pe-4 mt-2 mb-2" style={{borderRadius:"5px"}}>
+                <a className="navbar-brand me-4" style={{fontSize:"30px", fontWeight:"400"}}  href="/">twaddle</a>
+                <ul className="navbar-nav w-100 justify-content-center d-flex">
+
+                    <li className="nav-item m-1 ">
+                        <button className={"btn btn-secondary ps-4 pe-4"} onClick={handleProfileShow}>
                             Профиль
                         </button>
                     </li>
                     <li className="nav-item m-1">
-                        <button className={"btn btn-secondary"} onClick={handleCardsShow}>
-                            Анкеты
+                        <button className={"btn btn-secondary ps-4 pe-4"} onClick={handleCardsShow}>
+                            Список резюме
                         </button>
                     </li>
                     <li className="nav-item m-1">
-                        <button className={"btn btn-secondary"} onClick={handleMessagesShow}>
+                        <button className={"btn btn-secondary ps-4 pe-4"} onClick={handleMessagesShow}>
                             Сообщения
                         </button>
                     </li>
                     <li className="nav-item m-1">
-                        <button className={"btn btn-secondary"} onClick={handleOrdersShow}>
+                        <button className={"btn btn-secondary ps-4 pe-4"} onClick={handleOrdersShow}>
                             Заказы
                         </button>
                     </li>
                     <li className="nav-item m-1">
-                        <button className={"btn btn-secondary"} onClick={handleNewsShow}>
+                        <button className={"btn btn-secondary ps-4 pe-4"} onClick={handleNewsShow}>
                             Новости
                         </button>
                     </li>
-                    <li className="nav-item ms-auto m-1">
+                    <li className="nav-item m-1 ms-auto" style={{float:"right"}}>
                         <LogoutButton/>
                     </li>
                 </ul>
             </nav>
-            <div className={"d-flex bg-white justify-content-between"} style={{minHeight: '800px' ,height: 'calc(70vw * (9/16))'}}>
+            <div className={"d-flex justify-content-between card w-auto h-auto"} style={{minHeight:"700px", height: 'calc(60vw * (9/16))'}}>
                 {showProfile && (
                     <UserCard />
                 )}

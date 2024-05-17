@@ -33,7 +33,8 @@ public class MatchService : IMatchService
             var user = await _userRepository.GetUserByLogin(userName);
 
             var matches = await _matchRepository.GetUserMatchesMutually(user);
-
+            string couple = "";
+            
             var result = _mapper.Map<List<MatchDTO>>(matches);
 
             for(int i = 0; i < result.Count; i++)
@@ -41,7 +42,12 @@ public class MatchService : IMatchService
                 result[i].Pair = matches[i].Couple
                     .FirstOrDefault(x => 
                         !x.Login.ToLower().Equals(userName.ToLower()))!;
+                couple = result[i].Pair.Login;
+                var couplePictures = await _userRepository.GetUserByLogin(couple);
+
+                result[i].Pair.Pictures = couplePictures.Pictures;
             }
+
             
             if (result == null || result.Count == 0)
             {

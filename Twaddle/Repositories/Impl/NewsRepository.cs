@@ -19,6 +19,7 @@ public class NewsRepository : INewsRepository
         var news = await _db.News
             .Where(x => 
                 x.Description.ToLower().Contains(search.ToLower().Trim()))
+            .OrderByDescending(x => x.CreatedTime)
             .Include(x => x.Creator)
             .ToListAsync();
 

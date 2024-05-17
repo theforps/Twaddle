@@ -61,7 +61,13 @@ public class UserService : IUserService
             
             var updateUser = _mapper.Map(newUser, oldUser);
             updateUser.Login = login;
-
+            if (userDto.Images == null || userDto.Images.Count == 0)
+            {
+                var user = await _userRepository.GetUserByLogin(login);
+                updateUser.Pictures = user.Pictures;
+            }
+                
+                
             // if (userDto.Images != null)
             // {
             //     foreach (var file in userDto.Images)

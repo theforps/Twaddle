@@ -20,6 +20,7 @@ public class OrderRepository : IOrderRepository
             .Include(x => x.Creator)
             .Where(x => x.Feedbacks
                 .Where(c => c.Wanting.Id == id).Count() == 0)
+            .OrderByDescending(x => x.CreatedTime)
             .ToListAsync();
 
         return orders;

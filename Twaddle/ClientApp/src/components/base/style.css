@@ -1,0 +1,15 @@
+.backButton {
+  position: absolute;
+  top: 56.5%;
+  left: 34%;
+  border: none;
+  width: 558px;
+  height: 35px;
+  background-color: red;
+  color: white;
+  border-radius: 5px;
+}
+
+*{
+  font-family: 'Tahoma';
+}
