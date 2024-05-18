@@ -134,7 +134,7 @@ const InfiniteUserCard = ({ openMes }) => {
                     </div>
                 )}
                 {userList[currentIndex].images.length === 1 && (
-                    <div className="image-container p-2">
+                    <div className="image-container p-0">
                       <img
                           src={
                               "data:image/png;base64," +

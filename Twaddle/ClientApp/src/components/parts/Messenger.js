@@ -180,7 +180,7 @@ const Messenger = ({ id }) => {
                   </div>
                   <div className={"d-grid"} style={{textAlign: message.isSender ? "start" : "end"}}>
                     <p className={"mb-1 mt-1 text-white"}>{message.content}</p>
-                    <p className={"mb-1 text-white"} style={{}}>
+                    <p className={"mb-1 text-white"} style={{fontSize:"14px", fontFamily:"Calibri"}}>
                       {new Date(message.createdTime).toLocaleTimeString().slice(0, -3)}&nbsp;{new Date(message.createdTime).toLocaleDateString()}
                     </p>
                   </div>
