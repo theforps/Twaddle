@@ -138,7 +138,7 @@ const Messenger = ({ id }) => {
         </div>
       )}
       {buddy != null && (
-        <div className={"h-auto m-auto"} style={{minWidth:"700px"}}>
+        <div className={"h-auto"} style={{minWidth:"680px"}}>
           <div
             className="p-3"
             style={{
@@ -161,8 +161,8 @@ const Messenger = ({ id }) => {
                   style={{
                     backgroundColor: message.isSender ? "#c99aed" : "#0b7ea1",
                     color: message.isSender ? "#000" : "#fff",
-                    padding: "10px 15px",
-                    borderRadius: "8px",
+                    padding: "2px 15px",
+                    borderRadius: "10px",
                     maxWidth: "40%",
                     
                   }}
@@ -178,10 +178,13 @@ const Messenger = ({ id }) => {
                     )}
                     {message.isSender && (<p className={"text-white"} style={{fontWeight:"500"}}>{buddy.name}</p>)}
                   </div>
-                  <p className={"mb-1 mt-1 text-white"}>{message.content}</p>
-                  <p className={"mb-1 text-white"} style={{float:"right", display:"block"}}>
-                    {new Date(message.createdTime).toLocaleTimeString().slice(0, -3)}&nbsp;{new Date(message.createdTime).toLocaleDateString()}
-                  </p>
+                  <div className={"d-grid"} style={{textAlign: message.isSender ? "start" : "end"}}>
+                    <p className={"mb-1 mt-1 text-white"}>{message.content}</p>
+                    <p className={"mb-1 text-white"} style={{}}>
+                      {new Date(message.createdTime).toLocaleTimeString().slice(0, -3)}&nbsp;{new Date(message.createdTime).toLocaleDateString()}
+                    </p>
+                  </div>
+
                 </div>
               </div>
             ))}
@@ -206,78 +209,94 @@ const Messenger = ({ id }) => {
         </div>
       )}
       {buddy != null && (
-        <div className="ps-1 pe-1" style={{width:"300px", float:"right", borderLeft: "darkgray solid 1px"}}>
-          <div className="card-img-top text-center p-0">
-            {buddy.images != null && buddy.images.length > 0 && (
-              <div>
-                <div className="image-container-low border border-1 p-2 " style={{borderRadius:"20px"}}>
-                  <img
-                    src={"data:image/png;base64," +  buddy.images[currentPhotoIndex]}
-                    alt={`User ${buddy.name}`}
-                  />
-                </div>
-                {photos != null && photos.length > 1 && (
-                <div className="image-buttons btn-group">
-                  <button className="btn btn-primary" onClick={handlePrevPhoto}>
-                    &lt;
-                  </button>
-                  <button className="btn btn-primary" onClick={handleNextPhoto}>
-                    &gt;
-                  </button>
-                </div>
-                )}
-              </div>
-            )}
-            {(buddy.images == null || buddy.images.length < 1) && (
-              <div className="image-container-low">
-                <img
-                  src="https://tiktokgid.info/wp-content/uploads/2021/12/kak-sdelat-prozrachnuyu-avatarku-v-tik-tok(1).jpg"
-                  alt={`User ${buddy.name}`}
-                />
-              </div>
-            )}
-          </div>
-          <div className="card-body p-0 w-100" style={{ gap:"10px",minHeight: "400px", minWidth:"200px"}}>
-            <h2 className="card-header text-center">{buddy.name}</h2>
-            <p className="card-text-message p-0 m-0 mt-4 ms-2 me-2">{`Возраст: ${buddy.age}`}</p>
-            <p className="card-text-message p-0 m-0 mt-2 ms-2 me-2">{`Пол: ${buddy.sex}`}</p>
-            <p className="card-text-message p-0 m-0 mt-2 ms-2 me-2">{`Страна: ${buddy.country}`}</p>
-            <p className="card-text-message p-0 m-0 mt-2 ms-2 me-2">{`Образование: ${buddy.education}`}</p>
-            <p className="card-text-message p-0 m-0 mt-2 ms-2 me-2">{`Цель: ${buddy.goal}`}</p>
-            <p className="card-text-message p-0 m-0 mt-2 ms-2 me-2 mb-4">{`Описание: ${buddy.description}`}</p>
-            <div className={"card-footer text-center mt-4"}>
-              <ModalWindow
-                btnName={"Пожаловаться"}
-                title={"Подать жалобу"}
-                modalContent={
+          <div className="ps-1 pe-1" style={{width: "350px", float: "right", borderLeft: "darkgray solid 1px"}}>
+            <div className="card-img-top text-center p-0 ">
+              {buddy.images != null && buddy.images.length > 0 && (
                   <div>
-                    <div className="m-3">
-                      <textarea
-                        id="report"
-                        className="w-100 p-2 form-control"
-                        style={{
-                          height: "300px",
-                          resize: "none",
-                          textWrap: "inherit",
-                        }}
-                        placeholder="Введите жалобу"
+                    <div className="image-container-low border border-2 p-0" style={{borderRadius: "20px"}}>
+                      <img
+                          src={"data:image/png;base64," + buddy.images[currentPhotoIndex]}
+                          alt={`User ${buddy.name}`}
                       />
                     </div>
-                    <div className="justify-content-center d-flex">
-                      <button
-                        className="btn btn-success"
-                        type={"submit"}
-                        onClick={handleSendReport}
-                      >
-                        Отправить жалобу
-                      </button>
-                    </div>
+                    {photos != null && photos.length > 1 && (
+                        <div className="image-buttons btn-group w-75 m-auto mt-2">
+                          <button className="btn btn-outline-secondary" onClick={handlePrevPhoto}>
+                            &lt;
+                          </button>
+                          <button className="btn btn-outline-secondary" onClick={handleNextPhoto}>
+                            &gt;
+                          </button>
+                        </div>
+                    )}
                   </div>
-                }
+              )}
+              {(buddy.images == null || buddy.images.length < 1) && (
+                  <div className="image-container-low">
+                    <img
+                        src="https://tiktokgid.info/wp-content/uploads/2021/12/kak-sdelat-prozrachnuyu-avatarku-v-tik-tok(1).jpg"
+                        alt={`User ${buddy.name}`}
+                    />
+                  </div>
+              )}
+            </div>
+            <div className="card-body p-0 m-0 w-100" style={{gap: "10px", minHeight: "350px", width: "300px"}}>
+              <p className={"mt-1 mb-1 card-header text-center p-0"} style={{
+                fontSize: "25px",
+                fontWeight: "600",
+                fontFamily: "Calibri"
+              }}>{buddy.name}, {buddy.age}</p>
+              <div className={"ms-3 me-3"}>
+                <p className={"mb-0"} style={{fontSize: "20px", fontWeight: "600", fontFamily: "Calibri"}}>🏠 Личное</p>
+                <p className={"mb-1"} style={{fontSize: "16px"}}>&nbsp;&nbsp;&nbsp;<u>Пол</u>: {buddy.sex}</p>
+                <p className={"mb-0"} style={{fontSize: "20px", fontWeight: "600", fontFamily: "Calibri"}}>🌏 Страна</p>
+                <p className={"mb-1"} style={{fontSize: "16px"}}>&nbsp;&nbsp;&nbsp;{buddy.country}</p>
+                <p className={"mb-0"}
+                   style={{fontSize: "20px", fontWeight: "600", fontFamily: "Calibri"}}>💻 Образование</p>
+                <p className={"mb-1"} style={{fontSize: "16px"}}>&nbsp;&nbsp;&nbsp;{buddy.education}</p>
+                <p className={"mb-0"}
+                   style={{fontSize: "20px", fontWeight: "600", fontFamily: "Calibri"}}>💼 Что стоит учесть</p>
+                <p className={"mb-0"} style={{fontSize: "16px"}}>&nbsp;&nbsp;&nbsp;
+                  <u>Цель</u>: {buddy.goal}</p>
+                <p className={"mb-0"} style={{fontSize: "16px"}}>&nbsp;&nbsp;&nbsp;
+                  <u>Рейтинг</u>: 5 ⭐</p>
+                <p className={"mb-0"}
+                   style={{fontSize: "16px"}}>&nbsp;&nbsp;&nbsp;
+                  <u>Описание</u>:<p className={"text-muted"} style={{lineHeight:"20px", fontSize:"14px", fontWeight:"600", marginLeft:"15px"}}>{buddy.description} </p> </p>
+              </div>
+            </div>
+            <div className={"card-footer text-center mt-auto"}>
+              <ModalWindow
+                  btnName={"Пожаловаться"}
+                  title={"Подать жалобу"}
+                  modalContent={
+                    <div>
+                      <div className="m-3">
+                      <textarea
+                          id="report"
+                          className="w-100 p-2 form-control"
+                          style={{
+                            height: "300px",
+                            resize: "none",
+                            textWrap: "inherit",
+                          }}
+                          placeholder="Введите жалобу"
+                      />
+                      </div>
+                      <div className="justify-content-center d-flex">
+                        <button
+                            className="btn btn-success w-100 ms-3 me-3"
+                            type={"submit"}
+                            onClick={handleSendReport}
+                        >
+                          Отправить жалобу
+                        </button>
+                      </div>
+                    </div>
+                  }
               />
             </div>
           </div>
-        </div>
       )}
     </div>
   );

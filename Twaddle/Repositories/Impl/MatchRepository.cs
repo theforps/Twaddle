@@ -38,9 +38,11 @@ public class MatchRepository : IMatchRepository
 
     public async Task<Match> SetUserMatch(User userSender, User userResult, int? orderId)
     {
-        Match result;
+        Match result = null;
+
+        var matches = await _db.Matches.ToListAsync();
         
-        if (orderId != null)
+        if (orderId != null || orderId > 0)
         {
             var order = await _db.Orders
                 .FirstOrDefaultAsync(x => x.Id == orderId);

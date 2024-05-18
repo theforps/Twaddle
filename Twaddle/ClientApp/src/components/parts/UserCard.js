@@ -317,8 +317,11 @@ const UserCard = () => {
             Удалить аккаунт
           </button>
         </div>
-        <div className={"d-flex w-100 justify-content-start"}>
-          <div style={{margin: "70px"}} className={""}>
+        <div 
+            className={"d-flex justify-content-start border border-2 border-secondary border-opacity-50"}
+            style={{margin:"5px 50px", padding:"40px", borderRadius:"40px"}}
+        >
+          <div style={{margin: "0px"}} className={""}>
           {pictures.length > 1 && (
                 <div className="image-container-profile p-0">
                   <img
@@ -344,15 +347,15 @@ const UserCard = () => {
                 </div>
             )}
             {pictures.length > 1 && (
-                <div className={"btn-group w-100"} style={{marginTop: "10px"}}>
+                <div className={"btn-group w-100 mt-4"} style={{marginTop: "10px"}}>
                   <button
-                      className="btn btn-primary"
+                      className="btn btn-outline-secondary"
                       onClick={handlePrevPhoto}
                   >
                     &lt;
                   </button>
                   <button
-                      className="btn btn-primary"
+                      className="btn btn-outline-secondary"
                       onClick={handleNextPhoto}
                   >
                     &gt;
@@ -361,9 +364,9 @@ const UserCard = () => {
             )}
           </div>
           {isEditing ? (
-              <div className="profile">
+              <div className="profile" style={{margin:"0px 10px"}}>
                 <div className="">
-                  <div className={"ms-4 pe-4 w-75"} style={{fontSize: "20px"}}>
+                  <div className={"ms-4 pe-4 w-100"} style={{fontSize: "20px"}}>
                     <p className="d-flex align-items-center" style={{gap: "30px"}}>
                       Имя
                       <input
@@ -479,11 +482,12 @@ const UserCard = () => {
                           onChange={handleChange}
                       />
                     </p>
-                    <p className="d-flex align-items-center" style={{gap: "30px"}}>
+                    <p className="align-items-center" style={{gap: "30px"}}>
                       Фотографии
                       <input
+                          
                           type="file"
-                          className="form-control border-2 border-secondary border-opacity-50"
+                          className="form-control mt-2 border-2 border-secondary border-opacity-50"
                           accept={"image/*"}
                           multiple
                           onChange={handleImageUpload}
@@ -507,20 +511,35 @@ const UserCard = () => {
               </div>
           ) : (
               user != null && (
-                  <div className="profile">
-                    <div className="card__body-info mb-auto border border-2 border-secondary border-opacity-25">
-                        <p className="card-text-profile w-50 col col-1">Ваш логин: {user.login}</p>
-                        <p className="card-text-profile w-75 col col-1">Имя: {user.name}</p>
-                        <p className="card-text-profile w-50 col col-1">Возраст: {user.age}</p>
-                        <p className="card-text-profile w-75 col col-1">Страна: {user.country}</p>
-                        <p className="card-text-profile">Пол: {user.sex}</p>
-                        <p className="card-text-profile">Цель: {user.goal}</p>
-                      <p className="card-text-profile">
-                        Образование: {user.education}
-                      </p>
-                      <p className="card-text-profile" style={{textWrap:"wrap", width: "300px", height:"200px"}}>
-                        Описание: 
-                        <p className={"d-block"} style={{fontSize:"15px"}}>{user.description}   Описсаниениие:: Описание: Опи  ие: Описание:сание:  Описсаниениие:: Описание: Описание:  Описсаниениие:: Описание: Описание:  Описсаниениие:: Описание: Описание:  Описсаниениие:: Описание: Описание:  Описсаниениие:: Описание: Описание:</p>
+                  <div className="profile mb-4">
+                    <div className="card__body-info mb-auto "
+                         style={{marginLeft: "10px"}}>
+                      <p className={"mb-2"} style={{
+                        fontSize: "35px",
+                        fontWeight: "500",
+                        fontFamily: "Calibri"
+                      }}><u>{user.name}, {user.age}</u></p>
+                      <p className={"mb-0"} style={{fontSize: "24px", fontWeight: "600", fontFamily: "Calibri"}}>📶
+                        Данные ресурса</p>
+                      <p className={"mb-3"}
+                         style={{fontSize: "19px"}}>&nbsp;&nbsp;&nbsp;<u>Логин</u>: {user.login}</p>
+                      <p className={"mb-0"} style={{fontSize: "24px", fontWeight: "600", fontFamily: "Calibri"}}>🌏
+                        Страна</p>
+                      <p className={"mb-3"}
+                         style={{fontSize: "19px"}}>&nbsp;&nbsp;&nbsp;{user.country}</p>
+                      <p className={"mb-0"}
+                         style={{fontSize: "24px", fontWeight: "600", fontFamily: "Calibri"}}>💻 Образование</p>
+                      <p className={"mb-3"}
+                         style={{fontSize: "19px"}}>&nbsp;&nbsp;&nbsp;{user.education}</p>
+                      <p className={"mb-0"}
+                         style={{fontSize: "24px", fontWeight: "600", fontFamily: "Calibri"}}>💼 Что стоит учесть</p>
+                      <p className={"mb-0"}
+                         style={{fontSize: "19px"}}>&nbsp;&nbsp;&nbsp;<u>Цель</u>: {user.goal}</p>
+                      <p className={"mb-0"}
+                         style={{fontSize: "19px"}}>&nbsp;&nbsp;&nbsp;<u>Рейтинг</u>: {Math.floor(Math.random() * (2) + 2)} ⭐</p>
+                      <p className={"mb-4"}
+                         style={{fontSize: "19px"}}>&nbsp;&nbsp;&nbsp;<u>Описание</u>: 
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;{user.description}</p> 
                       </p>
                     </div>
                   </div>

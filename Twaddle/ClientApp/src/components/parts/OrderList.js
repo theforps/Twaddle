@@ -285,7 +285,7 @@ const OrderList = ({ openMes }) => {
                                   <div>
                                     {feedbacks.length > 0 &&
                                         feedbacks.map((feed) => (
-                                            <div className="card" key={feed.id}>
+                                            <div className="card mb-3" key={feed.id}>
                                               <div className="card-body">
                                                 <div className="match-profile align-content-center d-flex justify-content-start mb-3">
                                                   {(feed.wanting.images == null || feed.wanting.images.length == 0) && (
@@ -304,10 +304,14 @@ const OrderList = ({ openMes }) => {
                                                 <h6 className="card-subtitle mb-2 text-muted">
                                                   {feed.wanting.description}
                                                 </h6>
-                                                <h6 className="card-text mb-2 text-center">
-                                                  Сообщение 
-                                                </h6>
-                                                <p className="card-text border border-1 p-3 border-secondary-subtle" style={{borderRadius:"10px"}}>{feed.comment}</p>
+                                                {feed.comment != null && feed.comment.length > 0 && (
+                                                  <div>
+                                                    <h6 className="card-text mb-2 text-center">
+                                                      Сообщение 
+                                                    </h6>
+                                                    <p className="card-text border border-1 p-3 border-secondary-subtle" style={{borderRadius:"10px"}}>{feed.comment}</p>
+                                                  </div>
+                                                )}
                                               </div>
                                               <div className={"btn-group"}>
                                                 {/*{!feed.isLike && (*/}

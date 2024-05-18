@@ -113,7 +113,7 @@ const InfiniteUserCard = ({ openMes }) => {
                 )
             )
           ) : (
-            <p>Совпадений нет</p>
+            <p className={"text-center mt-auto w-100"}>Совпадений нет</p>
           )}
         </div>
       </div>
@@ -121,7 +121,7 @@ const InfiniteUserCard = ({ openMes }) => {
         {userList != null && userList.length > currentIndex && (
           <div className="p-3 ">
             <div className={"d-flex "}>
-              <div style={{height:"600px"}}>
+              <div style={{height:"600px", marginLeft:"30px"}}>
                 {userList[currentIndex].images.length > 1 && (
                     <div className="image-container p-2">
                       <img
@@ -153,15 +153,15 @@ const InfiniteUserCard = ({ openMes }) => {
                     </div>
                 )}
                 {userList[currentIndex].images.length > 1 && (
-                <div className={"btn-group w-100"} style={{marginTop:"10px"}}>
+                <div className={"btn-group w-100"} style={{marginTop:"20px"}}>
                   <button
-                      className="btn btn-primary"
+                      className="btn btn-outline-secondary"
                       onClick={handlePrevPhoto}
                   >
                     &lt;
                   </button>
                   <button
-                      className="btn btn-primary"
+                      className="btn btn-outline-secondary"
                       onClick={handleNextPhoto}
                   >
                     &gt;
@@ -201,30 +201,40 @@ const InfiniteUserCard = ({ openMes }) => {
                       }
                   />
                 </div>
-                <div className="card-text p-4" style={{fontSize: "20px"}}>
-                  <p>Имя: {userList[currentIndex].name}</p>
-                  <p>Пол: {userList[currentIndex].sex}</p>
-                  <p>Цель: {userList[currentIndex].goal}</p>
-                  <p>Возраст: {userList[currentIndex].age}</p>
-                  <p>Страна: {userList[currentIndex].country}</p>
-                  <p>Образование: {userList[currentIndex].education}</p>
-                  <p>Описание: {userList[currentIndex].description} </p>
+                <div className="card-text p-4" style={{fontSize: "20px", marginLeft:"10px"}}>
+                  <p className={"mt-4 mb-2"} style={{
+                    fontSize: "35px",
+                    fontWeight: "600",
+                    fontFamily: "Calibri"
+                  }}>{userList[currentIndex].name}, {userList[currentIndex].age}</p>
+                  <p className={"mb-0"} style={{fontSize: "22px", fontWeight: "600", fontFamily: "Calibri"}}>🏠 Личное</p>
+                  <p className={"mb-3"} style={{fontSize: "17px"}}>&nbsp;&nbsp;&nbsp;<u>Пол</u>: {userList[currentIndex].sex}</p>
+                  <p className={"mb-0"} style={{fontSize: "22px", fontWeight: "600", fontFamily: "Calibri"}}>🌏 Страна</p>
+                  <p className={"mb-3"} style={{fontSize: "17px"}}>&nbsp;&nbsp;&nbsp;{userList[currentIndex].country}</p>
+                  <p className={"mb-0"}
+                     style={{fontSize: "22px", fontWeight: "600", fontFamily: "Calibri"}}>💻 Образование</p>
+                  <p className={"mb-3"} style={{fontSize: "17px"}}>&nbsp;&nbsp;&nbsp;{userList[currentIndex].education}</p>
+                  <p className={"mb-0"}
+                     style={{fontSize: "22px", fontWeight: "600", fontFamily: "Calibri"}}>💼 Что стоит учесть</p>
+                  <p className={"mb-0"} style={{fontSize: "17px"}}>&nbsp;&nbsp;&nbsp;<u>Цель</u>: {userList[currentIndex].goal}</p>
+                  <p className={"mb-0"} style={{fontSize: "17px"}}>&nbsp;&nbsp;&nbsp;<u>Рейтинг</u>: {Math.floor(Math.random() * (2) + 2)} ⭐</p>
+                  <p className={"mb-3"} style={{fontSize: "17px"}}>&nbsp;&nbsp;&nbsp;<u>Описание</u>: {userList[currentIndex].description} </p>
                 </div>
 
               </div>
             </div>
-            <div className={"w-100 d-flex justify-content-center"}>
-              <button className={"btn btn-danger ms-2 me-2"} style={{width: "300px", height: "100px", fontSize: "25px"}}
+            <div className={"w-100 d-flex justify-content-center"} style={{gap:"50px"}}>
+              <button className={"btn btn-danger me-2 ms-2 d-flex align-items-center justify-content-center"} style={{width: "300px", height: "100px", fontSize: "25px"}}
                       onClick={goToNextCard}>
-                
-                Пропустить
+                <p className={"m-0 ps-4"} style={{lineHeight: "25px"}}>Пропустить</p> <p
+                  className={"m-0 pe-4"}>👎</p>
               </button>
               <button
-                  className={"btn btn-success me-2 ms-2"}
+                  className={"btn btn-success me-2 ms-2 d-flex align-items-center justify-content-center"}
                   style={{width: "300px", height: "100px", fontSize: "25px"}}
                   onClick={() => setLike(userList[currentIndex].login)}
               >
-                Согласиться на взаимодействие
+                <p className={"m-0 ps-4"} style={{lineHeight:"25px"}}>Согласиться на взаимодействие</p> <p className={"m-0 pe-4"}>👍</p>
               </button>
             </div>
           </div>
