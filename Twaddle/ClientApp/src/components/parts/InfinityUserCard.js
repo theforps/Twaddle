@@ -123,7 +123,7 @@ const InfiniteUserCard = ({ openMes }) => {
             <div className={"d-flex "}>
               <div style={{height:"600px", marginLeft:"30px"}}>
                 {userList[currentIndex].images.length > 1 && (
-                    <div className="image-container p-2">
+                    <div className="image-container p-0">
                       <img
                           src={
                               "data:image/png;base64," +
@@ -172,7 +172,7 @@ const InfiniteUserCard = ({ openMes }) => {
               <div className={"card-body m-0"} style={{width: "430px"}}>
                 <div className={"text-center"} style={{float:"right"}}>
                   <ModalWindow
-                      btnName={"Пожаловаться"}
+                      btnName={"Пожаловаться😵"}
                       title={"Подать жалобу"}
                       modalContent={
                         <div>
@@ -190,7 +190,7 @@ const InfiniteUserCard = ({ openMes }) => {
                           </div>
                           <div className="justify-content-center d-flex">
                             <button
-                                className="btn btn-success"
+                                className="btn btn-success w-100 ms-3 me-3"
                                 type={"submit"}
                                 onClick={handleSendReport}
                             >
@@ -224,14 +224,14 @@ const InfiniteUserCard = ({ openMes }) => {
               </div>
             </div>
             <div className={"w-100 d-flex justify-content-center"} style={{gap:"50px"}}>
-              <button className={"btn btn-danger me-2 ms-2 d-flex align-items-center justify-content-center"} style={{width: "300px", height: "100px", fontSize: "25px"}}
+              <button className={"btn btn-danger me-2 ms-2 d-flex align-items-center justify-content-center"} style={{borderRadius:"30px", width: "300px", height: "100px", fontSize: "25px"}}
                       onClick={goToNextCard}>
                 <p className={"m-0 ps-4"} style={{lineHeight: "25px"}}>Пропустить</p> <p
                   className={"m-0 pe-4"}>👎</p>
               </button>
               <button
                   className={"btn btn-success me-2 ms-2 d-flex align-items-center justify-content-center"}
-                  style={{width: "300px", height: "100px", fontSize: "25px"}}
+                  style={{borderRadius:"30px",width: "300px", height: "100px", fontSize: "25px"}}
                   onClick={() => setLike(userList[currentIndex].login)}
               >
                 <p className={"m-0 ps-4"} style={{lineHeight:"25px"}}>Согласиться на взаимодействие</p> <p className={"m-0 pe-4"}>👍</p>

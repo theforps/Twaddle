@@ -167,7 +167,7 @@ const Messenger = ({ id }) => {
                     
                   }}
                 >
-                  <div className="mini-profile" style={{minWidth: "200px"}}>
+                  <div className="mini-profile" style={{width:"max-content"}}>
                     
                     {message.isSender && (buddy.images == null || buddy.images.length == 0) && (
                         <img className={"border-secondary-subtle border-2 border bg-white"} src="https://tiktokgid.info/wp-content/uploads/2021/12/kak-sdelat-prozrachnuyu-avatarku-v-tik-tok(1).jpg"/>
@@ -267,7 +267,7 @@ const Messenger = ({ id }) => {
             </div>
             <div className={"card-footer text-center mt-auto"}>
               <ModalWindow
-                  btnName={"Пожаловаться"}
+                  btnName={"Пожаловаться😵"}
                   title={"Подать жалобу"}
                   modalContent={
                     <div>

@@ -193,16 +193,17 @@ const OrderList = ({ openMes }) => {
                         </p>
                       </h6 >
                       <h6 className="text-muted">
-                        Цена:&nbsp;
-                        {item.startPrice != 0 && (<span>ОТ {item.startPrice}&nbsp;</span>)}
-                        {item.endPrice != 0 && (<span>ДО {item.endPrice}&nbsp;</span>)}
-                        {item.startPrice == 0 && item.endPrice == 0 && (<span>ДОГОВОРНАЯ</span>)}
-                        {(item.startPrice != 0 || item.endPrice != 0) && (<span>₽</span>)}
+                        
+                        {item.startPrice != 0 && item.endPrice == 0 && (<span>ОТ {item.startPrice}</span>)}
+                        {item.endPrice != 0 && item.startPrice == 0 && (<span>ДО {item.endPrice}</span>)}
+                        {item.endPrice != 0 && item.startPrice != 0 && (<span>{item.startPrice} - {item.endPrice}</span>)}
+                        
+                        {(item.startPrice != 0 || item.endPrice != 0) && (<span>&nbsp;₽</span>)}
                       </h6>
                       {item.creator.login !== sessionStorage.getItem("user") && (
                           <div className="buttons-order">
                             <ModalWindow
-                                btnName={"Пожаловаться"}
+                                btnName={"Пожаловаться😵"}
                                 title={"Подать жалобу"}
                                 modalContent={
                                   <div>
