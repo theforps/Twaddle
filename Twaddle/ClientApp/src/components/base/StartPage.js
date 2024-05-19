@@ -11,7 +11,7 @@ const StartPage = () => {
     sex: "",
     nick: "",
     goal: "",
-    age: 16,
+    age: 18,
     country: "",
     desc: "",
     education: "",
@@ -230,27 +230,28 @@ const EnterNick = ({ data, onSubmit }) => {
         <div className="card-body d-flex flex-column align-items-center justify-content-around">
           <h3 className="card-title text-center">Ваше полное имя</h3>
           <div
-              className={"input-group justify-content-center d-flex border-black"}
+              className={"justify-content-center border-black w-100 mt-0"}
               role="group"
           >
             <input
                 type="text"
-                className="form-control"
+                className="form-control w-100 mb-4 border-secondary border-2"
                 placeholder="Введите ваше имя"
                 value={nick}
                 onChange={(e) => setNick(e.target.value)}
             />
-          </div>
-          {nick.length > 2 ? (
-              <button className={"btn btn-success w-100"} type="submit">
-                Дальше
-              </button>
+            {nick.length > 2 ? (
+                <button className={"btn btn-success w-100 mt-4"} type="submit">
+                  Дальше
+                </button>
 
-          ) : (
-              <p style={{color: "red", fontWeight: "bold"}}>
-                Ваше имя слишком короткое!
-              </p>
-          )}
+            ) : (
+                <p className={"text-center mt-1"} style={{color: "red", fontWeight: ""}}>
+                  Ваше имя слишком короткое!
+                </p>
+            )}
+          </div>
+          
         </div>
       </div>
     </form>
@@ -278,7 +279,7 @@ const SelectGoal = ({data, onSubmit}) => {
       <div className="card mx-auto" style={{ width: "600px", height: "300px" }}>
         <div className="card-body d-flex flex-column align-items-center justify-content-around">
           <h3 className="card-title text-center">Ваша цель</h3>
-          <div className={"btn-group-vertical btn-group-lg"} role="group">
+          <div className={"btn-group-vertical btn-group-lg mb-4"} role="group">
             <button
               className={"btn btn-outline-success"}
               onClick={() => handleGoalSelection("Ищу заказчика")}
@@ -316,25 +317,26 @@ const EnterAge = ({ data, onSubmit }) => {
         <div className="card-body d-flex flex-column align-items-center justify-content-around">
           <h3 className="card-title text-center">Ваш возраст</h3>
           <div
-            className={"input-group justify-content-center d-flex border-black"}
+            className={"justify-content-center border-black w-100 mt-0"}
             role="group"
           >
             <input
               type="number"
               placeholder="Введите ваш возраст"
-              className="form-control"
+              value={age}
+              className="form-control w-100 mb-4 border-secondary border-2"
               onChange={(e) => setAge(e.target.value)}
             />
+            {age >= 18 && age <= 111 ? (
+                <button className={"btn btn-success w-100 mt-4"} type="submit">
+                  Дальше
+                </button>
+            ) : (
+                <p className={"text-center mt-1"}  style={{color: "red"}}>
+                  Введите корректное значение! [18-110]
+                </p>
+            )}
           </div>
-          {age >= 18 && age <= 111 ? (
-              <button className={"btn btn-success w-100"} type="submit">
-                Дальше
-              </button>
-          ) : (
-              <p style={{color: "red", fontWeight: "bold"}}>
-                Введите корректное значение!
-            </p>
-          )}
         </div>
       </div>
     </form>
@@ -385,8 +387,8 @@ const EnterCountry = ({ data, onSubmit, countries }) => {
           {/*  {country || "Выберите страну"}*/}
           {/*</button>*/}
 
-          <div>
-            <Button variant="secondary" style={{width:"300px"}} onClick={handleOpenModal}>
+          <div className={"justify-content-center border-black w-100 mt-0"}>
+            <Button variant="secondary w-100 mb-4 " style={{}} onClick={handleOpenModal}>
               {country || "Выберите страну"}
             </Button>
 
@@ -408,6 +410,15 @@ const EnterCountry = ({ data, onSubmit, countries }) => {
                 </div>
               </Modal.Body>
             </Modal>
+            {country.length > 1 ? (
+                <button className={"btn btn-success w-100 mt-4"} type="submit">
+                  Дальше
+                </button>
+            ) : (
+                <p  className={"text-center mt-0"}  style={{color: "red"}}>
+                  Выберите страну!
+                </p>
+            )}
           </div>
 
 
@@ -423,15 +434,7 @@ const EnterCountry = ({ data, onSubmit, countries }) => {
           {/*      ))}*/}
           {/*    </div>*/}
           {/*)}*/}
-          {country.length > 1 ? (
-              <button className={"btn btn-success w-100"} type="submit">
-                Дальше
-              </button>
-          ) : (
-              <p style={{color: "red", fontWeight: "bold"}}>
-                Введите корректное значение!
-              </p>
-          )}
+          
         </div>
       </div>
     </form>
@@ -456,25 +459,26 @@ const EnterEducation = ({data, onSubmit}) => {
           <div className="card-body d-flex flex-column align-items-center justify-content-around">
           <h3 className="card-title text-center">Ваше образование</h3>
           <div
-            className={"input-group justify-content-center d-flex border-black"}
+            className={"justify-content-center border-black w-100"}
             role="group"
           >
             <input
               type="text"
-              className="form-control"
+              className="form-control w-100 mb-4 border-secondary border-2"
               placeholder="Введите ваше образование"
+              value={education}
               onChange={(e) => setEducation(e.target.value)}
             />
+            {education.length >= 3 ? (
+                <button className={"btn btn-success w-100 mt-4"} type="submit">
+                  Дальше
+                </button>
+            ) : (
+                <p className={"text-center mt-1"} style={{color: "red"}}>
+                  Введите корректное значение!
+                </p>
+            )}
           </div>
-          {education.length >= 3 ? (
-              <button className={"btn btn-success w-100"} type="submit">
-                Дальше
-              </button>
-          ) : (
-              <p style={{color: "red", fontWeight: "bold"}}>
-                Введите корректное значение!
-            </p>
-          )}
         </div>
       </div>
     </form>
@@ -498,20 +502,21 @@ const EnterDesc = ({ data, onSubmit }) => {
       <div className="card mx-auto" style={{ width: "600px", height: "300px" }}>
         <div className="card-body d-flex flex-column align-items-center justify-content-around">
           <h3 className="card-title text-center">
-            Информация о себе и желаниях
+            Информация о себе
           </h3>
           <div
             className={"input-group justify-content-center d-flex border-black"}
             role="group"
           >
             <textarea
-              className="form-control "
+              className="form-control border-secondary border-2"
               style={{ height: "130px", resize: "none" }}
-              placeholder="Введите ваши желания"
+              value={desc}
+              placeholder="Укажи то, что стоит знать о вас"
               onChange={(e) => setDesc(e.target.value)}
             />
           </div>
-          <button className={"btn btn-success w-100 mb-3"} type="submit">
+          <button className={"btn btn-success w-100 mb-3 "} type="submit">
             Дальше
           </button>
         </div>
@@ -538,33 +543,35 @@ const EnterInfo = ({data, onSubmit}) => {
       <div className="card mx-auto" style={{ width: "600px", height: "300px" }}>
         <div className="card-body d-flex flex-column align-items-center justify-content-around">
           <h3 className="card-title text-center">Входные данные</h3>
-          <div className={"input-group"} role="group">
+          <div className={"w-100"} role="group">
             <div className={"d-flex justify-content-between w-100"}>
               <p className={"mx-auto fw-bold"}>Логин</p>
               <p className={"mx-auto fw-bold"}>Пароль</p>
             </div>
+            <div className={"mb-4 d-flex"}>
             <input
                 type="text"
-                className="form-control"
+                className="form-control border-secondary border-2 me-1"
                 placeholder="Введите логин"
                 onChange={(e) => setLogin(e.target.value)}
             />
             <input
                 type="password"
-                className="form-control"
+                className="form-control border-secondary border-2 ms-1"
                 placeholder="Введите пароль"
                 onChange={(e) => setPassword(e.target.value)}
             />
+            </div>
+            {login.length >= 8 && password.length >= 8 ? (
+                <button className={"btn btn-success w-100 mb-1"} type="submit">
+                  Дальше
+                </button>
+            ) : (
+                <p className={"text-center mb-4"} style={{color: "red"}}>
+                  Логин и пароль должны содержать не менее 8 символов!
+                </p>
+            )}
           </div>
-          {login.length >= 3 && password.length >= 8 ? (
-              <button className={"btn btn-success w-100 mb-1"} type="submit">
-                Дальше
-              </button>
-          ) : (
-              <p style={{color: "red", fontWeight: "bold"}}>
-                Ваш логин должен быть длинее 3х символов, а пароль длинее 8!
-            </p>
-          )}
         </div>
       </div>
     </form>

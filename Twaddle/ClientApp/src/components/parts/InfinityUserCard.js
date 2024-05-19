@@ -202,11 +202,11 @@ const InfiniteUserCard = ({ openMes }) => {
                   />
                 </div>
                 <div className="card-text p-4" style={{fontSize: "20px", marginLeft:"10px"}}>
-                  <p className={"mt-4 mb-2"} style={{
+                  <p className={"mt-4 mb-2 text-center"} style={{
                     fontSize: "35px",
-                    fontWeight: "600",
+                    fontWeight: "500",
                     fontFamily: "Calibri"
-                  }}>{userList[currentIndex].name}, {userList[currentIndex].age}</p>
+                  }}><u>{userList[currentIndex].name}, {userList[currentIndex].age}</u></p>
                   <p className={"mb-0"} style={{fontSize: "22px", fontWeight: "600", fontFamily: "Calibri"}}>🏠 Личное</p>
                   <p className={"mb-3"} style={{fontSize: "17px"}}>&nbsp;&nbsp;&nbsp;<u>Пол</u>: {userList[currentIndex].sex}</p>
                   <p className={"mb-0"} style={{fontSize: "22px", fontWeight: "600", fontFamily: "Calibri"}}>🌏 Страна</p>

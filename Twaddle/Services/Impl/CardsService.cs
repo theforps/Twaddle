@@ -47,6 +47,7 @@ public class CardsService : ICardsService
                     .Contains(x.Login.ToLower()))
                 .Where(x => 
                     x.Login != currentUser)
+                .Where(x => !x.Goal.Equals(user.Goal))
                 .Where(x => 
                     x.Matches
                         .Where(c => 
